@@ -31,9 +31,9 @@ class _RootPageState extends State<RootPage> {
     int currentPage = 0;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Green & Go'),
+        title: const Text('Green & Go'),  
       ),
-      body: HomePage(),
+      body: const HomePage(),
     );
   }
 }
