@@ -25,7 +25,7 @@ class _WarrenState extends State<Warren> {
               query: warrenRef,
               itemBuilder: (BuildContext context, DataSnapshot snapshot,
                   Animation<double> animation, int index) {
-                return Text('hello');
+                return Text(snapshot.child('item').value.toString());
               }),
         ));
   }
