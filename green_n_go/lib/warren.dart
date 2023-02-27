@@ -10,9 +10,9 @@ class Warren extends StatefulWidget {
 }
 
 class _WarrenState extends State<Warren> {
-  DatabaseReference warrenRef =
-      FirebaseDatabase.instance.ref().child("updated_menu/2023-02-25/breakfast");
-
+  DatabaseReference warrenRefBF = FirebaseDatabase.instance
+      .ref()
+      .child("updated_menu/2023-02-25/breakfast");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,13 +20,16 @@ class _WarrenState extends State<Warren> {
           title: const Text('Warren Menu'),
         ),
         body: Container(
-          height: double.infinity,
-          child: FirebaseAnimatedList(
-              query: warrenRef,
-              itemBuilder: (BuildContext context, DataSnapshot snapshot,
-                  Animation<double> animation, int index) {
-                return Text(snapshot.child('item').value.toString());
-              }),
-        ));
+            height: double.infinity,
+            child: FirebaseAnimatedList(
+                query: warrenRefBF,
+                itemBuilder: (BuildContext context, DataSnapshot snapshot,
+                    Animation<double> animation, int index) {
+                  return Center(
+                    child: Container(decoration: BoxDecoration(color:Colors.white54, border: Border.all(color: Colors.black26)),child: Text(snapshot.child('item').value.toString())),
+                  );
+                }),
+          ),
+        );
   }
 }
