@@ -21,3 +21,7 @@ samples, guidance on mobile development, and a full API reference.
 - Setup Flutter
 - Push the Flutter Green&Go. project to repo
 
+# 2/27
+- Connect Flutter app with Firebase
+- Initialize the realtime database
+- Be able to see menu for Warren dining hall
