@@ -24,4 +24,5 @@ samples, guidance on mobile development, and a full API reference.
 # 2/27
 - Connect Flutter app with Firebase
 - Initialize the realtime database
-- Be able to see menu for Warren dining hall
+- Used beautiful soup to webscrape BU's dining hall menu and store items in firebase
+- Pull food items from Firebase according to dininghall and display on app
