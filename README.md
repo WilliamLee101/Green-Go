@@ -23,6 +23,7 @@ How to run:
 1. Git clone this repo
 2. Run 'Flutter doctor', resolve any issues
 3. Run 'Flutter run'
+```flutter run```
 
 # 2/13
 - Setup github repo
