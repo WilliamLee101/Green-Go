@@ -34,5 +34,5 @@ How to run the mobile applicaiton:
 ```git clone https://github.com/Tylerr198/Green-Go.git```
 2. Open Terminal
 2. Run ```flutter doctor```
-3. (Optional) open a simulator (MacOS) ```open -a simulator``
+3. (Optional) open a simulator (MacOS) ```open -a simulator```
 5. Run ```flutter run```
