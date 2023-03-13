@@ -25,7 +25,28 @@ final List<FoodItem> lmenu = [];
 final List<FoodItem> dmenu = [];
 
 final ref = FirebaseDatabase.instance.ref();
-Future<void> getMenu() async {
+
+
+class Marciano extends StatefulWidget {
+  const Marciano({super.key});
+
+  @override
+  State<Marciano> createState() => _MarcianoState();
+}
+
+class _MarcianoState extends State<Marciano> {
+List<FoodItem> _selectedMealType = bmenu;
+  @override
+  void initState() {
+    super.initState();
+    getMenu().then((value) {
+      setState(() {
+        // set the selected meal type to breakfast by default
+        _selectedMealType = bmenu;
+      });
+    });
+  }
+  Future<void> getMenu() async {
   final snapshot =
       await ref.child("updated_menu/2023-03-13/marciano/breakfast").get();
   if (snapshot.exists && snapshot.value is Map<dynamic, dynamic>) {
@@ -72,24 +93,14 @@ Future<void> getMenu() async {
         sugars: value['sugars'],
         cals: value['cals'],
       );
-      print(food.name);
-      print(food.cals);
       dmenu.add(food);
     });
   } else {
     print('No data available.');
   }
 }
-
-class Marciano extends StatefulWidget {
-  const Marciano({super.key});
-
   @override
-  State<Marciano> createState() => _MarcianoState();
-}
 
-class _MarcianoState extends State<Marciano> {
-  @override
   Widget build(BuildContext context) {
     getMenu();
     return MaterialApp(
