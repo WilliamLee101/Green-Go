@@ -17,22 +17,22 @@ samples, guidance on mobile development, and a full API reference.
 
 Application Stack:
 Frontend: Flutter
-BackendL Firebase
+Backend: Python, Firebase
 
-How to run:
-1. Git clone this repo
-2. Run 'Flutter doctor', resolve any issues
-3. Run 'Flutter run'
-```flutter run```
+Specifications:
+Webscrapping: Beautifulsoup library
 
-# 2/13
-- Setup github repo
-- Setup firebase
-- Setup Flutter
-- Push the Flutter Green&Go. project to repo
 
-# 2/27
-- Connect Flutter app with Firebase
-- Initialize the realtime database
-- Used beautiful soup to webscrape BU's dining hall menu and store items in firebase
-- Pull food items from Firebase according to dininghall and display on app
+How to run the backend:
+1. Get a copy of the files:
+```git clone https://github.com/Tylerr198/Green-Go.git```
+2. open the terminal
+3. Run ```python path/to/collective.py```
+
+How to run the mobile applicaiton:
+1. Get a copy of the files:
+```git clone https://github.com/Tylerr198/Green-Go.git```
+2. Open Terminal
+2. Run ```flutter doctor```
+3. (Optional) open a simulator (MacOS) ```open -a simulator``
+5. Run ```flutter run```
