@@ -23,28 +23,28 @@ class HomePage extends StatelessWidget {
               },
               child: FittedBox(child:Text('Warren'),),
             ),
-            // const SizedBox(height: 16), // Add some space between the buttons
-            // ElevatedButton(
-            //   onPressed: () {
-            //     Navigator.of(context).push(
-            //       MaterialPageRoute(builder: (BuildContext context) {
-            //         return const Marciano();
-            //       }),
-            //     );
-            //   },
-            //   child: const Text('Marciano'),
-            // ),
-            // const SizedBox(height: 16), // Add some space between the buttons
-            // ElevatedButton(
-            //   onPressed: () {
-            //     Navigator.of(context).push(
-            //       MaterialPageRoute(builder: (BuildContext context) {
-            //         return const West();
-            //       }),
-            //     );
-            //   },
-            //   child: const Text('West'),
-            // ),
+            const SizedBox(height: 16), // Add some space between the buttons
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (BuildContext context) {
+                    return const Marciano();
+                  }),
+                );
+              },
+              child: const Text('Marciano'),
+            ),
+            const SizedBox(height: 16), // Add some space between the buttons
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (BuildContext context) {
+                    return const West();
+                  }),
+                );
+              },
+              child: const Text('West'),
+            ),
             
           ],
         ),

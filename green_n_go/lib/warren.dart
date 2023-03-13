@@ -27,7 +27,27 @@ final List<FoodItem> dmenu = [];
 //     .ref()
 //     .child("updated_menu/2023-03-13/warren/breakfast");
 final ref = FirebaseDatabase.instance.ref();
-Future<void> getMenu() async {
+
+
+class Warren extends StatefulWidget {
+  const Warren({super.key});
+  @override
+  State<Warren> createState() => _WarrenState();
+}
+
+class _WarrenState extends State<Warren> {
+  List<FoodItem> _selectedMealType = bmenu;
+  @override
+  void initState() {
+    super.initState();
+    getMenu().then((value) {
+      setState(() {
+        // set the selected meal type to breakfast by default
+        _selectedMealType = bmenu;
+      });
+    });
+  }
+  Future<void> getMenu() async {
   final snapshot =
       await ref.child("updated_menu/2023-03-13/warren/breakfast").get();
   if (snapshot.exists && snapshot.value is Map<dynamic, dynamic>) {
@@ -40,7 +60,6 @@ Future<void> getMenu() async {
         sugars: value['sugars'],
         cals: value['cals'],
       );
-
       bmenu.add(food);
     });
   } else {
@@ -58,7 +77,6 @@ Future<void> getMenu() async {
         sugars: value['sugars'],
         cals: value['cals'],
       );
-
       lmenu.add(food);
     });
   } else {
@@ -76,45 +94,71 @@ Future<void> getMenu() async {
         sugars: value['sugars'],
         cals: value['cals'],
       );
-      print(food.name);
-      print(food.cals);
       dmenu.add(food);
     });
   } else {
     print('No data available.');
   }
 }
-
-class Warren extends StatefulWidget {
-  const Warren({super.key});
-
   @override
-  State<Warren> createState() => _WarrenState();
-}
-
-class _WarrenState extends State<Warren> {
-  @override
+  
   Widget build(BuildContext context) {
-    getMenu();
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Warren Menu'),
-      ),
-      // body: Container(
-      //   height: double.infinity,
-      //   child: FirebaseAnimatedList(
-      //       query: warrenRefBF,
-      //       itemBuilder: (BuildContext context, DataSnapshot snapshot,
-      //           Animation<double> animation, int index) {
-      //         return Center(
-      //           child: Container(
-      //               decoration: BoxDecoration(
-      //                   color: Colors.white54,
-      //                   border: Border.all(color: Colors.black26)),
-      //               child: Text(snapshot.child('item').value.toString())),
-      //         );
-      //       }),
-      // ),
-    );
+    return MaterialApp(
+        home: Scaffold(
+            appBar: AppBar(
+              title: const Text('Warren Menu'),
+            ),
+            body: Column(children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        _selectedMealType = bmenu;
+                      });
+                    },
+                    child: Text('Breakfast'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        _selectedMealType = lmenu;
+                        print("lunch selected");
+                      });
+                    },
+                    child: Text('Lunch'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        _selectedMealType = dmenu;
+                        print("dining selected");
+                      });
+                    },
+                    child: Text('Dinner'),
+                  ),
+                ],
+              ),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: _selectedMealType.length,
+                  itemBuilder: (context, index) {
+                    final food = _selectedMealType[index];
+                    return ListTile(
+                        title: Text(food.name),
+                        subtitle: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(food.cals ?? ''),
+                              Text(food.protiens ?? ''),
+                              Text(food.satFat ?? ''),
+                              Text(food.sugars ?? ''),
+                              Text(food.carbs ?? ''),
+                            ]));
+                  },
+                ),
+              )
+            ])));
   }
 }
