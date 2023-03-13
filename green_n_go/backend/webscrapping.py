@@ -12,7 +12,6 @@ updated_menu = {}
 updated_menu[str(today)] = {}
 details = ["cals", "saturated fat", "carbs", "sugars", "proteins"]
 
-
 for dining_hall in URLs.keys():
     URL = URLs[dining_hall]
     page = requests.get(URL)
@@ -28,6 +27,13 @@ for dining_hall in URLs.keys():
             title = x.find("h4", class_="js-nutrition-open-alias menu-item-title").text
             updated_menu[str(today)][dining_hall][meal_time][title] = {}
             updated_menu[str(today)][dining_hall][meal_time][title]["item"] = title
+            descripton = x.find("p", class_="menu-description")
+            if descripton != None:
+                descripton = descripton.text
+                descripton = descripton.replace("\t\t\t\t", "")
+                descripton = descripton.replace("\n\t\t\t\t\t", "")
+                descripton = descripton.replace("\n\t", "")
+                updated_menu[str(today)][dining_hall][meal_time][title]["description"] = descripton
             z = x.find("ul", class_="menu-nutrition-overview")
             if not z==None:
                 for line in z:
