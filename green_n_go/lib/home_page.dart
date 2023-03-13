@@ -13,7 +13,9 @@ class HomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ElevatedButton(
+            const Text('GREEN N GO',style: TextStyle(fontSize: 80)),
+            const SizedBox(height: 16),
+            TextButton(
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(builder: (BuildContext context) {
@@ -21,10 +23,10 @@ class HomePage extends StatelessWidget {
                   }),
                 );
               },
-              child: FittedBox(child:Text('Warren'),),
+              child: const FittedBox(child:Text('Warren', style: TextStyle(fontSize: 30),)),
             ),
             const SizedBox(height: 16), // Add some space between the buttons
-            ElevatedButton(
+            TextButton(
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(builder: (BuildContext context) {
@@ -32,10 +34,10 @@ class HomePage extends StatelessWidget {
                   }),
                 );
               },
-              child: const Text('Marciano'),
+              child: const Text('Marciano',style: TextStyle(fontSize: 30)),
             ),
             const SizedBox(height: 16), // Add some space between the buttons
-            ElevatedButton(
+            TextButton(
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(builder: (BuildContext context) {
@@ -43,7 +45,7 @@ class HomePage extends StatelessWidget {
                   }),
                 );
               },
-              child: const Text('West'),
+              child: const Text('West',style: TextStyle(fontSize: 30)),
             ),
             
           ],

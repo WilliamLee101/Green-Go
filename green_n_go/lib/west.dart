@@ -144,17 +144,22 @@ class _WestState extends State<West> {
                   itemCount: _selectedMealType.length,
                   itemBuilder: (context, index) {
                     final food = _selectedMealType[index];
-                    return ListTile(
-                        title: Text(food.name),
-                        subtitle: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(food.cals ?? ''),
-                              Text(food.protiens ?? ''),
-                              Text(food.satFat ?? ''),
-                              Text(food.sugars ?? ''),
-                              Text(food.carbs ?? ''),
-                            ]));
+                    return Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15.0),
+                        ),
+                        child: ListTile(
+                            title: Text(food.name),
+                            trailing: Text(food.cals ?? ''),
+                            onTap: () {},
+                            subtitle: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(food.protiens ?? ''),
+                                  Text(food.satFat ?? ''),
+                                  Text(food.sugars ?? ''),
+                                  Text(food.carbs ?? ''),
+                                ])));
                   },
                 ),
               )

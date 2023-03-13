@@ -36,20 +36,14 @@ class RootPage extends StatefulWidget {
 class _RootPageState extends State<RootPage> {
   @override
   Widget build(BuildContext context) {
-    int currentPage = 0;
-    int _selectedIndex = 0;
+
     return Scaffold(
-        appBar: AppBar(
-          title: Center(
-            child: Text('Green & Go'),
-          ),
-        ),
         body: const HomePage(),
         bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(Icons.menu_book_rounded),
-              label: 'Menu',
+              icon: Icon(Icons.home),
+              label: 'Home',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.person_2_outlined),
