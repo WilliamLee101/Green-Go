@@ -15,6 +15,15 @@ For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
+Application Stack:
+Frontend: Flutter
+BackendL Firebase
+
+How to run:
+1. Git clone this repo
+2. Run 'Flutter doctor', resolve any issues
+3. Run 'Flutter run'
+
 # 2/13
 - Setup github repo
 - Setup firebase
