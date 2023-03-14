@@ -1,8 +1,6 @@
 # green_n_go
 
-A new Flutter project.
-
-## Getting Started
+### Getting Started
 
 This project is a starting point for a Flutter application.
 
@@ -16,20 +14,20 @@ For help getting started with Flutter development, view the
 samples, guidance on mobile development, and a full API reference.
 
 ### Application Stack:
-Frontend: Flutter
-Backend: Python, Firebase
+* Frontend: Flutter
+* Backend: Python, Firebase
 
 ### Specifications:
-Webscrapping: Beautifulsoup library
+* Webscrapping: Beautifulsoup library
 
 
-How to run the backend:
+### How to run the backend:
 1. Get a copy of the files:
 ```git clone https://github.com/Tylerr198/Green-Go.git```
 2. open the terminal
 3. Run ```python path/to/collective.py```
 
-How to run the mobile applicaiton:
+### How to run the mobile applicaiton:
 1. Get a copy of the files:
 ```git clone https://github.com/Tylerr198/Green-Go.git```
 2. Open Terminal
