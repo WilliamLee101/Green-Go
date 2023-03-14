@@ -15,11 +15,11 @@ For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
-Application Stack:
+### Application Stack:
 Frontend: Flutter
 Backend: Python, Firebase
 
-Specifications:
+### Specifications:
 Webscrapping: Beautifulsoup library
 
 
