@@ -13,7 +13,7 @@ class HomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('GREEN N GO',style: TextStyle(fontSize: 80)),
+            const Text('GREEN N GO',style: TextStyle(fontSize: 50)),
             const SizedBox(height: 16),
             TextButton(
               onPressed: () {

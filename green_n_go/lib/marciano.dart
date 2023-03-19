@@ -1,14 +1,16 @@
+
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
+import 'package:intl/intl.dart';
 
 class FoodItem {
   final String name;
-  final String? carbs;
-  final String? protiens;
-  final String? satFat;
-  final String? sugars;
-  final String? cals;
+  final int? carbs;
+  final int? protiens;
+  final int? satFat;
+  final int? sugars;
+  final int? cals;
 
   const FoodItem(
       {required this.name,
@@ -19,7 +21,9 @@ class FoodItem {
       this.cals});
 }
 
-DateTime date = DateTime.now();
+DateTime now = DateTime.now();
+String formattedDate = DateFormat('yyyy-MM-dd').format(now);
+
 final List<FoodItem> bmenu = [];
 final List<FoodItem> lmenu = [];
 final List<FoodItem> dmenu = [];
@@ -47,17 +51,18 @@ class _MarcianoState extends State<Marciano> {
   }
 
   Future<void> getMenu() async {
+    print(formattedDate);
     final snapshot =
-        await ref.child("updated_menu/2023-03-13/marciano/breakfast").get();
+        await ref.child("menu/" + formattedDate + "/marciano/breakfast").get();
     if (snapshot.exists && snapshot.value is Map<dynamic, dynamic>) {
       (snapshot.value as Map<dynamic, dynamic>).forEach((key, value) {
         final food = FoodItem(
-          name: value['item'],
-          carbs: value['carbs'],
-          protiens: value['proteins'],
-          satFat: value['saturated fat'],
-          sugars: value['sugars'],
-          cals: value['cals'],
+          name: value['name'],
+          carbs: value['carbohydrates'],
+          protiens: value['protein'],
+          satFat: value['saturated_fat'],
+          // sugars: value['sugars'],
+          cals: value['calories'],
         );
         bmenu.add(food);
       });
@@ -65,16 +70,16 @@ class _MarcianoState extends State<Marciano> {
       print('No data available.');
     }
     final snapshot1 =
-        await ref.child("updated_menu/2023-03-13/marciano/lunch").get();
+        await ref.child("menu/" + formattedDate + "/marciano/Lunch").get();
     if (snapshot1.exists && snapshot1.value is Map<dynamic, dynamic>) {
       (snapshot1.value as Map<dynamic, dynamic>).forEach((key, value) {
         final food = FoodItem(
-          name: value['item'],
-          carbs: value['carbs'],
-          protiens: value['proteins'],
-          satFat: value['saturated fat'],
-          sugars: value['sugars'],
-          cals: value['cals'],
+          name: value['name'],
+          carbs: value['carbohydrates'],
+          protiens: value['protein'],
+          satFat: value['saturated_fat'],
+          // sugars: value['sugars'],
+          cals: value['calories'],
         );
         lmenu.add(food);
       });
@@ -82,16 +87,16 @@ class _MarcianoState extends State<Marciano> {
       print('No data available.');
     }
     final snapshot2 =
-        await ref.child("updated_menu/2023-03-13/marciano/dinner").get();
+        await ref.child("menu/" + formattedDate + "/marciano/Dinner").get();
     if (snapshot2.exists && snapshot2.value is Map<dynamic, dynamic>) {
       (snapshot2.value as Map<dynamic, dynamic>).forEach((key, value) {
         final food = FoodItem(
-          name: value['item'],
-          carbs: value['carbs'],
-          protiens: value['proteins'],
-          satFat: value['saturated fat'],
-          sugars: value['sugars'],
-          cals: value['cals'],
+          name: value['name'],
+          carbs: value['carbohydrates'],
+          protiens: value['protein'],
+          satFat: value['saturated_fat'],
+          // sugars: value['sugars'],
+          cals: value['calories'],
         );
         dmenu.add(food);
       });
@@ -150,15 +155,15 @@ class _MarcianoState extends State<Marciano> {
                         ),
                         child: ListTile(
                             title: Text(food.name),
-                            trailing: Text(food.cals ?? ''),
+                            trailing: Text(food.cals.toString() + ' cals' ?? ''),
                             onTap: () {},
                             subtitle: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(food.protiens ?? ''),
-                                  Text(food.satFat ?? ''),
-                                  Text(food.sugars ?? ''),
-                                  Text(food.carbs ?? ''),
+                                  Text(food.protiens.toString() +'g' ?? ''),
+                                  Text(food.satFat.toString() +'g' ?? ''),
+                                  Text(food.sugars.toString() +'g' ?? ''),
+                                  Text(food.carbs.toString() +'g' ?? ''),
                                 ])));
                   },
                 ),
