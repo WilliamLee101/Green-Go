@@ -1,12 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
-import 'package:green_n_go/review.dart';
 import 'package:intl/intl.dart';
 
-import 'foodItem.dart';
+class FoodItem {
+  final String name;
+  final String? description;
+  final int? carbs;
+  final int? protiens;
+  final int? satFat;
+  final int? sugars;
+  final int? cals;
 
-
+  const FoodItem(
+      {required this.name,
+      this.description,
+      this.carbs,
+      this.protiens,
+      this.satFat,
+      this.sugars,
+      this.cals});
+}
 
 DateTime now = DateTime.now();
 String formattedDate = DateFormat('yyyy-MM-dd').format(now);
@@ -141,24 +155,14 @@ class _WestState extends State<West> {
                         ),
                         child: ListTile(
                             title: Text(food.name),
-                            trailing: TextButton(
-                              onPressed: () {
-                                showModalBottomSheet(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return ReviewSurveyScreen(foodItem: food);
-                                  },
-                                );
-                              },
-                              child: Text('Review'),
-                            ),
+                            trailing: Text('${food.cals} cals' ?? ''),
                             onTap: () {},
                             subtitle: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(food.description??  ''),
-                                  Text('${food.cals} cals' ?? ''),
                                   Text('${food.protiens}g protein' ?? ''),
+                  
                                   Text('${food.satFat}g fat' ?? ''),
                                   Text('${food.sugars}g sugar' ?? ''),
                                   Text('${food.carbs}g carbs' ?? ''),
