@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 
 class FoodItem {
   final String name;
+  final String? description;
   final int? carbs;
   final int? protiens;
   final int? satFat;
@@ -13,6 +14,7 @@ class FoodItem {
 
   const FoodItem(
       {required this.name,
+      this.description,
       this.carbs,
       this.protiens,
       this.satFat,
@@ -51,11 +53,12 @@ class _WarrenState extends State<Warren> {
 
   Future<void> getMenu() async {
     final snapshot =
-        await ref.child("menu/" + formattedDate + "/warren/Breakfast").get();
+        await ref.child("menu/$formattedDate/warren/Breakfast").get();
     if (snapshot.exists && snapshot.value is Map<dynamic, dynamic>) {
       (snapshot.value as Map<dynamic, dynamic>).forEach((key, value) {
         final food = FoodItem(
           name: value['name'],
+          description: value['description'],
           carbs: value['carbohydrates'],
           protiens: value['protein'],
           satFat: value['saturated_fat'],
@@ -67,12 +70,12 @@ class _WarrenState extends State<Warren> {
     } else {
       print('No data available.');
     }
-    final snapshot1 =
-        await ref.child("menu/" + formattedDate + "/warren/Lunch").get();
+    final snapshot1 = await ref.child("menu/$formattedDate/warren/Lunch").get();
     if (snapshot1.exists && snapshot1.value is Map<dynamic, dynamic>) {
       (snapshot1.value as Map<dynamic, dynamic>).forEach((key, value) {
         final food = FoodItem(
           name: value['name'],
+          description: value['description'],
           carbs: value['carbohydrates'],
           protiens: value['protein'],
           satFat: value['saturated_fat'],
@@ -85,11 +88,12 @@ class _WarrenState extends State<Warren> {
       print('No data available.');
     }
     final snapshot2 =
-        await ref.child("menu/" + formattedDate + "/warren/Dinner").get();
+        await ref.child("menu/$formattedDate/warren/Dinner").get();
     if (snapshot2.exists && snapshot2.value is Map<dynamic, dynamic>) {
       (snapshot2.value as Map<dynamic, dynamic>).forEach((key, value) {
         final food = FoodItem(
           name: value['name'],
+          description: value['description'],
           carbs: value['carbohydrates'],
           protiens: value['protein'],
           satFat: value['saturated_fat'],
@@ -151,15 +155,17 @@ class _WarrenState extends State<Warren> {
                         ),
                         child: ListTile(
                             title: Text(food.name),
-                            trailing: Text(food.cals.toString() + ' cals' ?? ''),
+                            trailing: Text('${food.cals} cals' ?? ''),
                             onTap: () {},
                             subtitle: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(food.protiens.toString() +'g' ?? ''),
-                                  Text(food.satFat.toString() +'g' ?? ''),
-                                  Text(food.sugars.toString() +'g' ?? ''),
-                                  Text(food.carbs.toString() +'g' ?? ''),
+                                  Text(food.description ?? ''),
+                                  Text('${food.protiens}g protein' ?? ''),
+                  
+                                  Text('${food.satFat}g fat' ?? ''),
+                                  Text('${food.sugars}g sugar' ?? ''),
+                                  Text('${food.carbs}g carbs' ?? ''),
                                 ])));
                   },
                 ),
