@@ -38,7 +38,9 @@ class _WarrenState extends State<Warren> {
 
   Future<void> getMenu() async {
     final snapshot =
+
         await ref.child("menu/$formattedDate/warren/Breakfast").get();
+
     if (snapshot.exists && snapshot.value is Map<dynamic, dynamic>) {
       (snapshot.value as Map<dynamic, dynamic>).forEach((key, value) {
         final food = FoodItem(
@@ -56,6 +58,7 @@ class _WarrenState extends State<Warren> {
       print('No data available.');
     }
     final snapshot1 = await ref.child("menu/$formattedDate/warren/Lunch").get();
+
     if (snapshot1.exists && snapshot1.value is Map<dynamic, dynamic>) {
       (snapshot1.value as Map<dynamic, dynamic>).forEach((key, value) {
         final food = FoodItem(
@@ -74,6 +77,7 @@ class _WarrenState extends State<Warren> {
     }
     final snapshot2 =
         await ref.child("menu/$formattedDate/warren/Dinner").get();
+
     if (snapshot2.exists && snapshot2.value is Map<dynamic, dynamic>) {
       (snapshot2.value as Map<dynamic, dynamic>).forEach((key, value) {
         final food = FoodItem(

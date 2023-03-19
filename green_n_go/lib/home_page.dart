@@ -11,7 +11,9 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: Column(
+          // centering page
           mainAxisAlignment: MainAxisAlignment.center,
+
           children: [
             // styling for welcome, terriers!
             const Text('Welcome,', style: TextStyle(fontSize: 28)),
@@ -49,9 +51,25 @@ class HomePage extends StatelessWidget {
                   }),
                 );
               },
-              child: const FittedBox(child:Text('Warren', style: TextStyle(fontSize: 30),)),
+
+              // styling and text for 'Warren'
+              child: const FittedBox(
+                  child: Text(
+                'Warren',
+                style: TextStyle(
+                    fontSize: 17.1429,
+                    fontFamily: 'Inter',
+                    color: Colors.black87),
+              )),
             ),
+
+            // insert Marciano Dining image
+            Image.asset('assets/images/marciano.png',
+                height: 100, width: null, fit: BoxFit.fill),
+
             const SizedBox(height: 16), // Add some space between the buttons
+
+            // button for Marciano
             TextButton(
               onPressed: () {
                 Navigator.of(context).push(
@@ -60,9 +78,22 @@ class HomePage extends StatelessWidget {
                   }),
                 );
               },
-              child: const Text('Marciano',style: TextStyle(fontSize: 30)),
+
+              // styling and text for 'Marciano'
+              child: const Text('Marciano',
+                  style: TextStyle(
+                      fontSize: 17.1429,
+                      fontFamily: 'Inter',
+                      color: Colors.black87)),
             ),
+
+            // insert West Dining image
+            Image.asset('assets/images/west.png',
+                height: 100, width: null, fit: BoxFit.fill),
+
             const SizedBox(height: 16), // Add some space between the buttons
+
+            // button for west
             TextButton(
               onPressed: () {
                 Navigator.of(context).push(
@@ -71,9 +102,14 @@ class HomePage extends StatelessWidget {
                   }),
                 );
               },
-              child: const Text('West',style: TextStyle(fontSize: 30)),
+
+              // styling and text for 'West'
+              child: const Text('West',
+                  style: TextStyle(
+                      fontSize: 17.1429,
+                      fontFamily: 'Inter',
+                      color: Colors.black87)),
             ),
-            
           ],
         ),
       ),
