@@ -13,8 +13,34 @@ class HomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('GREEN N GO',style: TextStyle(fontSize: 50)),
-            const SizedBox(height: 16),
+            // styling for welcome, terriers!
+            const Text('Welcome,', style: TextStyle(fontSize: 28)),
+            const Text(' Terrier!',
+                style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
+
+            // insert profile icon
+            Image.asset('assets/images/profileicon.png',
+                height: 100, width: null, fit: BoxFit.fill),
+
+            // make space
+            const SizedBox(
+              height: 20,
+            ),
+
+            // text and stylying for select dining halls
+            const Text('Select Dining Hall',
+                style: TextStyle(fontSize: 17.1429)),
+
+            // make space
+            const SizedBox(
+              height: 20,
+            ),
+
+            // insert Warren Dining image
+            Image.asset('assets/images/warren.png',
+                height: 100, width: null, fit: BoxFit.fill),
+
+            // buttons
             TextButton(
               onPressed: () {
                 Navigator.of(context).push(
