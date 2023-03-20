@@ -11,11 +11,11 @@ firebase_admin.initialize_app(cred, {
 })
 
 
-from webscrapping import updated_menu
+from API_Call import menu
 # print(updated_menu)
 
 # #push and get
 ref = db.reference("/")
-ref.set({"updated_menu":updated_menu})
+ref.set({"menu":menu})
 # print(ref.get("food"))
 
