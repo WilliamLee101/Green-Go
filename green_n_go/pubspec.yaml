@@ -38,6 +38,7 @@ dependencies:
   firebase_core: ^2.7.0
   firebase_database: ^10.0.14
   intl: ^0.18.0
+  cloud_firestore: ^4.4.5
 
 dev_dependencies:
   flutter_test:
@@ -99,4 +100,3 @@ flutter:
   fonts:
   - family: Inter
     fonts: 
-      - asset: /Users/abigailgualda/Desktop/475/greenngo/Green-Go/green_n_go/assets/fonts/Inter/Inter-VariableFont_slnt,wght.ttf

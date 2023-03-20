@@ -6,10 +6,8 @@ import 'package:intl/intl.dart';
 
 import 'foodItem.dart';
 
-
 DateTime now = DateTime.now();
-//String formattedDate = DateFormat('yyyy-MM-dd').format(now);
-String formattedDate = '2023-03-20';
+String formattedDate = DateFormat('yyyy-MM-dd').format(now);
 
 final List<FoodItem> bmenu = [];
 final List<FoodItem> lmenu = [];
@@ -38,7 +36,6 @@ class _WarrenState extends State<Warren> {
 
   Future<void> getMenu() async {
     final snapshot =
-
         await ref.child("menu/$formattedDate/warren/Breakfast").get();
 
     if (snapshot.exists && snapshot.value is Map<dynamic, dynamic>) {
