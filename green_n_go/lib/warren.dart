@@ -98,20 +98,24 @@ class _WarrenState extends State<Warren> {
     return MaterialApp(
         home: Scaffold(
             appBar: AppBar(
-              title: const Text('Warren Menu'),
-            ),
+                title: const Text('Warren Menu',
+                    style: TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black)),
+                backgroundColor: Colors.white),
             body: Column(children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        _selectedMealType = bmenu;
-                      });
-                    },
-                    child: Text('Breakfast'),
-                  ),
+                      onPressed: () {
+                        setState(() {
+                          _selectedMealType = bmenu;
+                        });
+                        const Text('Breakfast');
+                      },
+                      child: Image.asset('assets/images/breakfast.png')),
                   ElevatedButton(
                     onPressed: () {
                       setState(() {
@@ -140,18 +144,30 @@ class _WarrenState extends State<Warren> {
                           borderRadius: BorderRadius.circular(15.0),
                         ),
                         child: ListTile(
-                            title: Text(food.name),
+                            title: Text(food.name,
+                                style: TextStyle(
+                                    fontSize: 15, fontFamily: 'Inter')),
                             trailing: TextButton(
-                              onPressed: () {
-                                showModalBottomSheet(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return ReviewSurveyScreen(foodItem: food);
-                                  },
-                                );
-                              },
-                              child: Text('Review'),
-                            ),
+                                onPressed: () {
+                                  showModalBottomSheet(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return ReviewSurveyScreen(foodItem: food);
+                                    },
+                                  );
+                                },
+
+// child: Stack(children: [
+//   Positioned(
+//     top: 234,
+//     left: 314,
+//     width: null,
+//     height: 26,
+//   ),
+// ])),
+                                child: Image.asset(
+                                    'assets/images/reviewButton.png',
+                                    color: Colors.lightGreen)),
                             onTap: () {},
                             subtitle: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
