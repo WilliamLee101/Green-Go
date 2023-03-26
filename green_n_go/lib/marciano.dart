@@ -6,8 +6,6 @@ import 'package:intl/intl.dart';
 
 import 'foodItem.dart';
 
-
-
 DateTime now = DateTime.now();
 String formattedDate = DateFormat('yyyy-MM-dd').format(now);
 
@@ -139,6 +137,7 @@ class _MarcianoState extends State<Marciano> {
                   itemCount: _selectedMealType.length,
                   itemBuilder: (context, index) {
                     final food = _selectedMealType[index];
+                    food.sugars ??= 0;
                     return Card(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15.0),
@@ -150,7 +149,9 @@ class _MarcianoState extends State<Marciano> {
                                 showModalBottomSheet(
                                   context: context,
                                   builder: (BuildContext context) {
-                                    return ReviewSurveyScreen(foodItem: food,);
+                                    return ReviewSurveyScreen(
+                                      foodItem: food,
+                                    );
                                   },
                                 );
                               },
@@ -160,11 +161,11 @@ class _MarcianoState extends State<Marciano> {
                             subtitle: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(food.description??  ''),
+                                  Text(food.description ?? ''),
                                   Text('${food.cals} cals' ?? ''),
                                   Text('${food.protiens}g protein' ?? ''),
                                   Text('${food.satFat}g fat' ?? ''),
-                                  Text('${food.sugars}g sugar' ?? ''),
+                                  Text('${food.sugars}g sugar'),
                                   Text('${food.carbs}g carbs' ?? ''),
                                 ])));
                   },

@@ -99,6 +99,7 @@ class _WestState extends State<West> {
             appBar: AppBar(
               title: const Text('West Menu'),
             ),
+          
             body: Column(children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -136,6 +137,7 @@ class _WestState extends State<West> {
                   itemCount: _selectedMealType.length,
                   itemBuilder: (context, index) {
                     final food = _selectedMealType[index];
+                    food.sugars ??= 0;
                     return Card(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15.0),

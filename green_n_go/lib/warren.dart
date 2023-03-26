@@ -139,6 +139,7 @@ class _WarrenState extends State<Warren> {
                   itemCount: _selectedMealType.length,
                   itemBuilder: (context, index) {
                     final food = _selectedMealType[index];
+                    food.sugars ??= 0;
                     return Card(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15.0),
