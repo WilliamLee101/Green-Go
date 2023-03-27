@@ -7,7 +7,9 @@ import 'package:intl/intl.dart';
 import 'foodItem.dart';
 
 DateTime now = DateTime.now();
+
 String formattedDate = DateFormat('yyyy-MM-dd').format(now);
+
 
 final List<FoodItem> bmenu = [];
 final List<FoodItem> lmenu = [];
@@ -105,17 +107,18 @@ class _WarrenState extends State<Warren> {
                         color: Colors.black)),
                 backgroundColor: Colors.white),
             body: Column(children: [
+              // row for breakfast lunch and dinner options on the top
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          _selectedMealType = bmenu;
-                        });
-                        const Text('Breakfast');
-                      },
-                      child: Image.asset('assets/images/breakfast.png')),
+                    onPressed: () {
+                      setState(() {
+                        _selectedMealType = bmenu;
+                      });
+                    },
+                    child: const Text('Breakfast'),
+                  ),
                   ElevatedButton(
                     onPressed: () {
                       setState(() {
@@ -134,6 +137,8 @@ class _WarrenState extends State<Warren> {
                   ),
                 ],
               ),
+
+              // expanded row for all of the menu items and their nutrional data
               Expanded(
                 child: ListView.builder(
                   itemCount: _selectedMealType.length,
@@ -148,27 +153,6 @@ class _WarrenState extends State<Warren> {
                             title: Text(food.name,
                                 style: TextStyle(
                                     fontSize: 15, fontFamily: 'Inter')),
-                            trailing: TextButton(
-                                onPressed: () {
-                                  showModalBottomSheet(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return ReviewSurveyScreen(foodItem: food);
-                                    },
-                                  );
-                                },
-
-// child: Stack(children: [
-//   Positioned(
-//     top: 234,
-//     left: 314,
-//     width: null,
-//     height: 26,
-//   ),
-// ])),
-                                child: Image.asset(
-                                    'assets/images/reviewButton.png',
-                                    color: Colors.lightGreen)),
                             onTap: () {},
                             subtitle: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -179,6 +163,48 @@ class _WarrenState extends State<Warren> {
                                   Text('${food.satFat}g fat' ?? ''),
                                   Text('${food.sugars}g sugar' ?? ''),
                                   Text('${food.carbs}g carbs' ?? ''),
+                                ]),
+                            trailing: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Expanded(
+                                      child: Container(
+                                          width: 20,
+                                          height: 50,
+                                          decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              border: Border.all(
+                                                  color: Colors.green,
+                                                  width: 15,
+                                                  style: BorderStyle.solid)),
+                                          child: const Icon(Icons.pets_outlined,
+                                              color: Colors.lightGreen))),
+                                  const Text(
+                                    ' # of reviews',
+                                    style: TextStyle(
+                                        fontSize: 9,
+                                        fontWeight: FontWeight.normal),
+                                    textAlign: TextAlign.left,
+                                  ),
+                                  Expanded(
+                                      child: IconButton(
+                                          onPressed: () => {
+                                                showBottomSheet(
+                                                  context: context,
+                                                  builder:
+                                                      (BuildContext context) {
+                                                    return ReviewSurveyScreen(
+                                                        foodItem: food);
+                                                  },
+                                                )
+                                              },
+                                          icon: Image.asset(
+                                              'assets/images/reviewButton.png',
+                                              color: Colors.lightGreen,
+                                              height: 100,
+                                              width: 100))),
                                 ])));
                   },
                 ),

@@ -59,10 +59,15 @@ class _RootPageState extends State<RootPage> {
         bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(Icons.dining_outlined),
+              icon: Icon(Icons.dining),
               label: 'Menu',
             ),
             BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+
               icon: Icon(Icons.person_2_outlined),
               label: 'Profile',
             ),
