@@ -35,45 +35,6 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   bool loggedIn = false;
 
-  @override
-  void initState() {
-    super.initState();
-    FirebaseAuth.instance.authStateChanges().listen((User? user) {
-      setState(() {
-        if (user == null) {
-          loggedIn = false;
-          print('User is currently signed out!');
-        } else {
-          loggedIn = true;
-          print('User is signed in!');
-        }
-      });
-    });
-  }
-
-  Future<void> signInWithGoogle() async {
-    try {
-      // Trigger the authentication flow
-      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-
-      // Obtain the auth details from the request
-      final GoogleSignInAuthentication? googleAuth =
-          await googleUser?.authentication;
-
-      // Create a new credential
-      final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth?.accessToken,
-        idToken: googleAuth?.idToken,
-      );
-
-      // Sign in to Firebase with the credential
-      await FirebaseAuth.instance.signInWithCredential(credential);
-    } catch (e) {
-      print(e.toString());
-      // Display error message to user
-    }
-  }
-
   Future<void> signOut() async {
     try {
       await FirebaseAuth.instance.signOut();
@@ -82,44 +43,74 @@ class _ProfilePageState extends State<ProfilePage> {
       // Display error message to user
     }
   }
+  
+  User? _user;
 
   @override
+  void initState() {
+    super.initState();
+    FirebaseAuth.instance.authStateChanges().listen((User? user) {
+      setState(() {
+        _user = user;
+      });
+    });
+  }
+  
+  @override
+  
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
+    if (_user == null) {
+      return Scaffold(
+          body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Visibility(
-              visible: !loggedIn,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children:  [
-                  Text("Hi, you are not logged in!"),
-                  ElevatedButton(
-                    onPressed: signInWithGoogle,
-                    child: Text("Sign In"),
-                  ),
-                ],
-              ),
-            ),
-            Visibility(
-              visible: loggedIn,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children:  [
-                  Text("Hi, you are logged in!"),
-                  ElevatedButton(
-                    onPressed: signOut,
-                    child: Text("Sign Out"),
-                  ),
-                ],
-              ),
-            ),
+          children: const [
+            Text("You are not signed in!", style: TextStyle(fontSize: 20)),
+            ElevatedButton(onPressed: signInWithGoogle, child: Text("Sign In", style: TextStyle(fontSize: 20),)),
           ],
         ),
-      ),
-    );
+      ));
+    } else {
+      return Scaffold(
+        appBar: AppBar(
+          title: const Text('Profile'),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const SizedBox(height: 16.0),
+                  CircleAvatar(
+                    radius: 50.0,
+                    backgroundImage: NetworkImage(_user!.photoURL!),
+                  ),
+                  const SizedBox(height: 16.0),
+                  Text(
+                    _user!.displayName!,
+                    style: const TextStyle(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 8.0),
+                  Text(
+                    _user!.email!,
+                    style: const TextStyle(
+                      fontSize: 14.0,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  ElevatedButton(onPressed: signOut, child: Text("Sign out")),
+                ],
+              ),
+            ],
+          ),
+        ),
+      );
+    }
   }
 }
-
