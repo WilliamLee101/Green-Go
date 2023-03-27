@@ -6,7 +6,6 @@ import 'firebase_options.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-
 FirebaseFirestore firestore = FirebaseFirestore.instance;
 FirebaseDatabase database = FirebaseDatabase.instance;
 Future<void> main() async {
@@ -63,11 +62,6 @@ class _RootPageState extends State<RootPage> {
               label: 'Menu',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-
               icon: Icon(Icons.person_2_outlined),
               label: 'Profile',
             ),
