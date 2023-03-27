@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
+import 'package:green_n_go/getMenu.dart';
 import 'package:green_n_go/review.dart';
 import 'package:intl/intl.dart';
+
 
 import 'foodItem.dart';
 
@@ -90,7 +92,7 @@ class _WestState extends State<West> {
       print('No data available.');
     }
   }
-
+  final PageController _pageController = PageController(initialPage: 0);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -98,74 +100,16 @@ class _WestState extends State<West> {
             appBar: AppBar(
               title: const Text('West Menu'),
             ),
-            body: Column(children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        _selectedMealType = bmenu;
-                      });
-                    },
-                    child: Text('Breakfast'),
+          
+            body: 
+              PageView(
+                    controller: _pageController,
+                    children: [
+                      ReturnMenu(selectedMealType: bmenu),
+                      ReturnMenu(selectedMealType: lmenu),
+                      ReturnMenu(selectedMealType: dmenu),
+                    ],
                   ),
-                  ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        _selectedMealType = lmenu;
-                        print("lunch selected");
-                      });
-                    },
-                    child: Text('Lunch'),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        _selectedMealType = dmenu;
-                        print("dining selected");
-                      });
-                    },
-                    child: Text('Dinner'),
-                  ),
-                ],
-              ),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: _selectedMealType.length,
-                  itemBuilder: (context, index) {
-                    final food = _selectedMealType[index];
-                    return Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15.0),
-                        ),
-                        child: ListTile(
-                            title: Text(food.name),
-                            trailing: TextButton(
-                              onPressed: () {
-                                showModalBottomSheet(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return ReviewSurveyScreen(foodItem: food);
-                                  },
-                                );
-                              },
-                              child: Text('Review'),
-                            ),
-                            onTap: () {},
-                            subtitle: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(food.description??  ''),
-                                  Text('${food.cals} cals' ?? ''),
-                                  Text('${food.protiens}g protein' ?? ''),
-                                  Text('${food.satFat}g fat' ?? ''),
-                                  Text('${food.sugars}g sugar' ?? ''),
-                                  Text('${food.carbs}g carbs' ?? ''),
-                                ])));
-                  },
-                ),
-              )
-            ])));
+            ));
   }
 }

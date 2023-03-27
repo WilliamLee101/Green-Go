@@ -37,7 +37,13 @@ dependencies:
   cupertino_icons: ^1.0.2
   firebase_core: ^2.7.0
   firebase_database: ^10.0.14
-  intl: ^0.18.0
+  intl: ^0.17.0
+  cloud_firestore: ^4.4.5
+  firebase_auth: ^4.3.0
+  flutter_login: ^4.1.1
+  google_sign_in: ^6.0.2
+ 
+ 
 
 dev_dependencies:
   flutter_test:
@@ -99,4 +105,3 @@ flutter:
   fonts:
   - family: Inter
     fonts: 
-      - asset: /Users/abigailgualda/Desktop/475/greenngo/Green-Go/green_n_go/assets/fonts/Inter/Inter-VariableFont_slnt,wght.ttf

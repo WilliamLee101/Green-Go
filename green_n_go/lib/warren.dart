@@ -7,8 +7,9 @@ import 'package:intl/intl.dart';
 import 'foodItem.dart';
 
 DateTime now = DateTime.now();
-//String formattedDate = DateFormat('yyyy-MM-dd').format(now);
-String formattedDate = '2023-03-27';
+
+String formattedDate = DateFormat('yyyy-MM-dd').format(now);
+
 
 final List<FoodItem> bmenu = [];
 final List<FoodItem> lmenu = [];
@@ -143,6 +144,7 @@ class _WarrenState extends State<Warren> {
                   itemCount: _selectedMealType.length,
                   itemBuilder: (context, index) {
                     final food = _selectedMealType[index];
+                    food.sugars ??= 0;
                     return Card(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15.0),

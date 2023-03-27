@@ -1,13 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'foodItem.dart';
 
 class ReviewSurveyScreen extends StatefulWidget {
   final FoodItem foodItem;
-
   ReviewSurveyScreen({required this.foodItem});
 
   @override
   _ReviewSurveyScreenState createState() => _ReviewSurveyScreenState();
+
 }
 
 class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
@@ -15,13 +16,20 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
   String _comment = '';
 
   void _submitReview() {
+      CollectionReference reviews =
+      FirebaseFirestore.instance.collection(widget.foodItem.name);
     // Submit review to backend
     Navigator.of(context).pop();
+    reviews.add({
+      'rating': _rating,
+      'comment': _comment,
+    }).then((value) => print('added'));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         title: Text("Rate your experience: ${widget.foodItem.name}"),
       ),

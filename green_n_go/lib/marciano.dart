@@ -5,8 +5,7 @@ import 'package:green_n_go/review.dart';
 import 'package:intl/intl.dart';
 
 import 'foodItem.dart';
-
-
+import 'getMenu.dart';
 
 DateTime now = DateTime.now();
 String formattedDate = DateFormat('yyyy-MM-dd').format(now);
@@ -26,6 +25,7 @@ class Marciano extends StatefulWidget {
 
 class _MarcianoState extends State<Marciano> {
   List<FoodItem> _selectedMealType = bmenu;
+  final PageController _pageController = PageController(initialPage: 0);
   @override
   void initState() {
     super.initState();
@@ -40,7 +40,7 @@ class _MarcianoState extends State<Marciano> {
   Future<void> getMenu() async {
     print(formattedDate);
     final snapshot =
-        await ref.child("menu/$formattedDate/marciano/breakfast").get();
+        await ref.child("menu/$formattedDate/marciano/Breakfast").get();
     if (snapshot.exists && snapshot.value is Map<dynamic, dynamic>) {
       (snapshot.value as Map<dynamic, dynamic>).forEach((key, value) {
         final food = FoodItem(
@@ -102,74 +102,17 @@ class _MarcianoState extends State<Marciano> {
             appBar: AppBar(
               title: const Text('Marciano Menu'),
             ),
-            body: Column(children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        _selectedMealType = bmenu;
-                      });
-                    },
-                    child: Text('Breakfast'),
+            body: 
+            PageView(
+                    controller: _pageController,
+                    children: [
+                      ReturnMenu(selectedMealType: bmenu),
+                      ReturnMenu(selectedMealType: lmenu),
+                      ReturnMenu(selectedMealType: dmenu),
+                    ],
                   ),
-                  ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        _selectedMealType = lmenu;
-                        print("lunch selected");
-                      });
-                    },
-                    child: Text('Lunch'),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        _selectedMealType = dmenu;
-                        print("dining selected");
-                      });
-                    },
-                    child: Text('Dinner'),
-                  ),
-                ],
-              ),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: _selectedMealType.length,
-                  itemBuilder: (context, index) {
-                    final food = _selectedMealType[index];
-                    return Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15.0),
-                        ),
-                        child: ListTile(
-                            title: Text(food.name),
-                            trailing: TextButton(
-                              onPressed: () {
-                                showModalBottomSheet(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return ReviewSurveyScreen(foodItem: food);
-                                  },
-                                );
-                              },
-                              child: Text('Review'),
-                            ),
-                            onTap: () {},
-                            subtitle: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(food.description??  ''),
-                                  Text('${food.cals} cals' ?? ''),
-                                  Text('${food.protiens}g protein' ?? ''),
-                                  Text('${food.satFat}g fat' ?? ''),
-                                  Text('${food.sugars}g sugar' ?? ''),
-                                  Text('${food.carbs}g carbs' ?? ''),
-                                ])));
-                  },
-                ),
-              )
-            ])));
+            ));
   }
 }
+
+
