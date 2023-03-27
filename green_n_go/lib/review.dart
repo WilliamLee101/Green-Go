@@ -29,6 +29,7 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         title: Text("Review: ${widget.foodItem.name}"),
       ),
