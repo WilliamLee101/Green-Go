@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:green_n_go/home_page.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:green_n_go/profilePage.dart';
 import 'firebase_options.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+
 FirebaseFirestore firestore = FirebaseFirestore.instance;
 FirebaseDatabase database = FirebaseDatabase.instance;
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -36,6 +38,20 @@ class RootPage extends StatefulWidget {
 }
 
 class _RootPageState extends State<RootPage> {
+  int _selectedIndex = 0;
+
+  static List<Widget> _pages = <Widget>[HomePage(), ProfilePage()];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => _pages[index]),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,14 +63,12 @@ class _RootPageState extends State<RootPage> {
               label: 'Menu',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.home_outlined),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
               icon: Icon(Icons.person_2_outlined),
               label: 'Profile',
             ),
           ],
+          currentIndex: _selectedIndex,
+          onTap: _onItemTapped,
         ));
   }
 }

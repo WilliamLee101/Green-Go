@@ -5,10 +5,10 @@ class FoodItem {
   final int? carbs;
   final int? protiens;
   final int? satFat;
-  final int? sugars;
+  int? sugars;
   final int? cals;
 
-  const FoodItem(
+  FoodItem(
       {required this.name,
       this.description,
       this.carbs,
