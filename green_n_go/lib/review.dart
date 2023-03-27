@@ -23,14 +23,14 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Review: ${widget.foodItem.name}"),
+        title: Text("Rate your experience: ${widget.foodItem.name}"),
       ),
       body: Container(
         padding: EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Rating", style: TextStyle(fontSize: 16.0)),
+            Text("How did you like it?", style: TextStyle(fontSize: 16.0)),
             SizedBox(height: 8.0),
             Row(
               children: [
@@ -42,7 +42,18 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
               ],
             ),
             SizedBox(height: 16.0),
-            Text("Comment", style: TextStyle(fontSize: 16.0)),
+            Text("How much did you finish?", style: TextStyle(fontSize: 16.0)),
+            SizedBox(height: 8.0),
+            Row(
+              children: [
+                _buildStar(1),
+                _buildStar(2),
+                _buildStar(3),
+                _buildStar(4),
+                _buildStar(5),
+              ],
+            ),
+            Text("Leave a comment!", style: TextStyle(fontSize: 16.0)),
             SizedBox(height: 8.0),
             TextField(
               maxLines: 3,
@@ -61,7 +72,7 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
                 onPressed: () {
                   _submitReview();
                 },
-                child: Text("Submit"),
+                child: Text("Get Started"),
               ),
             ),
           ],
