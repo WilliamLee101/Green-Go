@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:green_n_go/auth.dart';
-import 'package:green_n_go/home_page.dart';
+import 'package:green_n_go/screens/home_page.dart';
 import 'package:green_n_go/profileView.dart';
 import 'package:green_n_go/signInPage.dart';
-import 'package:green_n_go/pages/login_register_page.dart';
+import 'package:green_n_go/screens/login_register_page.dart';
 
 class WidgetTree extends StatefulWidget {
   const WidgetTree({super.key});

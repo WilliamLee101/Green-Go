@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:green_n_go/home_page.dart';
+import 'package:green_n_go/screens/home_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:green_n_go/profilePage.dart';
 import 'package:green_n_go/widgetTree.dart';
