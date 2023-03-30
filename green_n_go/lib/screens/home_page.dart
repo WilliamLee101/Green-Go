@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:green_n_go/marciano.dart';
-import 'package:green_n_go/warren.dart';
-import 'package:green_n_go/west.dart';
+import 'package:green_n_go/screens/marciano.dart';
+import 'package:green_n_go/screens/warren.dart';
+import 'package:green_n_go/screens/west.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -15,18 +15,40 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
 
           children: [
-            // styling for welcome, terriers!
-            const Text('Welcome,', style: TextStyle(fontSize: 28)),
-            const Text(' Terrier!',
-                style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
-
             // insert profile icon
-            Image.asset('assets/images/profileicon.png',
-                height: 100, width: null, fit: BoxFit.fill),
+            Row(
+              // aligning the text on the page
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Expanded(
+                    child: Text('Welcome,',
+                        style: TextStyle(fontSize: 28),
+                        textAlign: TextAlign.right)),
+                const Expanded(
+                    child: Text(
+                  ' Terrier!',
+                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.left,
+                )),
+                Expanded(
+                  child: Image.asset(
+                    'assets/images/profileicon.png',
+                    width: 50.0,
+                    height: 50.0,
+                  ),
+                ),
+              ],
+            ),
+            // add the dvider
+            const Divider(
+              color: Colors.grey,
+              thickness: 1,
+            ),
 
             // make space
             const SizedBox(
-              height: 20,
+              height: 10,
             ),
 
             // text and stylying for select dining halls
@@ -113,7 +135,6 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
-      
     );
   }
 }
