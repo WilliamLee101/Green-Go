@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:green_n_go/home_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:green_n_go/profilePage.dart';
+import 'package:green_n_go/widgetTree.dart';
 import 'firebase_options.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 
 
 FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -40,7 +42,7 @@ class RootPage extends StatefulWidget {
 class _RootPageState extends State<RootPage> {
   int _selectedIndex = 0;
 
-  static List<Widget> _pages = <Widget>[HomePage(), ProfilePage()];
+  static List<Widget> _pages = <Widget>[MyApp(), WidgetTree()];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -63,17 +65,12 @@ class _RootPageState extends State<RootPage> {
               label: 'Menu',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-
               icon: Icon(Icons.person_2_outlined),
               label: 'Profile',
             ),
           ],
-          currentIndex: _selectedIndex,
           onTap: _onItemTapped,
+          currentIndex: _selectedIndex,
         ));
   }
 }
