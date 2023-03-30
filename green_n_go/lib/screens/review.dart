@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'foodItem.dart';
+import '../widgets/foodItem.dart';
 
 class ReviewSurveyScreen extends StatefulWidget {
   final FoodItem foodItem;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:green_n_go/marciano.dart';
-import 'package:green_n_go/warren.dart';
-import 'package:green_n_go/west.dart';
+import 'package:green_n_go/screens/marciano.dart';
+import 'package:green_n_go/screens/warren.dart';
+import 'package:green_n_go/screens/west.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -40,8 +40,6 @@ class HomePage extends StatelessWidget {
                 ),
               ],
             ),
-
-            
             // add the dvider
             const Divider(
               color: Colors.grey,
@@ -137,7 +135,6 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
-      
     );
   }
 }

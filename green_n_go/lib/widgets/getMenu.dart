@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:green_n_go/foodItem.dart';
-import 'package:green_n_go/marciano.dart';
-import 'package:green_n_go/review.dart';
+import 'package:green_n_go/widgets/foodItem.dart';
+import 'package:green_n_go/screens/marciano.dart';
+import 'package:green_n_go/screens/review.dart';
 
 class ReturnMenu extends StatelessWidget {
   final List<FoodItem> selectedMealType;

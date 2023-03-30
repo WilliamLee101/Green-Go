@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
-import 'package:green_n_go/review.dart';
+import 'package:green_n_go/screens/review.dart';
 import 'package:intl/intl.dart';
 
-import 'foodItem.dart';
-import 'getMenu.dart';
+import '../widgets/foodItem.dart';
+import '../widgets/getMenu.dart';
 
 DateTime now = DateTime.now();
 String formattedDate = DateFormat('yyyy-MM-dd').format(now);
