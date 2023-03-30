@@ -7,8 +7,6 @@ import 'firebase_options.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-
-
 FirebaseFirestore firestore = FirebaseFirestore.instance;
 FirebaseDatabase database = FirebaseDatabase.instance;
 Future<void> main() async {
