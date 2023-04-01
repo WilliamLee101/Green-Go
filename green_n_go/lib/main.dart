@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:green_n_go/intro_screen.dart';
 import 'package:green_n_go/screens/home_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:green_n_go/profilePage.dart';
@@ -24,8 +25,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.green),
-      home: const RootPage(),
+      theme: ThemeData(primarySwatch: Colors.green,
+      fontFamily: "Inter"),
+      home: const IntroScreen(),
     );
   }
 }
