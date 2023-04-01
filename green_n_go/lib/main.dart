@@ -28,6 +28,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(primarySwatch: Colors.green,
       fontFamily: "Inter"),
       home: const IntroScreen(),
+      routes: {
+        '/login': (context) => const HomePage(),
+      },
     );
   }
 }

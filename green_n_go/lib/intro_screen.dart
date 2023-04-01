@@ -17,21 +17,56 @@ class _IntroScreenState extends State<IntroScreen>
     IntroScreen4(),
   ];
 
-  TabController? controller;
+  void _onPageChanged(int index) {
+    setState(() {
+      controller?.index = index;
+    });
+  }
 
+  TabController? controller;
+  @override
   void initState() {
     controller = TabController(
-      length: 3,
+      length: 4,
       vsync: this,
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return PageView(
-      controller: _pageController,
-      children: _introScreens,
+    return Scaffold(
+      body: Column(
+        children: [
+          Expanded(
+            child: PageView(
+              controller: _pageController,
+              onPageChanged: _onPageChanged,
+              children: _introScreens,
+            ),
+          ),
+          TabPageSelector(
+            controller: controller,
+            color: Color(0xffD9D9D9),
+            borderStyle: BorderStyle.none,
+            selectedColor: Color(0xff3B7D3C),
+          ),
+        ],
+      ),
     );
+  }
+}
+
+class AllIntros extends StatefulWidget {
+  const AllIntros({super.key});
+
+  @override
+  State<AllIntros> createState() => _AllIntrosState();
+}
+
+class _AllIntrosState extends State<AllIntros> {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
   }
 }
 
@@ -46,7 +81,7 @@ class IntroScreen1 extends StatelessWidget {
         children: [
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [Text("LOGO")],
+            children: [Text("")],
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -175,8 +210,8 @@ class IntroScreen4 extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Column(
-            children: const [
-              Padding(
+            children: [
+              const Padding(
                 padding: EdgeInsets.only(top: 100),
                 child: Image(
                   image: AssetImage('assets/images/rafiki2.png'),
@@ -184,7 +219,7 @@ class IntroScreen4 extends StatelessWidget {
                   width: 370.41,
                 ),
               ),
-              Text(
+              const Text(
                 "Motivation",
                 style: TextStyle(
                     height: 3,
@@ -192,7 +227,7 @@ class IntroScreen4 extends StatelessWidget {
                     color: Color(0xFF3A7D3C),
                     fontWeight: FontWeight.bold),
               ),
-              Text(
+              const Text(
                 "Join us in reducing food waste on campus,\n one plate at a time.",
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -200,6 +235,9 @@ class IntroScreen4 extends StatelessWidget {
                     fontSize: 17,
                     fontWeight: FontWeight.w500,
                     fontFamily: "Inter"),
+              ),
+              SizedBox(height: 120,),
+              FilledButton(onPressed: (){Navigator.pushNamed(context, '/login');}, child:const Text("Let's get started!"),
               )
             ],
           )
