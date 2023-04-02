@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:green_n_go/auth.dart';
+import 'package:green_n_go/main.dart';
 import 'package:green_n_go/screens/home_page.dart';
 import 'package:green_n_go/profileView.dart';
 
@@ -19,7 +20,7 @@ class _WidgetTreeState extends State<WidgetTree> {
         stream: Auth().authStateChanges,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return profileView();
+            return RootPage();
           } else {
             return (const LoginPage());
           }

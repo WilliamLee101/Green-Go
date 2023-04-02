@@ -97,8 +97,7 @@ class _MarcianoState extends State<Marciano> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        home: Scaffold(
+    return  Scaffold(
             appBar: AppBar(
               title: const Text('Marciano Menu'),
             ),
@@ -111,7 +110,7 @@ class _MarcianoState extends State<Marciano> {
                       ReturnMenu(selectedMealType: dmenu),
                     ],
                   ),
-            ));
+            );
   }
 }
 
