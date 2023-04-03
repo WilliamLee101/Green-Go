@@ -42,6 +42,7 @@ dependencies:
   firebase_auth: ^4.3.0
   flutter_login: ^4.1.1
   google_sign_in: ^6.0.2
+
  
  
 
@@ -76,6 +77,7 @@ flutter:
   assets:
   - assets/images/
 
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
@@ -103,5 +105,9 @@ flutter:
   # see https://flutter.dev/custom-fonts/#from-packages
 
   fonts:
-  - family: Inter
-    fonts: 
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter-Regular.ttf
+        - asset: assets/fonts/Inter-Medium.ttf
+        - asset: assets/fonts/Inter-Bold.ttf
+          weight: 700

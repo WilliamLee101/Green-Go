@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:green_n_go/intro_screen.dart';
+import 'package:green_n_go/profileView.dart';
 import 'package:green_n_go/screens/home_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:green_n_go/profilePage.dart';
+import 'package:green_n_go/screens/login_register_page.dart';
 import 'package:green_n_go/widgetTree.dart';
 import 'firebase_options.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -24,8 +27,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.green),
-      home: const RootPage(),
+      theme: ThemeData(primarySwatch: Colors.green,
+      fontFamily: "Inter"),
+      home: const IntroScreen(),
+      routes: {
+        '/login': (context) => const WidgetTree(),
+      },
     );
   }
 }
@@ -40,7 +47,7 @@ class RootPage extends StatefulWidget {
 class _RootPageState extends State<RootPage> {
   int _selectedIndex = 0;
 
-  static List<Widget> _pages = <Widget>[MyApp(), WidgetTree()];
+  static List<Widget> _pages = <Widget>[RootPage(), ProfileView()];
 
   void _onItemTapped(int index) {
     setState(() {

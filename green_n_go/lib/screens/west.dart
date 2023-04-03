@@ -6,8 +6,6 @@ import 'package:green_n_go/screens/review.dart';
 import 'package:intl/intl.dart';
 import '../widgets/foodItem.dart';
 
-
-
 DateTime now = DateTime.now();
 String formattedDate = DateFormat('yyyy-MM-dd').format(now);
 final List<FoodItem> bmenu = [];
@@ -90,24 +88,22 @@ class _WestState extends State<West> {
       print('No data available.');
     }
   }
+
   final PageController _pageController = PageController(initialPage: 0);
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        home: Scaffold(
-            appBar: AppBar(
-              title: const Text('West Menu'),
-            ),
-          
-            body: 
-              PageView(
-                    controller: _pageController,
-                    children: [
-                      ReturnMenu(selectedMealType: bmenu),
-                      ReturnMenu(selectedMealType: lmenu),
-                      ReturnMenu(selectedMealType: dmenu),
-                    ],
-                  ),
-            ));
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('West Menu'),
+      ),
+      body: PageView(
+        controller: _pageController,
+        children: [
+          ReturnMenu(selectedMealType: bmenu),
+          ReturnMenu(selectedMealType: lmenu),
+          ReturnMenu(selectedMealType: dmenu),
+        ],
+      ),
+    );
   }
 }

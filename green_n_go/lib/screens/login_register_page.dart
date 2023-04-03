@@ -38,16 +38,38 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _entryField(String title, TextEditingController controller) {
-    return TextField(
-      controller: controller,
-      decoration: InputDecoration(
-        labelText: title,
+    bool isPass = false;
+    if (title == "Password") {
+      isPass = true;
+    }
+    return Container(
+      height: 47,
+      width: 900,
+      margin: const EdgeInsets.all(15.0),
+      padding: const EdgeInsets.all(2.0),
+      decoration: BoxDecoration(
+          border: Border.all(color: const Color(0xffBABABA), width: 2.0),
+          borderRadius: const BorderRadius.all(Radius.circular(15))),
+      child: Padding(
+        padding: const EdgeInsets.only(left: 20.0, bottom: 9),
+        child: TextField(
+            controller: controller,
+            decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: title,
+                hintStyle: const TextStyle(
+                    fontFamily: "Inter",
+                    fontWeight: FontWeight.normal,
+                    color: Color(0xffBABABA))),
+            style: const TextStyle(
+                fontFamily: "Inter", fontWeight: FontWeight.normal),
+            obscureText: isPass),
       ),
     );
   }
 
   Widget _errorMessage() {
-    return Text(errorMessage == '' ? '' : 'Humm? $errorMessage');
+    return Text(errorMessage == '' ? '' : 'Humm, $errorMessage');
   }
 
   Widget _submitButton() {
@@ -59,13 +81,20 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _LoginOrRegisterButton() {
-    return TextButton(
-        onPressed: () {
-          setState(() {
-            isLogin = !isLogin;
-          });
-        },
-        child: Text(isLogin ? 'Register instead' : 'Login Instead'));
+    return Container(
+      child: Row(
+        children: [
+          Text(isLogin ? 'Don’t have an account?' : 'Already have an account?'),
+          TextButton(
+              onPressed: () {
+                setState(() {
+                  isLogin = !isLogin;
+                });
+              },
+              child: Text(isLogin ? 'Sign Up' : 'Login')),
+        ],
+      ),
+    );
   }
 
   @override
@@ -79,11 +108,49 @@ class _LoginPageState extends State<LoginPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            _entryField('email', _controllerEmail),
-            _entryField('password', _controllerPassword),
-            _errorMessage(),
-            _submitButton(),
-            _LoginOrRegisterButton()
+            Container(
+              width: 300,
+              child: Column(
+                children: [
+                  Image.asset("assets/images/logo.png", height: 120, width: 120,),
+                  Text(
+                    isLogin ? '' : 'Create an account!',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  const SizedBox(
+                    height: 23,
+                  ),
+                  _entryField('Email', _controllerEmail),
+                  _entryField('Password', _controllerPassword),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: const [
+                      Padding(
+                        padding: EdgeInsets.only(right: 13.0),
+                        child: TextButton(
+                            onPressed: null,
+                            child: Text(
+                              "Forgot Password?",
+                              style: TextStyle(
+                                  color: Color(0xff5AA5FF), fontSize: 12),
+                            )),
+                      )
+                    ],
+                  ),
+                  _errorMessage(),
+                  _submitButton(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 130.0),
+                        child: _LoginOrRegisterButton(),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
           ],
         ),
       ),

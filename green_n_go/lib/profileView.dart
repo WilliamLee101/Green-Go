@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:green_n_go/auth.dart';
-class profileView extends StatelessWidget {
+class ProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Future<void> signOut() async {
