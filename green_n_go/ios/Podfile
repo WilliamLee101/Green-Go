@@ -35,6 +35,7 @@ target 'Runner' do
 end
 
 post_install do |installer|
+<<<<<<< HEAD
   installer.generated_projects.each do |project|
         project.targets.each do |target|
             target.build_configurations.each do |config|
@@ -47,3 +48,9 @@ post_install do |installer|
   end
 end
 
+=======
+  installer.pods_project.targets.each do |target|
+    flutter_additional_ios_build_settings(target)
+  end
+end
+>>>>>>> main

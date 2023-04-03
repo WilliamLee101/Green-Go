@@ -57,7 +57,6 @@ class _WarrenState extends State<Warren> {
     } else {
       print('No data available.');
     }
-
     final snapshot1 = await ref.child("menu/$formattedDate/warren/Lunch").get();
 
     if (snapshot1.exists && snapshot1.value is Map<dynamic, dynamic>) {
@@ -78,7 +77,6 @@ class _WarrenState extends State<Warren> {
     } else {
       print('No data available.');
     }
-
     final snapshot2 =
         await ref.child("menu/$formattedDate/warren/Dinner").get();
 
