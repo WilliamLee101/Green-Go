@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:green_n_go/widgets/foodItem.dart';
+import '../widgets/foodItem.dart';
 
 class ReviewSurveyScreen extends StatefulWidget {
   final FoodItem foodItem;
@@ -30,10 +30,7 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Text("Rate your experience: ${widget.foodItem.name}",
-            style: const TextStyle(
-                fontSize: 17.1429, fontFamily: 'Inter', color: Colors.black87)),
+        title: Text("Rate your experience: ${widget.foodItem.name}"),
       ),
       body: Container(
         padding: EdgeInsets.all(16.0),

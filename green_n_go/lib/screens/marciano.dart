@@ -18,7 +18,6 @@ final ref = FirebaseDatabase.instance.ref();
 
 class Marciano extends StatefulWidget {
   const Marciano({super.key});
-
   @override
   State<Marciano> createState() => _MarcianoState();
 }
@@ -44,14 +43,16 @@ class _MarcianoState extends State<Marciano> {
     if (snapshot.exists && snapshot.value is Map<dynamic, dynamic>) {
       (snapshot.value as Map<dynamic, dynamic>).forEach((key, value) {
         final food = FoodItem(
-          name: value['name'],
-          description: value['description'],
-          carbs: value['carbohydrates'],
-          protiens: value['protein'],
-          satFat: value['saturated_fat'],
-          // sugars: value['sugars'],
-          cals: value['calories'],
-        );
+            name: value['name'],
+            description: value['description'],
+            carbs: value['carbohydrates'],
+            protiens: value['protein'],
+            satFat: value['saturated_fat'],
+            // sugars: value['sugars'],
+            cals: value['calories'],
+            rating: value['rating'],
+            is_vegan: value['is_vegan'],
+            is_vegetarian: value['is_vegetarian']);
         bmenu.add(food);
       });
     } else {
@@ -62,14 +63,16 @@ class _MarcianoState extends State<Marciano> {
     if (snapshot1.exists && snapshot1.value is Map<dynamic, dynamic>) {
       (snapshot1.value as Map<dynamic, dynamic>).forEach((key, value) {
         final food = FoodItem(
-          name: value['name'],
-          description: value['description'],
-          carbs: value['carbohydrates'],
-          protiens: value['protein'],
-          satFat: value['saturated_fat'],
-          // sugars: value['sugars'],
-          cals: value['calories'],
-        );
+            name: value['name'],
+            description: value['description'],
+            carbs: value['carbohydrates'],
+            protiens: value['protein'],
+            satFat: value['saturated_fat'],
+            // sugars: value['sugars'],
+            cals: value['calories'],
+            rating: value['rating'],
+            is_vegan: value['is_vegan'],
+            is_vegetarian: value['is_vegetarian']);
         lmenu.add(food);
       });
     } else {
@@ -80,14 +83,16 @@ class _MarcianoState extends State<Marciano> {
     if (snapshot2.exists && snapshot2.value is Map<dynamic, dynamic>) {
       (snapshot2.value as Map<dynamic, dynamic>).forEach((key, value) {
         final food = FoodItem(
-          name: value['name'],
-          description: value['description'],
-          carbs: value['carbohydrates'],
-          protiens: value['protein'],
-          satFat: value['saturated_fat'],
-          // sugars: value['sugars'],
-          cals: value['calories'],
-        );
+            name: value['name'],
+            description: value['description'],
+            carbs: value['carbohydrates'],
+            protiens: value['protein'],
+            satFat: value['saturated_fat'],
+            // sugars: value['sugars'],
+            cals: value['calories'],
+            rating: value['rating'],
+            is_vegan: value['is_vegan'],
+            is_vegetarian: value['is_vegetarian']);
         dmenu.add(food);
       });
     } else {
@@ -97,21 +102,18 @@ class _MarcianoState extends State<Marciano> {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-            appBar: AppBar(
-              title: const Text('Marciano Menu'),
-            ),
-            body: 
-            PageView(
-                    controller: _pageController,
-                    children: [
-                      ReturnMenu(selectedMealType: bmenu),
-                      ReturnMenu(selectedMealType: lmenu),
-                      ReturnMenu(selectedMealType: dmenu),
-                    ],
-                  ),
-            );
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Marciano Menu'),
+      ),
+      body: PageView(
+        controller: _pageController,
+        children: [
+          ReturnMenu(selectedMealType: bmenu),
+          ReturnMenu(selectedMealType: lmenu),
+          ReturnMenu(selectedMealType: dmenu),
+        ],
+      ),
+    );
   }
 }
-
-

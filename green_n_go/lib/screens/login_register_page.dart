@@ -38,10 +38,6 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _entryField(String title, TextEditingController controller) {
-    bool isPass = false;
-    if (title == "Password") {
-      isPass = true;
-    }
     return Container(
       height: 47,
       width: 900,
@@ -53,17 +49,17 @@ class _LoginPageState extends State<LoginPage> {
       child: Padding(
         padding: const EdgeInsets.only(left: 20.0, bottom: 9),
         child: TextField(
-            controller: controller,
-            decoration: InputDecoration(
-                border: InputBorder.none,
-                hintText: title,
-                hintStyle: const TextStyle(
-                    fontFamily: "Inter",
-                    fontWeight: FontWeight.normal,
-                    color: Color(0xffBABABA))),
-            style: const TextStyle(
-                fontFamily: "Inter", fontWeight: FontWeight.normal),
-            obscureText: isPass),
+          controller: controller,
+          decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: title,
+              hintStyle: const TextStyle(
+                  fontFamily: "Inter",
+                  fontWeight: FontWeight.normal,
+                  color: Color(0xffBABABA))),
+          style: const TextStyle(
+              fontFamily: "Inter", fontWeight: FontWeight.normal),
+        ),
       ),
     );
   }
@@ -112,12 +108,11 @@ class _LoginPageState extends State<LoginPage> {
               width: 300,
               child: Column(
                 children: [
-                  Image.asset("assets/images/logo.png", height: 120, width: 120,),
                   Text(
                     isLogin ? '' : 'Create an account!',
                     style: TextStyle(fontSize: 20),
                   ),
-                  const SizedBox(
+                  SizedBox(
                     height: 23,
                   ),
                   _entryField('Email', _controllerEmail),

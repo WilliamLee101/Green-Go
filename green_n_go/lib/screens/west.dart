@@ -40,14 +40,16 @@ class _WestState extends State<West> {
     if (snapshot.exists && snapshot.value is Map<dynamic, dynamic>) {
       (snapshot.value as Map<dynamic, dynamic>).forEach((key, value) {
         final food = FoodItem(
-          name: value['name'],
-          description: value['description'],
-          carbs: value['carbohydrates'],
-          protiens: value['protein'],
-          satFat: value['saturated_fat'],
-          // sugars: value['sugars'],
-          cals: value['calories'],
-        );
+            name: value['name'],
+            description: value['description'],
+            carbs: value['carbohydrates'],
+            protiens: value['protein'],
+            satFat: value['saturated_fat'],
+            // sugars: value['sugars'],
+            cals: value['calories'],
+            rating: value['rating'],
+            is_vegan: value['is_vegan'],
+            is_vegetarian: value['is_vegetarian']);
         bmenu.add(food);
       });
     } else {
@@ -57,14 +59,16 @@ class _WestState extends State<West> {
     if (snapshot1.exists && snapshot1.value is Map<dynamic, dynamic>) {
       (snapshot1.value as Map<dynamic, dynamic>).forEach((key, value) {
         final food = FoodItem(
-          name: value['name'],
-          description: value['description'],
-          carbs: value['carbohydrates'],
-          protiens: value['protein'],
-          satFat: value['saturated_fat'],
-          // sugars: value['sugars'],
-          cals: value['calories'],
-        );
+            name: value['name'],
+            description: value['description'],
+            carbs: value['carbohydrates'],
+            protiens: value['protein'],
+            satFat: value['saturated_fat'],
+            // sugars: value['sugars'],
+            cals: value['calories'],
+            rating: value['rating'],
+            is_vegan: value['is_vegan'],
+            is_vegetarian: value['is_vegetarian']);
         lmenu.add(food);
       });
     } else {
@@ -74,14 +78,16 @@ class _WestState extends State<West> {
     if (snapshot2.exists && snapshot2.value is Map<dynamic, dynamic>) {
       (snapshot2.value as Map<dynamic, dynamic>).forEach((key, value) {
         final food = FoodItem(
-          name: value['name'],
-          description: value['description'],
-          carbs: value['carbohydrates'],
-          protiens: value['protein'],
-          satFat: value['saturated_fat'],
-          // sugars: value['sugars'],
-          cals: value['calories'],
-        );
+            name: value['name'],
+            description: value['description'],
+            carbs: value['carbohydrates'],
+            protiens: value['protein'],
+            satFat: value['saturated_fat'],
+            // sugars: value['sugars'],
+            cals: value['calories'],
+            rating: value['rating'],
+            is_vegan: value['is_vegan'],
+            is_vegetarian: value['is_vegetarian']);
         dmenu.add(food);
       });
     } else {

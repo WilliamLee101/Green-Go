@@ -10,7 +10,6 @@ DateTime now = DateTime.now();
 
 String formattedDate = DateFormat('yyyy-MM-dd').format(now);
 
-
 final List<FoodItem> bmenu = [];
 final List<FoodItem> lmenu = [];
 final List<FoodItem> dmenu = [];
@@ -43,14 +42,16 @@ class _WarrenState extends State<Warren> {
     if (snapshot.exists && snapshot.value is Map<dynamic, dynamic>) {
       (snapshot.value as Map<dynamic, dynamic>).forEach((key, value) {
         final food = FoodItem(
-          name: value['name'],
-          description: value['description'],
-          carbs: value['carbohydrates'],
-          protiens: value['protein'],
-          satFat: value['saturated_fat'],
-          // sugars: value['sugars'],
-          cals: value['calories'],
-        );
+            name: value['name'],
+            description: value['description'],
+            carbs: value['carbohydrates'],
+            protiens: value['protein'],
+            satFat: value['saturated_fat'],
+            // sugars: value['sugars'],
+            cals: value['calories'],
+            rating: value['rating'],
+            is_vegan: value['is_vegan'],
+            is_vegetarian: value['is_vegetarian']);
         bmenu.add(food);
       });
     } else {
@@ -61,14 +62,16 @@ class _WarrenState extends State<Warren> {
     if (snapshot1.exists && snapshot1.value is Map<dynamic, dynamic>) {
       (snapshot1.value as Map<dynamic, dynamic>).forEach((key, value) {
         final food = FoodItem(
-          name: value['name'],
-          description: value['description'],
-          carbs: value['carbohydrates'],
-          protiens: value['protein'],
-          satFat: value['saturated_fat'],
-          // sugars: value['sugars'],
-          cals: value['calories'],
-        );
+            name: value['name'],
+            description: value['description'],
+            carbs: value['carbohydrates'],
+            protiens: value['protein'],
+            satFat: value['saturated_fat'],
+            // sugars: value['sugars'],
+            cals: value['calories'],
+            rating: value['rating'],
+            is_vegan: value['is_vegan'],
+            is_vegetarian: value['is_vegetarian']);
         lmenu.add(food);
       });
     } else {
@@ -80,14 +83,16 @@ class _WarrenState extends State<Warren> {
     if (snapshot2.exists && snapshot2.value is Map<dynamic, dynamic>) {
       (snapshot2.value as Map<dynamic, dynamic>).forEach((key, value) {
         final food = FoodItem(
-          name: value['name'],
-          description: value['description'],
-          carbs: value['carbohydrates'],
-          protiens: value['protein'],
-          satFat: value['saturated_fat'],
-          // sugars: value['sugars'],
-          cals: value['calories'],
-        );
+            name: value['name'],
+            description: value['description'],
+            carbs: value['carbohydrates'],
+            protiens: value['protein'],
+            satFat: value['saturated_fat'],
+            // sugars: value['sugars'],
+            cals: value['calories'],
+            rating: value['rating'],
+            is_vegan: value['is_vegan'],
+            is_vegetarian: value['is_vegetarian']);
         dmenu.add(food);
       });
     } else {
@@ -139,8 +144,14 @@ class _WarrenState extends State<Warren> {
               ),
 
               // expanded row for all of the menu items and their nutrional data
+
               Expanded(
-                child: ListView.builder(
+                child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                      maxCrossAxisExtent: 200,
+                      childAspectRatio: 1.5,
+                      crossAxisSpacing: 15,
+                      mainAxisSpacing: 5),
                   itemCount: _selectedMealType.length,
                   itemBuilder: (context, index) {
                     final food = _selectedMealType[index];
@@ -151,45 +162,62 @@ class _WarrenState extends State<Warren> {
                         ),
                         child: ListTile(
                             title: Text(food.name,
+                                textAlign: TextAlign.center,
                                 style: TextStyle(
-                                    fontSize: 15, fontFamily: 'Inter')),
+                                  fontSize: 15,
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.bold,
+                                )),
                             onTap: () {},
                             subtitle: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Text(food.description ?? ''),
-                                  Text('${food.cals} cals' ?? ''),
-                                  Text('${food.protiens}g protein' ?? ''),
-                                  Text('${food.satFat}g fat' ?? ''),
-                                  Text('${food.sugars}g sugar' ?? ''),
-                                  Text('${food.carbs}g carbs' ?? ''),
+                                  Text(food.description ?? '',
+                                      style: DefaultTextStyle.of(context)
+                                          .style
+                                          .apply(fontSizeFactor: 0.8)),
+                                  // Text('${food.cals} cals' ?? ''),
+                                  // Text('${food.protiens}g protein' ?? ''),
+                                  // Text('${food.satFat}g fat' ?? ''),
+                                  // Text('${food.sugars}g sugar' ?? ''),
+                                  // Text('${food.carbs}g carbs' ?? ''),
                                 ]),
                             trailing: Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
+                                  // Expanded(
+                                  //     child: Container(
+                                  //         width: 20,
+                                  //         height: 50,
+                                  //         decoration: BoxDecoration(
+                                  //             shape: BoxShape.circle,
+                                  //             border: Border.all(
+                                  //                 color: Colors.green,
+                                  //                 width: 15,
+                                  //                 style: BorderStyle.solid)),
+                                  //         child: const Icon(Icons.pets_outlined,
+                                  //             color: Colors.lightGreen))),
+                                  // const Text(
+                                  //   ' # of reviews',
+                                  //   style: TextStyle(
+                                  //       fontSize: 9,
+                                  //       fontWeight: FontWeight.normal),
+                                  //   textAlign: TextAlign.left,
+                                  // ),
                                   Expanded(
-                                      child: Container(
-                                          width: 20,
-                                          height: 50,
-                                          decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              border: Border.all(
-                                                  color: Colors.green,
-                                                  width: 15,
-                                                  style: BorderStyle.solid)),
-                                          child: const Icon(Icons.pets_outlined,
-                                              color: Colors.lightGreen))),
-                                  const Text(
-                                    ' # of reviews',
-                                    style: TextStyle(
-                                        fontSize: 9,
-                                        fontWeight: FontWeight.normal),
-                                    textAlign: TextAlign.left,
-                                  ),
-                                  Expanded(
-                                      child: IconButton(
+                                      child: ElevatedButton.icon(
+                                          style: ElevatedButton.styleFrom(
+                                            // minimumSize: Size.zero,
+                                            padding: EdgeInsets.all(5),
+                                            backgroundColor: Color.fromARGB(
+                                                255, 169, 240, 172),
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        10.0)),
+                                          ),
                                           onPressed: () => {
                                                 showBottomSheet(
                                                   context: context,
@@ -200,11 +228,20 @@ class _WarrenState extends State<Warren> {
                                                   },
                                                 )
                                               },
+                                          label: Text(
+                                            food.rating.toString(),
+                                            style: TextStyle(
+                                                // color: Color.fromARGB(
+                                                //     255, 241, 220, 104)
+                                                ),
+                                          ),
                                           icon: Image.asset(
-                                              'assets/images/reviewButton.png',
-                                              color: Colors.lightGreen,
-                                              height: 100,
-                                              width: 100))),
+                                            'assets/images/reviewButton.png',
+                                            color: Color.fromARGB(
+                                                255, 67, 118, 10),
+                                            height: 20,
+                                            width: 20,
+                                          ))),
                                 ])));
                   },
                 ),

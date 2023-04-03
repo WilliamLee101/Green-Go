@@ -6,6 +6,9 @@ class FoodItem {
   final int? satFat;
   int? sugars;
   final int? cals;
+  final double? rating;
+  final int? is_vegan;
+  final int? is_vegetarian;
 
   FoodItem(
       {required this.name,
@@ -14,5 +17,8 @@ class FoodItem {
       this.protiens,
       this.satFat,
       this.sugars,
-      this.cals});
+      this.cals,
+      this.rating,
+      this.is_vegan,
+      this.is_vegetarian});
 }
