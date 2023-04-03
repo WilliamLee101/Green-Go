@@ -1,3 +1,4 @@
+import 'dart:ffi';
 
 class FoodItem {
   final String name;
@@ -5,15 +6,21 @@ class FoodItem {
   final int? carbs;
   final int? protiens;
   final int? satFat;
-  final int? sugars;
+  int? sugars;
   final int? cals;
+  final double? rating;
+  final int? is_vegan;
+  final int? is_vegetarian;
 
-  const FoodItem(
+  FoodItem(
       {required this.name,
       this.description,
       this.carbs,
       this.protiens,
       this.satFat,
       this.sugars,
-      this.cals});
+      this.cals,
+      this.rating,
+      this.is_vegan,
+      this.is_vegetarian});
 }
