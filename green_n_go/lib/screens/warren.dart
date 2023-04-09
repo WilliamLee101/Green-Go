@@ -109,8 +109,8 @@ class _WarrenState extends State<Warren> {
                     style: TextStyle(
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
-                        color: Colors.black)),
-                backgroundColor: Colors.white),
+                        color: Color.fromARGB(255, 255, 255, 255))),
+                backgroundColor: Color.fromARGB(255, 8, 65, 5)),
             body: Column(children: [
               // row for breakfast lunch and dinner options on the top
               Row(
@@ -147,7 +147,8 @@ class _WarrenState extends State<Warren> {
 
               Expanded(
                 child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                  shrinkWrap: true,
+                  gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                       maxCrossAxisExtent: 200,
                       childAspectRatio: 1.5,
                       crossAxisSpacing: 15,
@@ -158,91 +159,104 @@ class _WarrenState extends State<Warren> {
                     food.sugars ??= 0;
                     return Card(
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15.0),
-                        ),
+                            borderRadius: BorderRadius.circular(20.0)),
                         child: ListTile(
-                            title: Text(food.name,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.bold,
-                                )),
-                            onTap: () {},
-                            subtitle: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Text(food.description ?? '',
-                                      style: DefaultTextStyle.of(context)
-                                          .style
-                                          .apply(fontSizeFactor: 0.8)),
-                                  // Text('${food.cals} cals' ?? ''),
-                                  // Text('${food.protiens}g protein' ?? ''),
-                                  // Text('${food.satFat}g fat' ?? ''),
-                                  // Text('${food.sugars}g sugar' ?? ''),
-                                  // Text('${food.carbs}g carbs' ?? ''),
-                                ]),
-                            trailing: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  // Expanded(
-                                  //     child: Container(
-                                  //         width: 20,
-                                  //         height: 50,
-                                  //         decoration: BoxDecoration(
-                                  //             shape: BoxShape.circle,
-                                  //             border: Border.all(
-                                  //                 color: Colors.green,
-                                  //                 width: 15,
-                                  //                 style: BorderStyle.solid)),
-                                  //         child: const Icon(Icons.pets_outlined,
-                                  //             color: Colors.lightGreen))),
-                                  // const Text(
-                                  //   ' # of reviews',
-                                  //   style: TextStyle(
-                                  //       fontSize: 9,
-                                  //       fontWeight: FontWeight.normal),
-                                  //   textAlign: TextAlign.left,
-                                  // ),
-                                  Expanded(
-                                      child: ElevatedButton.icon(
-                                          style: ElevatedButton.styleFrom(
-                                            // minimumSize: Size.zero,
-                                            padding: EdgeInsets.all(5),
-                                            backgroundColor: Color.fromARGB(
-                                                255, 169, 240, 172),
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(
-                                                        10.0)),
-                                          ),
-                                          onPressed: () => {
-                                                showBottomSheet(
-                                                  context: context,
-                                                  builder:
-                                                      (BuildContext context) {
-                                                    return ReviewSurveyScreen(
-                                                        foodItem: food);
-                                                  },
-                                                )
-                                              },
-                                          label: Text(
-                                            food.rating.toString(),
-                                            style: TextStyle(
-                                                // color: Color.fromARGB(
-                                                //     255, 241, 220, 104)
-                                                ),
-                                          ),
-                                          icon: Image.asset(
-                                            'assets/images/reviewButton.png',
-                                            color: Color.fromARGB(
-                                                255, 67, 118, 10),
-                                            height: 20,
-                                            width: 20,
-                                          ))),
-                                ])));
+                          title: Text(food.name,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                fontSize: 15,
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.bold,
+                              )),
+                          onTap: () {},
+                          subtitle: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  food.description ?? '',
+                                  style: TextStyle(
+                                      color: Color.fromARGB(255, 87, 91, 87)),
+                                  // style: DefaultTextStyle.of(context)
+                                  //     .style
+                                  //     .apply(fontSizeFactor: 0.8),
+                                  textAlign: TextAlign.center,
+                                ),
+                                // Text('${food.cals} cals' ?? ''),
+                                // Text('${food.protiens}g protein' ?? ''),
+                                // Text('${food.satFat}g fat' ?? ''),
+                                // Text('${food.sugars}g sugar' ?? ''),
+                                // Text('${food.carbs}g carbs' ?? ''),
+                                ButtonTheme(
+                                    child: Align(
+                                        alignment: Alignment.bottomCenter,
+                                        child: ElevatedButton.icon(
+                                            // style: ElevatedButton.styleFrom(
+                                            //   // minimumSize: Size.zero,
+                                            // backgroundColor: const Color.fromARGB(
+                                            //     255, 119, 178, 122),
+                                            //   shape: RoundedRectangleBorder(
+                                            //     borderRadius:
+                                            //         BorderRadius.circular(10.0),
+                                            //   ),
+                                            // ),
+                                            onPressed: () => {
+                                                  showBottomSheet(
+                                                    context: context,
+                                                    builder:
+                                                        (BuildContext context) {
+                                                      return ReviewSurveyScreen(
+                                                          foodItem: food);
+                                                    },
+                                                  )
+                                                },
+                                            label: Text(
+                                              food.rating.toString(),
+                                              style: const TextStyle(
+                                                  fontSize: 17,
+                                                  color: Color.fromARGB(
+                                                      255, 48, 121, 51)),
+                                            ),
+                                            icon: const Icon(Icons.pets,
+                                                color: Color.fromARGB(
+                                                    255, 48, 121, 51)),
+                                            style: ButtonStyle(
+                                                minimumSize:
+                                                    MaterialStateProperty.all(
+                                                        Size(50, 20)),
+                                                backgroundColor:
+                                                    MaterialStateProperty.all<
+                                                            Color>(
+                                                        Color.fromARGB(255, 162,
+                                                            204, 167)!),
+                                                shape: MaterialStateProperty
+                                                    .all<StadiumBorder>(
+                                                  StadiumBorder(),
+                                                ))))),
+                              ]),
+
+                          // mainAxisAlignment:
+                          //     MainAxisAlignment.spaceBetween,
+
+                          // Expanded(
+                          //     child: Container(
+                          //         width: 20,
+                          //         height: 50,
+                          //         decoration: BoxDecoration(
+                          //             shape: BoxShape.circle,
+                          //             border: Border.all(
+                          //                 color: Colors.green,
+                          //                 width: 15,
+                          //                 style: BorderStyle.solid)),
+                          //         child: const Icon(Icons.pets_outlined,
+                          //             color: Colors.lightGreen))),
+                          // const Text(
+                          //   ' # of reviews',
+                          //   style: TextStyle(
+                          //       fontSize: 9,
+                          //       fontWeight: FontWeight.normal),
+                          //   textAlign: TextAlign.left,
+                          // ),
+                        ));
                   },
                 ),
               )
