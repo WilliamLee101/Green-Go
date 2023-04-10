@@ -7,8 +7,8 @@ class FoodItem {
   int? sugars;
   final int? cals;
   final double? rating;
-  final int? is_vegan;
-  final int? is_vegetarian;
+  final bool? is_vegan;
+  final bool? is_vegetarian;
 
   FoodItem(
       {required this.name,
