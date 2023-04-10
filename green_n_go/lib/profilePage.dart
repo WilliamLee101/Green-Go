@@ -17,7 +17,7 @@ Future<UserCredential> signInWithGoogle() async {
     idToken: googleAuth?.idToken,
   );
   // Once signed in, return the UserCredential
-  
+
   return await FirebaseAuth.instance.signInWithCredential(credential);
 }
 
@@ -43,7 +43,7 @@ class _ProfilePageState extends State<ProfilePage> {
       // Display error message to user
     }
   }
-  
+
   User? _user;
 
   @override
@@ -55,9 +55,8 @@ class _ProfilePageState extends State<ProfilePage> {
       });
     });
   }
-  
+
   @override
-  
   Widget build(BuildContext context) {
     if (_user == null) {
       return Scaffold(
@@ -66,14 +65,19 @@ class _ProfilePageState extends State<ProfilePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: const [
             Text("You are not signed in!", style: TextStyle(fontSize: 20)),
-            ElevatedButton(onPressed: signInWithGoogle, child: Text("Sign In", style: TextStyle(fontSize: 20),)),
+            ElevatedButton(
+                onPressed: signInWithGoogle,
+                child: Text(
+                  "Sign In",
+                  style: TextStyle(fontSize: 20),
+                )),
           ],
         ),
       ));
     } else {
       return Scaffold(
         appBar: AppBar(
-          title: const Text('Profile'),
+          title: const Text(' Profile'),
         ),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
