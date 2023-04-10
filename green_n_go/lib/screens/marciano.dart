@@ -23,19 +23,13 @@ class Marciano extends StatefulWidget {
 }
 
 class _MarcianoState extends State<Marciano> {
-  List<FoodItem> _selectedMealType = bmenu;
+
   final PageController _pageController = PageController(initialPage: 0);
   @override
   void initState() {
     super.initState();
-    getMenu().then((value) {
-      setState(() {
-        // set the selected meal type to breakfast by default
-        _selectedMealType = bmenu;
-      });
-    });
+    getMenu();
   }
-
   Future<void> getMenu() async {
     print(formattedDate);
     final snapshot =
