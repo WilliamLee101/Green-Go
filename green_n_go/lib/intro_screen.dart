@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:green_n_go/screens/login_register_page.dart';
 
 class IntroScreen extends StatefulWidget {
   const IntroScreen({super.key});
@@ -99,7 +100,7 @@ class IntroScreen1 extends StatelessWidget {
                   padding: const EdgeInsets.only(bottom: 20, right: 25),
                   child: Image.asset(
                     'assets/images/TerrierTastes.png',
-                    height: 130,
+                    height: 125,
                     width: 250,
                   ),
                 ),
@@ -237,8 +238,31 @@ class IntroScreen4 extends StatelessWidget {
                     fontFamily: "Inter"),
               ),
               SizedBox(height: 120,),
-              FilledButton(onPressed: (){Navigator.pushNamed(context, '/login');}, child:const Text("Let's get started!"),
-              )
+              Container(
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: const Color(0xff3B7D3C),
+                  width: 2,
+                ),
+                borderRadius: BorderRadius.circular(15),
+                color: const Color(0xff3B7D3C),
+              ),
+              child: SizedBox(
+                  height: 40,
+                  width: 187,
+                  child: TextButton(
+                    onPressed: ()  {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const LoginPage()),
+                      );
+                    },
+                    child: const Text(
+                      'Get Started!',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  )),
+            ),
             ],
           )
         ],

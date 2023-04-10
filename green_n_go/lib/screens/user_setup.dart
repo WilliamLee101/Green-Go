@@ -398,15 +398,8 @@ class _PreferencesState extends State<Preferences> {
                   height: 40,
                   width: 187,
                   child: TextButton(
-                    onPressed: () async {
-                      try {
-                        // Create user with email and password
-                        UserCredential userCredential = await FirebaseAuth
-                            .instance
-                            .createUserWithEmailAndPassword(
-                          email: _controllerEmail.text,
-                          password: _controllerPassword.text,
-                        );
+                    onPressed: ()  {
+                      
 
                         // Navigate to the next page on successful sign up
                         Navigator.push(
@@ -414,19 +407,7 @@ class _PreferencesState extends State<Preferences> {
                           MaterialPageRoute(
                               builder: (context) => const RootPage()),
                         );
-                      } on FirebaseAuthException catch (e) {
-                        // Display error message and don't navigate to next page
-                        String? errorMessage = e.message;
-                        if (errorMessage != null) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(errorMessage),
-                            ),
-                          );
-                        }
-                      } catch (e) {
-                        print(e);
-                      }
+                      
                     },
                     child: const Text(
                       'Sign Up',

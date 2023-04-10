@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.green,
       fontFamily: "Inter"),
-      home: const LoginPage(),
+      home: const IntroScreen(),
       routes: {
         '/login': (context) => const WidgetTree(),
       },
