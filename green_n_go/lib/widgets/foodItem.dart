@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 class FoodItem {
   final String name;
   final String? description;

@@ -79,13 +79,13 @@ class IntroScreen1 extends StatelessWidget {
       body: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
- 
           Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [Text("")],
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              SizedBox(height: 170),
-              Image.asset("assets/images/logo.png",height: 153, width: 153,),
-              SizedBox(height: 350),
               Stack(children: [
                 Padding(
                   padding: const EdgeInsets.only(bottom: 0, left: 35),
