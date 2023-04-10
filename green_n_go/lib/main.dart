@@ -5,6 +5,7 @@ import 'package:green_n_go/screens/home_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:green_n_go/profilePage.dart';
 import 'package:green_n_go/screens/login_register_page.dart';
+import 'package:green_n_go/screens/user_setup.dart';
 import 'package:green_n_go/widgetTree.dart';
 import 'firebase_options.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.green,
       fontFamily: "Inter"),
-      home: const IntroScreen(),
+      home: const LoginPage(),
       routes: {
         '/login': (context) => const WidgetTree(),
       },
