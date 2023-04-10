@@ -95,12 +95,14 @@ class _WestState extends State<West> {
     }
   }
 
+  final Color darkGreen = Color(0xFF3B7D3C);
   final PageController _pageController = PageController(initialPage: 0);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('West Menu'),
+        backgroundColor: darkGreen,
       ),
       body: PageView(
         controller: _pageController,

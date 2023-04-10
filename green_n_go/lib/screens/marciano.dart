@@ -100,11 +100,13 @@ class _MarcianoState extends State<Marciano> {
     }
   }
 
+  final Color darkGreen = Color(0xFF3B7D3C);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Marciano Menu'),
+        backgroundColor: darkGreen,
       ),
       body: PageView(
         controller: _pageController,

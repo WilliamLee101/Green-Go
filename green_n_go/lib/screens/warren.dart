@@ -100,6 +100,7 @@ class _WarrenState extends State<Warren> {
     }
   }
 
+  final Color darkGreen = Color(0xFF3B7D3C);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -110,7 +111,7 @@ class _WarrenState extends State<Warren> {
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
                         color: Color.fromARGB(255, 255, 255, 255))),
-                backgroundColor: Color.fromARGB(255, 8, 65, 5)),
+                backgroundColor: darkGreen),
             body: Column(children: [
               // row for breakfast lunch and dinner options on the top
               Row(

@@ -3,6 +3,8 @@ import 'package:green_n_go/screens/marciano.dart';
 import 'package:green_n_go/screens/warren.dart';
 import 'package:green_n_go/screens/west.dart';
 
+final Color darkGreen = Color(0xFF3B7D3C);
+
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -15,47 +17,45 @@ class HomePage extends StatelessWidget {
               gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            stops: [0.22, 0.1],
-            colors: [Colors.green, Colors.white],
+            stops: [0.3, 0.1],
+            colors: [darkGreen, Colors.white],
           )),
           child: Column(
               // centering page
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 // insert profile icon
-                Row(
-                  // aligning the text on the page
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Expanded(
-                        child: Text('Welcome,',
-                            style: TextStyle(fontSize: 28, color: Colors.white),
-                            textAlign: TextAlign.center)),
-                    const Expanded(
-                        child: Text(
-                      ' Terrier!',
-                      style: TextStyle(
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
-                      textAlign: TextAlign.left,
-                    )),
-                    Expanded(
-                      child: Image.asset(
-                        'assets/images/terrier_logo.png',
-                        width: 30.0,
-                        height: 30.0,
+                Column(children: [
+                  Row(
+                    // aligning the text on the page
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Expanded(
+                          child: Text('Welcome,',
+                              style:
+                                  TextStyle(fontSize: 28, color: Colors.white),
+                              textAlign: TextAlign.center)),
+                      const Expanded(
+                          child: Text(
+                        ' Terrier!',
+                        style: TextStyle(
+                            fontSize: 28,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
+                        textAlign: TextAlign.left,
+                      )),
+                      Expanded(
+                        child: Image.asset(
+                          'assets/images/terrier_logo.png',
+                          width: 30.0,
+                          height: 30.0,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                // const Text(
-                //   'Choose wisely and help others make informed decisions with your reviews.',
-                //   style: TextStyle(fontSize: 17.1429, color: Colors.white),
-                //   textAlign: TextAlign.left,
-                // ),
-                // make space
+                    ],
+                  ),
+                ]),
+
                 const SizedBox(
                   height: 30,
                 ),
@@ -77,82 +77,193 @@ class HomePage extends StatelessWidget {
 
                 // make space
                 const SizedBox(
-                  height: 20,
+                  height: 10,
                 ),
-
-                // insert Warren Dining image
-                Image.asset('assets/images/warren.png',
-                    height: 100, width: 100, fit: BoxFit.fill),
-
-                // buttons
-                TextButton(
-                  onPressed: () {
+// Warren
+                GestureDetector(
+                  onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(builder: (BuildContext context) {
                         return const Warren();
                       }),
                     );
                   },
-
-                  // styling and text for 'Warren'
-                  child: const FittedBox(
-                      child: Text(
-                    'Warren',
-                    style: TextStyle(
-                        fontSize: 17.1429,
-                        fontFamily: 'Inter',
-                        color: Colors.black87),
-                  )),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.grey,
+                        width: 2,
+                      ),
+                      color: Colors.white,
+                    ),
+                    child: Row(
+                      children: [
+                        Image.asset('assets/images/warren.png',
+                            height: 100, width: 100, fit: BoxFit.fill),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              'Warren',
+                              style: TextStyle(
+                                  fontSize: 24,
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.green),
+                            ),
+                            const Text(
+                              'Located in Central Campus',
+                              style:
+                                  TextStyle(fontSize: 15, color: Colors.grey),
+                            ),
+                            Row(
+                              children: const [
+                                Icon(
+                                  Icons.location_on,
+                                  color: Colors.grey,
+                                  size: 10,
+                                ),
+                                Text(
+                                  '700 Commonwealth Ave, Boston, MA 02215',
+                                  style: TextStyle(
+                                      fontSize: 12, color: Colors.grey),
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-
-                // insert Marciano Dining image
-                Image.asset('assets/images/marciano.png',
-                    height: 100, width: 100, fit: BoxFit.fill),
-
                 const SizedBox(
                     height: 16), // Add some space between the buttons
 
-                // button for Marciano
-                TextButton(
-                  onPressed: () {
+                // Marciano
+                GestureDetector(
+                  onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(builder: (BuildContext context) {
-                        return const Marciano();
+                        return const Warren();
                       }),
                     );
                   },
-
-                  // styling and text for 'Marciano'
-                  child: const Text('Marciano',
-                      style: TextStyle(
-                          fontSize: 17.1429,
-                          fontFamily: 'Inter',
-                          color: Colors.black87)),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.grey,
+                        width: 2,
+                      ),
+                      color: Colors.white,
+                    ),
+                    child: Row(
+                      children: [
+                        Image.asset('assets/images/marciano.png',
+                            height: 100, width: 100, fit: BoxFit.fill),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              'Marciano',
+                              style: TextStyle(
+                                  fontSize: 24,
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.green),
+                            ),
+                            const Text(
+                              'Located in East Campus',
+                              style:
+                                  TextStyle(fontSize: 15, color: Colors.grey),
+                            ),
+                            Row(
+                              children: const [
+                                Icon(
+                                  Icons.location_on,
+                                  color: Colors.grey,
+                                  size: 10,
+                                ),
+                                Text(
+                                  '100 Bay State Rd, Boston, MA 02215',
+                                  style: TextStyle(
+                                      fontSize: 12, color: Colors.grey),
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-
-                // insert West Dining image
-                Image.asset('assets/images/west.png',
-                    height: 100, width: 100, fit: BoxFit.fill),
-
                 const SizedBox(
                     height: 16), // Add some space between the buttons
 
-                // button for west
-                TextButton(
-                  onPressed: () {
+// West
+                GestureDetector(
+                  onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(builder: (BuildContext context) {
-                        return const West();
+                        return const Warren();
                       }),
                     );
                   },
-
-                  // styling and text for 'West'
-                  child: const Text('West',
-                      style: TextStyle(
-                          fontSize: 17.1429,
-                          fontFamily: 'Inter',
-                          color: Colors.black87)),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.grey,
+                        width: 2,
+                      ),
+                      color: Colors.white,
+                    ),
+                    child: Row(
+                      children: [
+                        Image.asset('assets/images/west.png',
+                            height: 100, width: 100, fit: BoxFit.fill),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              'West',
+                              style: TextStyle(
+                                  fontSize: 24,
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.green),
+                            ),
+                            const Text(
+                              'Located in West Campus',
+                              style:
+                                  TextStyle(fontSize: 15, color: Colors.grey),
+                            ),
+                            Row(
+                              children: const [
+                                Icon(
+                                  Icons.location_on,
+                                  color: Colors.grey,
+                                  size: 10,
+                                ),
+                                Text(
+                                  '275 Babcock St, Boston, MA 02215',
+                                  style: TextStyle(
+                                      fontSize: 12, color: Colors.grey),
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ]),
         ),
