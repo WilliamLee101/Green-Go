@@ -28,11 +28,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.green,
-      fontFamily: "Inter"),
+      theme: ThemeData(primarySwatch: Colors.green, fontFamily: "Inter"),
       home: const IntroScreen(),
       routes: {
         '/login': (context) => const WidgetTree(),
+        '/home': (context) => const RootPage(),
       },
     );
   }
@@ -63,7 +63,7 @@ class _RootPageState extends State<RootPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: const HomePage(),
+        body: HomePage(),
         bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(

@@ -70,7 +70,8 @@ class DefaultFirebaseOptions {
     projectId: 'greenngo-543b9',
     databaseURL: 'https://greenngo-543b9-default-rtdb.firebaseio.com',
     storageBucket: 'greenngo-543b9.appspot.com',
-    iosClientId: '47724503249-ppkgql7j9u21hnpjlppt0smumosefiju.apps.googleusercontent.com',
+    iosClientId:
+        '47724503249-ppkgql7j9u21hnpjlppt0smumosefiju.apps.googleusercontent.com',
     iosBundleId: 'com.example.greenNGo',
   );
 
@@ -81,7 +82,8 @@ class DefaultFirebaseOptions {
     projectId: 'greenngo-543b9',
     databaseURL: 'https://greenngo-543b9-default-rtdb.firebaseio.com',
     storageBucket: 'greenngo-543b9.appspot.com',
-    iosClientId: '47724503249-ppkgql7j9u21hnpjlppt0smumosefiju.apps.googleusercontent.com',
+    iosClientId:
+        '47724503249-ppkgql7j9u21hnpjlppt0smumosefiju.apps.googleusercontent.com',
     iosBundleId: 'com.example.greenNGo',
   );
 }
