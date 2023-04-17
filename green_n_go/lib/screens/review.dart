@@ -18,7 +18,7 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
     CollectionReference reviews =
         FirebaseFirestore.instance.collection(widget.foodItem.name);
     // Submit review to backend
-    Navigator.of(context).pop();
+    // Navigator.of(context).pop();
     reviews.add({
       'rating': _rating,
       'comment': _comment,

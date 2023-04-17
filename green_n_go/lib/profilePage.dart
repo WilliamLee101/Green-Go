@@ -118,6 +118,12 @@ class _ProfilePageState extends State<ProfilePage> {
                         }
                       },
                       child: Text('Sign In with your Google Account')),
+                  TextButton(
+                      onPressed: () {
+                        Navigator.pushNamedAndRemoveUntil(
+                            context, '/home', (route) => false);
+                      },
+                      child: Text("Go as Guest"))
                 ],
               ),
             ),
