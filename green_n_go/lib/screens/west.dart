@@ -5,6 +5,7 @@ import 'package:green_n_go/widgets/getMenu.dart';
 import 'package:green_n_go/screens/review.dart';
 import 'package:intl/intl.dart';
 import '../widgets/foodItem.dart';
+import 'package:green_n_go/profileView.dart';
 
 DateTime now = DateTime.now();
 String formattedDate = DateFormat('yyyy-MM-dd').format(now);
@@ -32,6 +33,20 @@ class _WestState extends State<West> {
         _selectedMealType = bmenu;
       });
     });
+  }
+
+  int _selectedIndex = 0;
+
+  static List<Widget> _pages = <Widget>[West(), ProfileView()];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => _pages[index]),
+    );
   }
 
   Future<void> getMenu() async {
@@ -95,12 +110,14 @@ class _WestState extends State<West> {
     }
   }
 
+  final Color darkGreen = Color(0xFF3B7D3C);
   final PageController _pageController = PageController(initialPage: 0);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('West Menu'),
+        backgroundColor: darkGreen,
       ),
       body: PageView(
         controller: _pageController,
@@ -109,6 +126,20 @@ class _WestState extends State<West> {
           ReturnMenu(selectedMealType: lmenu),
           ReturnMenu(selectedMealType: dmenu),
         ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.dining),
+            label: 'Menu',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person_2_outlined),
+            label: 'Profile',
+          ),
+        ],
+        onTap: _onItemTapped,
+        currentIndex: _selectedIndex,
       ),
     );
   }
