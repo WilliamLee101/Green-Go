@@ -34,7 +34,7 @@ class HomePage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       const Expanded(
-                          child: Text('Welcome,',
+                          child: Text('Welcome',
                               style:
                                   TextStyle(fontSize: 28, color: Colors.white),
                               textAlign: TextAlign.center)),
@@ -59,7 +59,7 @@ class HomePage extends StatelessWidget {
                 ]),
 
                 const SizedBox(
-                  height: 30,
+                  height: 40,
                 ),
                 const Text(
                   'Location',
