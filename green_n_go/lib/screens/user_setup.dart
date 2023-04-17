@@ -388,9 +388,9 @@ class _PreferencesState extends State<Preferences> {
                   width: 187,
                   child: TextButton(
                     onPressed: () {
-                      // Navigate to the next page on successful sign up
                       Navigator.pushNamedAndRemoveUntil(
-                          context, '/home', (route) => false);
+                          context, '/home', (route) => false)// Navigate to the next page on successful sign up
+                      ;
                     },
                     child: const Text(
                       'Done!',
