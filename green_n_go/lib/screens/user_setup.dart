@@ -25,15 +25,7 @@ class UserSetup extends StatefulWidget {
 class _UserSetupState extends State<UserSetup> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: true,
-      body: PageView(
-        children: [
-          AccountDetails(),
-          const Preferences(),
-        ],
-      ),
-    );
+    return const Scaffold(resizeToAvoidBottomInset: true, body: Preferences());
   }
 }
 
@@ -359,29 +351,26 @@ class _PreferencesState extends State<Preferences> {
                     ],
                   )),
             ),
-            Container(
-              decoration: BoxDecoration(
-                  border: Border.all(
-                    color: const Color(0xff3B7D3C),
-                    width: 2,
-                  ),
-                  borderRadius: BorderRadius.circular(15)),
-              child: SizedBox(
-                  height: 40,
-                  width: 187,
-                  child: TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => AccountDetails()));
-                      },
-                      child: const Text(
-                        'Previous',
-                        style:
-                            TextStyle(color: Color(0xff3B7D3C), fontSize: 20),
-                      ))),
-            ),
+            // Container(
+            //   decoration: BoxDecoration(
+            //       border: Border.all(
+            //         color: const Color(0xff3B7D3C),
+            //         width: 2,
+            //       ),
+            //       borderRadius: BorderRadius.circular(15)),
+            //   child: SizedBox(
+            //       height: 40,
+            //       width: 187,
+            //       child: TextButton(
+            //           onPressed: () {
+            //             Navigator.pushNamed(context, '/home');
+            //           },
+            //           child: const Text(
+            //             'Previous',
+            //             style:
+            //                 TextStyle(color: Color(0xff3B7D3C), fontSize: 20),
+            //           ))),
+            // ),
             SizedBox(
               height: 10,
             ),
@@ -398,19 +387,13 @@ class _PreferencesState extends State<Preferences> {
                   height: 40,
                   width: 187,
                   child: TextButton(
-                    onPressed: ()  {
-                      
-
-                        // Navigate to the next page on successful sign up
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const RootPage()),
-                        );
-                      
+                    onPressed: () {
+                      // Navigate to the next page on successful sign up
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, '/home', (route) => false);
                     },
                     child: const Text(
-                      'Sign Up',
+                      'Done!',
                       style: TextStyle(color: Colors.white),
                     ),
                   )),

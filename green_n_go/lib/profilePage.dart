@@ -1,7 +1,11 @@
+import 'dart:async';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:green_n_go/screens/user_setup.dart';
 
 Future<UserCredential> signInWithGoogle() async {
   // Trigger the authentication flow
@@ -58,63 +62,68 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    if (_user == null) {
-      return Scaffold(
-          body: Center(
+    FirebaseAuth.instance.authStateChanges().listen((User? user) {
+      if (user != null) {
+        CollectionReference users =
+            FirebaseFirestore.instance.collection('users');
+        if (user.uid != users.doc(user.uid).get()) {
+          users.doc(user.uid).set({
+            'name': user.displayName,
+            'email': user.email,
+            'photo': user.photoURL,
+            'comment': 'hello'
+          });
+        }
+      }
+    });
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      body: Container(
+        height: double.infinity,
+        width: double.infinity,
+        padding: const EdgeInsets.all(20),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            Text("You are not signed in!", style: TextStyle(fontSize: 20)),
-            ElevatedButton(
-                onPressed: signInWithGoogle,
-                child: Text(
-                  "Sign In",
-                  style: TextStyle(fontSize: 20),
-                )),
-          ],
-        ),
-      ));
-    } else {
-      return Scaffold(
-        appBar: AppBar(
-          title: const Text(' Profile'),
-        ),
-        body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
+    crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Container(
+              width: 300,
+              child: Column(
                 children: [
-                  const SizedBox(height: 16.0),
-                  CircleAvatar(
-                    radius: 50.0,
-                    backgroundImage: NetworkImage(_user!.photoURL!),
+                  Image.asset(
+                    'assets/images/logo.png',
+                    height: 90,
+                    width: 90,
                   ),
-                  const SizedBox(height: 16.0),
-                  Text(
-                    _user!.displayName!,
-                    style: const TextStyle(
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  SizedBox(
+                    height: 23,
                   ),
-                  const SizedBox(height: 8.0),
-                  Text(
-                    _user!.email!,
-                    style: const TextStyle(
-                      fontSize: 14.0,
-                      color: Colors.grey,
-                    ),
-                  ),
-                  ElevatedButton(onPressed: signOut, child: Text("Sign out")),
+                  TextButton(
+                      onPressed: () async {
+                        try {
+                          UserCredential userCredential =
+                              await signInWithGoogle();
+                          if (userCredential.user != null) {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const UserSetup()));
+                          } else {
+                            // Show error message to user
+                          }
+                        } catch (e) {
+                          print(e);
+                          // Show error message to user
+                        }
+                      },
+                      child: Text('Sign In with your Google Account')),
                 ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
-      );
-    }
+      ),
+    );
   }
 }

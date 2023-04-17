@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:green_n_go/screens/marciano.dart';
 import 'package:green_n_go/screens/warren.dart';
@@ -6,7 +7,8 @@ import 'package:green_n_go/screens/west.dart';
 final Color darkGreen = Color(0xFF3B7D3C);
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  HomePage({super.key});
+  final user = FirebaseAuth.instance.currentUser;
 
   @override
   Widget build(BuildContext context) {
@@ -28,17 +30,17 @@ class HomePage extends StatelessWidget {
                 Column(children: [
                   Row(
                     // aligning the text on the page
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       const Expanded(
-                          child: Text('Welcome,',
+                          child: Text('Welcome',
                               style:
                                   TextStyle(fontSize: 28, color: Colors.white),
                               textAlign: TextAlign.center)),
-                      const Expanded(
+                      Expanded(
                           child: Text(
-                        ' Terrier!',
+                        '${user?.displayName}!',
                         style: TextStyle(
                             fontSize: 28,
                             fontWeight: FontWeight.bold,
@@ -57,7 +59,7 @@ class HomePage extends StatelessWidget {
                 ]),
 
                 const SizedBox(
-                  height: 30,
+                  height: 40,
                 ),
                 const Text(
                   'Location',

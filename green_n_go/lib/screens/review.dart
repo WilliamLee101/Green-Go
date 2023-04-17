@@ -114,3 +114,98 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
     );
   }
 }
+
+//screeen that displays all the comments
+class CommentScreen extends StatelessWidget {
+  final FoodItem foodItem;
+
+  CommentScreen({required this.foodItem});
+  var comments = [];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Comments for ${foodItem.name}'),
+      ),
+      body: Container(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: 16.0),
+            Text(
+              'Comments:',
+              style: TextStyle(
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 8.0),
+            Expanded(
+              child: StreamBuilder<QuerySnapshot>(
+                stream: FirebaseFirestore.instance
+                    .collection(foodItem.name)
+                    .snapshots(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    final comments = snapshot.data!.docs
+                        .map((doc) => doc['comment' as String])
+                        .toList();
+                    if (comments.isEmpty) {
+                      return Center(
+                        child: Text('No comments yet.'),
+                      );
+                    } else {
+                      return ListView.builder(
+                        itemCount: comments.length,
+                        itemBuilder: (context, index) {
+                          final comment = comments[index];
+                          return ListTile(
+                            title: Text(
+                              'Comment ${index + 1}',
+                            ),
+                            subtitle: Text(comments[index] as String),
+                          );
+                        },
+                      );
+                    }
+                  } else {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ReviewScreens extends StatefulWidget {
+  final FoodItem foodItem;
+  ReviewScreens({required this.foodItem});
+
+  @override
+  State<ReviewScreens> createState() => _ReviewScreensState();
+}
+
+class _ReviewScreensState extends State<ReviewScreens> {
+  final _pageController = PageController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: PageView(
+        controller: _pageController,
+        children: [
+          ReviewSurveyScreen(foodItem: widget.foodItem),
+          CommentScreen(foodItem: widget.foodItem),
+        ],
+      ),
+    );
+  }
+}

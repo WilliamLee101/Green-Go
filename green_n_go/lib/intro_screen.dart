@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:green_n_go/google_auth.dart';
+import 'package:green_n_go/profilePage.dart';
 import 'package:green_n_go/screens/login_register_page.dart';
+import 'package:green_n_go/widgetTree.dart';
 
 class IntroScreen extends StatefulWidget {
   const IntroScreen({super.key});
@@ -15,7 +18,7 @@ class _IntroScreenState extends State<IntroScreen>
     IntroScreen1(),
     IntroScreen2(),
     IntroScreen3(),
-    IntroScreen4(),
+    ProfilePage(),
   ];
 
   void _onPageChanged(int index) {
@@ -237,32 +240,35 @@ class IntroScreen4 extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                     fontFamily: "Inter"),
               ),
-              SizedBox(height: 120,),
-              Container(
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: const Color(0xff3B7D3C),
-                  width: 2,
-                ),
-                borderRadius: BorderRadius.circular(15),
-                color: const Color(0xff3B7D3C),
+              SizedBox(
+                height: 120,
               ),
-              child: SizedBox(
-                  height: 40,
-                  width: 187,
-                  child: TextButton(
-                    onPressed: ()  {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const LoginPage()),
-                      );
-                    },
-                    child: const Text(
-                      'Get Started!',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  )),
-            ),
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: const Color(0xff3B7D3C),
+                    width: 2,
+                  ),
+                  borderRadius: BorderRadius.circular(15),
+                  color: const Color(0xff3B7D3C),
+                ),
+                child: SizedBox(
+                    height: 40,
+                    width: 187,
+                    child: TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const LoginPage()),
+                        );
+                      },
+                      child: const Text(
+                        'Get Started!',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    )),
+              ),
             ],
           )
         ],
