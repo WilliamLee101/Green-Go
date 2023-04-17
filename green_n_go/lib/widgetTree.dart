@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:green_n_go/auth.dart';
 import 'package:green_n_go/main.dart';
+import 'package:green_n_go/profilePage.dart';
+import 'package:green_n_go/profileView%202.dart';
 import 'package:green_n_go/screens/home_page.dart';
 import 'package:green_n_go/profileView.dart';
 
@@ -22,7 +24,7 @@ class _WidgetTreeState extends State<WidgetTree> {
           if (snapshot.hasData) {
             return RootPage();
           } else {
-            return (const LoginPage());
+            return (const ProfilePage());
           }
         });
   }
