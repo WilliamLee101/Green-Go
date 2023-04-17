@@ -3,6 +3,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:green_n_go/screens/review.dart';
 import 'package:intl/intl.dart';
+import 'package:green_n_go/profileView.dart';
 
 import '../widgets/foodItem.dart';
 import '../widgets/getMenu.dart';
@@ -23,13 +24,27 @@ class Marciano extends StatefulWidget {
 }
 
 class _MarcianoState extends State<Marciano> {
-
   final PageController _pageController = PageController(initialPage: 0);
   @override
   void initState() {
     super.initState();
     getMenu();
   }
+
+  int _selectedIndex = 0;
+
+  static List<Widget> _pages = <Widget>[Marciano(), ProfileView()];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => _pages[index]),
+    );
+  }
+
   Future<void> getMenu() async {
     print(formattedDate);
     final snapshot =
@@ -109,6 +124,20 @@ class _MarcianoState extends State<Marciano> {
           ReturnMenu(selectedMealType: lmenu),
           ReturnMenu(selectedMealType: dmenu),
         ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.dining),
+            label: 'Menu',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person_2_outlined),
+            label: 'Profile',
+          ),
+        ],
+        onTap: _onItemTapped,
+        currentIndex: _selectedIndex,
       ),
     );
   }

@@ -30,123 +30,172 @@ class _ReturnMenuState extends State<ReturnMenu> {
     }).toList();
 
     return Stack(children: [
-      Column(children: [
-        SizedBox(height: 20, child: Text(when)),
-        Expanded(
+      Column(
+        children: [
+          SizedBox(height: 20, child: Text(when)),
+          Expanded(
             child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 200,
-                  childAspectRatio: 1.5,
-                  crossAxisSpacing: 15,
-                  mainAxisSpacing: 5,
-                ),
-                itemCount: filteredList.length,
-                itemBuilder: (context, index) {
-                  final food = filteredList[index];
-                  food.sugars ??= 0;
-                  return Card(
+              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                maxCrossAxisExtent: 200,
+                childAspectRatio: 1.2,
+                crossAxisSpacing: 15,
+                mainAxisSpacing: 5,
+              ),
+              itemCount: filteredList.length,
+              itemBuilder: (context, index) {
+                final food = filteredList[index];
+                food.sugars ??= 0;
+                return GestureDetector(
+                    onTap: () {
+                      showModalBottomSheet(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return Container(
+                            height: 1000,
+                            padding: const EdgeInsets.all(16),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                Text(
+                                  food.name,
+                                  style: const TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                const SizedBox(height: 8),
+                                Text(
+                                  food.description ?? '',
+                                  style: const TextStyle(fontSize: 16),
+                                ),
+                                const SizedBox(height: 8),
+                                Text(
+                                  '${food.carbs?.toString() ?? ''} carbs',
+                                  style: const TextStyle(fontSize: 16),
+                                ),
+                                Text(
+                                  '${food.protiens?.toString() ?? ''} protiens',
+                                  style: const TextStyle(fontSize: 16),
+                                ),
+                                const SizedBox(height: 8),
+                                Text(
+                                  '${food.satFat?.toString() ?? ''} satFat',
+                                  style: const TextStyle(fontSize: 16),
+                                ),
+                                const SizedBox(height: 8),
+                                Text(
+                                  '${food.sugars?.toString() ?? ''} sugars',
+                                  style: const TextStyle(fontSize: 16),
+                                ),
+                                const SizedBox(height: 8),
+                                Text(
+                                  '${food.cals?.toString() ?? ''} cals',
+                                  style: const TextStyle(fontSize: 16),
+                                ),
+                                const SizedBox(height: 8),
+                              ],
+                            ),
+                          );
+                        },
+                      );
+                    },
+                    child: Card(
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20.0)),
-                      child: ListTile(
-                        title: Text(food.name,
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
-                              fontSize: 15,
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.bold,
-                            )),
-                        onTap: () {},
-                        subtitle: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                food.description ?? '',
-                                style: TextStyle(
-                                    color: Color.fromARGB(255, 87, 91, 87)),
-                                // style: DefaultTextStyle.of(context)
-                                //     .style
-                                //     .apply(fontSizeFactor: 0.8),
-                                textAlign: TextAlign.center,
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          SizedBox(height: 8),
+                          Flexible(
+                            flex: 1,
+                            child: ListTile(
+                              title: SizedBox(
+                                height: 40,
+                                child: Text(
+                                  food.name,
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                    fontSize: 15,
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
                               ),
-                              // Text('${food.cals} cals' ?? ''),
-                              // Text('${food.protiens}g protein' ?? ''),
-                              // Text('${food.satFat}g fat' ?? ''),
-                              // Text('${food.sugars}g sugar' ?? ''),
-                              // Text('${food.carbs}g carbs' ?? ''),
-                              ButtonTheme(
-                                  child: Align(
-                                      alignment: Alignment.bottomCenter,
-                                      child: ElevatedButton.icon(
-                                          // style: ElevatedButton.styleFrom(
-                                          //   // minimumSize: Size.zero,
-                                          // backgroundColor: const Color.fromARGB(
-                                          //     255, 119, 178, 122),
-                                          //   shape: RoundedRectangleBorder(
-                                          //     borderRadius:
-                                          //         BorderRadius.circular(10.0),
-                                          //   ),
-                                          // ),
-                                          onPressed: () => {
-                                                showBottomSheet(
-                                                  context: context,
-                                                  builder:
-                                                      (BuildContext context) {
-                                                    return ReviewScreens(
-                                                        foodItem: food);
-                                                  },
-                                                )
-                                              },
-                                          label: Text(
-                                            food.rating.toString(),
-                                            style: const TextStyle(
-                                                fontSize: 17,
-                                                color: Color.fromARGB(
-                                                    255, 48, 121, 51)),
-                                          ),
-                                          icon: const Icon(Icons.pets,
-                                              color: Color.fromARGB(
-                                                  255, 48, 121, 51)),
-                                          style: ButtonStyle(
-                                              minimumSize:
-                                                  MaterialStateProperty.all(
-                                                      Size(50, 20)),
-                                              backgroundColor:
-                                                  MaterialStateProperty.all<
-                                                          Color>(
-                                                      Color.fromARGB(
-                                                          255, 162, 204, 167)!),
-                                              shape: MaterialStateProperty.all<
-                                                  StadiumBorder>(
-                                                StadiumBorder(),
-                                              ))))),
-                            ]),
-
-                        // mainAxisAlignment:
-                        //     MainAxisAlignment.spaceBetween,
-
-                        // Expanded(
-                        //     child: Container(
-                        //         width: 20,
-                        //         height: 50,
-                        //         decoration: BoxDecoration(
-                        //             shape: BoxShape.circle,
-                        //             border: Border.all(
-                        //                 color: Colors.green,
-                        //                 width: 15,
-                        //                 style: BorderStyle.solid)),
-                        //         child: const Icon(Icons.pets_outlined,
-                        //             color: Colors.lightGreen))),
-                        // const Text(
-                        //   ' # of reviews',
-                        //   style: TextStyle(
-                        //       fontSize: 9,
-                        //       fontWeight: FontWeight.normal),
-                        //   textAlign: TextAlign.left,
-                        // ),
-                      ));
-                  ;
-                })),
-      ]),
+                              onTap: () {},
+                              subtitle: SizedBox(
+                                height: 50,
+                                child: Column(
+                                  children: [
+                                    const SizedBox(height: 10),
+                                    Text(
+                                      food.description ?? '',
+                                      style: TextStyle(
+                                          color:
+                                              Color.fromARGB(255, 87, 91, 87),
+                                          fontSize: 13),
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          ButtonTheme(
+                            child: ElevatedButton.icon(
+                              onPressed: () {
+                                showBottomSheet(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return ReviewSurveyScreen(
+                                      foodItem: food,
+                                    );
+                                  },
+                                );
+                              },
+                              label: Text(
+                                food.rating.toString(),
+                                style: const TextStyle(
+                                  fontSize: 17,
+                                  color: Color.fromARGB(255, 48, 121, 51),
+                                ),
+                              ),
+                              icon: const Icon(
+                                Icons.pets,
+                                color: Color.fromARGB(255, 48, 121, 51),
+                              ),
+                              style: ButtonStyle(
+                                minimumSize: MaterialStateProperty.all(
+                                    const Size(50, 20)),
+                                backgroundColor:
+                                    MaterialStateProperty.resolveWith<Color>(
+                                  (Set<MaterialState> states) {
+                                    final rating = food.rating ?? 0;
+                                    if (rating >= 4) {
+                                      return Color.fromARGB(255, 119, 178, 122);
+                                    } else if (rating >= 2) {
+                                      return Color.fromARGB(255, 255, 204, 102);
+                                    } else {
+                                      return Color.fromARGB(255, 255, 102, 102);
+                                    }
+                                  },
+                                ),
+                                shape: MaterialStateProperty.all<StadiumBorder>(
+                                  const StadiumBorder(),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ));
+              },
+            ),
+          ),
+        ],
+      ),
       Positioned(
         bottom: 35,
         right: 20,
@@ -154,8 +203,8 @@ class _ReturnMenuState extends State<ReturnMenu> {
           decoration: BoxDecoration(
             boxShadow: [
               BoxShadow(
-                color: Color.fromARGB(255, 46, 145, 13).withOpacity(0.5),
-                spreadRadius: 0.5,
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 0.2,
                 blurRadius: 7,
                 offset: Offset(0, 3), // changes position of shadow
               ),
