@@ -40,14 +40,18 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Icon(Icons.pets, color: Colors.green),
-            SizedBox(width: 5),
-            const Text("How did you like it?",
-                style: TextStyle(
-                    fontSize: 17.1429,
-                    fontFamily: 'Inter',
-                    color: Colors.black87)),
+            Row(children: [
+              const Text("How did you like it?",
+                  style: TextStyle(
+                      fontSize: 17.1429,
+                      fontFamily: 'Inter',
+                      color: Colors.black87)),
+              SizedBox(width: 5),
+              Icon(Icons.pets, color: Colors.black),
+            ]),
+
             SizedBox(height: 8.0),
+
             Slider(
               activeColor: Colors.green,
               inactiveColor: Colors.black,
@@ -97,17 +101,30 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
             ),
             SizedBox(height: 10.0),
             SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>(Color(0xFF006400)),
+                width: double.infinity,
+                child: ClipOval(
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Color(0xFF006400)),
+                    ),
+                    onPressed: () {
+                      _submitReview();
+                    },
+                    child: Text('Submit'),
                   ),
-                  onPressed: () {
-                    _submitReview();
-                  },
-                  child: Text("Submit")),
-            ),
+                )
+
+                // child: ElevatedButton(
+                //     style: ButtonStyle(
+                //       backgroundColor:
+                //           MaterialStateProperty.all<Color>(Color(0xFF006400)),
+                //     ),
+                //     onPressed: () {
+                //       _submitReview();
+                //     },
+                //     child: Text("Submit")),
+                ),
           ],
         ),
       ),
