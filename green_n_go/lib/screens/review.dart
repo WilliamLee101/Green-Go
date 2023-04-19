@@ -153,6 +153,9 @@ class CommentScreen extends StatelessWidget {
                     final comments = snapshot.data!.docs
                         .map((doc) => doc['comment' as String])
                         .toList();
+                    final ratings = snapshot.data!.docs
+                        .map((doc) => doc['rating' as String])
+                        .toList();
                     if (comments.isEmpty) {
                       return const Center(
                         child: Text('No comments yet.'),
@@ -162,7 +165,9 @@ class CommentScreen extends StatelessWidget {
                         itemCount: comments.length,
                         itemBuilder: (context, index) {
                           final comment = comments[index];
+                          final rating = ratings[index];
                           return ListTile(
+                            
                             leading: const CircleAvatar(
                               child: Icon(Icons.person),
                             ),
@@ -172,12 +177,13 @@ class CommentScreen extends StatelessWidget {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            subtitle: const Text(
-                              '1 hour ago',
-                              style: TextStyle(
-                                color: Colors.grey,
-                              ),
-                            ),
+                            // subtitle: const Text(
+                            //   '1 hour ago',
+                            //   style: TextStyle(
+                            //     color: Colors.grey,
+                            //   ),
+                            // ),
+                            trailing: Text(ratings[index].toString()),
                           );
                         },
                       );
