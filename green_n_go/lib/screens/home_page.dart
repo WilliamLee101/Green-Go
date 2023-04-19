@@ -19,7 +19,7 @@ class HomePage extends StatelessWidget {
               gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            stops: [0.3, 0.1],
+            stops: [0.25, 0.1],
             colors: [darkGreen, Colors.white],
           )),
           child: Column(
@@ -34,19 +34,23 @@ class HomePage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       const Expanded(
-                          child: Text('Welcome',
+                          child: Text('Welcome, ',
                               style:
-                                  TextStyle(fontSize: 28, color: Colors.white),
+                                  TextStyle(fontSize: 22, color: Colors.white),
                               textAlign: TextAlign.center)),
-                      Expanded(
-                          child: Text(
-                        '${user?.displayName}!',
-                        style: TextStyle(
-                            fontSize: 28,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
-                        textAlign: TextAlign.left,
-                      )),
+                      SizedBox(width: 10),
+                      Row(
+                        children: [
+                          Text(
+                            '${user?.displayName}!',
+                            style: const TextStyle(
+                                fontSize: 25,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                            textAlign: TextAlign.left,
+                          )
+                        ],
+                      ),
                       Expanded(
                         child: Image.asset(
                           'assets/images/terrier_logo.png',
@@ -60,21 +64,23 @@ class HomePage extends StatelessWidget {
                 const SizedBox(
                   height: 40,
                 ),
-                const Text(
-                  'Location',
-                  style: TextStyle(
-                    fontSize: 12.1429,
-                    color: Colors.green,
-                  ),
-                  textAlign: TextAlign.left,
-                ),
-                // text and stylying for select dining halls
-                const Text(
-                  'Select Dining Hall',
-                  style:
-                      TextStyle(fontSize: 17.1429, fontWeight: FontWeight.bold),
-                  textAlign: TextAlign.left,
-                ),
+                Align(
+                    alignment: Alignment.topLeft,
+                    child: Column(children: [
+                      Text(
+                        'Location',
+                        style: TextStyle(
+                          fontSize: 12.1429,
+                          color: Colors.green,
+                        ),
+                      ),
+                      // text and stylying for select dining halls
+                      Text(
+                        'Select Dining Hall',
+                        style: TextStyle(
+                            fontSize: 17.1429, fontWeight: FontWeight.bold),
+                      )
+                    ])),
 
                 // make space
                 const SizedBox(
@@ -113,12 +119,10 @@ class HomePage extends StatelessWidget {
                     );
                   },
                   child: Container(
+                    margin: EdgeInsets.all(16.0),
                     decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.grey,
-                        width: 2,
-                      ),
-                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(16.0),
+                      color: Colors.grey[200],
                     ),
                     child: Row(
                       children: [
@@ -199,12 +203,10 @@ class HomePage extends StatelessWidget {
                     );
                   },
                   child: Container(
+                    margin: EdgeInsets.all(16.0),
                     decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.grey,
-                        width: 2,
-                      ),
-                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(16.0),
+                      color: Colors.grey[200],
                     ),
                     child: Row(
                       children: [
@@ -285,12 +287,10 @@ class HomePage extends StatelessWidget {
                     );
                   },
                   child: Container(
+                    margin: EdgeInsets.all(16.0),
                     decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.grey,
-                        width: 2,
-                      ),
-                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(16.0),
+                      color: Colors.grey[200],
                     ),
                     child: Row(
                       children: [

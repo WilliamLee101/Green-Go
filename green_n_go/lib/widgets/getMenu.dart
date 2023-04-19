@@ -56,17 +56,42 @@ class _ReturnMenuState extends State<ReturnMenu> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
+                                const Text(
+                                  "Nutritional Detail",
+                                  style: TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Divider(
+                                  color: Colors.green[800],
+                                  thickness: 2,
+                                ),
+
+                                // make space
+                                const SizedBox(
+                                  height: 10,
+                                ),
                                 Text(
                                   food.name,
                                   style: const TextStyle(
                                     fontSize: 24,
-                                    fontWeight: FontWeight.bold,
+                                    fontWeight: FontWeight.normal,
                                   ),
                                 ),
                                 const SizedBox(height: 8),
                                 Text(
                                   food.description ?? '',
-                                  style: const TextStyle(fontSize: 16),
+                                  style: const TextStyle(
+                                      fontSize: 16, color: Colors.grey),
+                                ),
+                                const SizedBox(height: 15),
+                                const Text(
+                                  "Nutritional Detail",
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                                 const SizedBox(height: 8),
                                 Text(
@@ -167,16 +192,16 @@ class _ReturnMenuState extends State<ReturnMenu> {
                                 food.rating.toString(),
                                 style: const TextStyle(
                                   fontSize: 17,
-                                  color: Color.fromARGB(255, 48, 121, 51),
+                                  color: Colors.white,
                                 ),
                               ),
                               icon: const Icon(
                                 Icons.pets,
-                                color: Color.fromARGB(255, 48, 121, 51),
+                                color: Colors.white,
                               ),
                               style: ButtonStyle(
                                 minimumSize: MaterialStateProperty.all(
-                                    const Size(50, 20)),
+                                    const Size(40, 40)),
                                 backgroundColor:
                                     MaterialStateProperty.resolveWith<Color>(
                                   (Set<MaterialState> states) {
@@ -205,8 +230,8 @@ class _ReturnMenuState extends State<ReturnMenu> {
         ],
       ),
       Positioned(
-        bottom: 35,
-        right: 20,
+        bottom: 30,
+        right: 10,
         child: Container(
           decoration: BoxDecoration(
             boxShadow: [
