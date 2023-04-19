@@ -28,7 +28,7 @@ class _ReturnMenuState extends State<ReturnMenu> {
     final filteredList = widget.selectedMealType.where((food) {
       return !_isVeganSelected || (food.is_vegan ?? false);
     }).toList();
-
+    double height = MediaQuery.of(context).size.height;
     return Stack(children: [
       Column(
         children: [
@@ -106,7 +106,7 @@ class _ReturnMenuState extends State<ReturnMenu> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          SizedBox(height: 8),
+                          const SizedBox(height: 8),
                           Flexible(
                             flex: 1,
                             child: ListTile(
@@ -130,7 +130,7 @@ class _ReturnMenuState extends State<ReturnMenu> {
                                     const SizedBox(height: 10),
                                     Text(
                                       food.description ?? '',
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           color:
                                               Color.fromARGB(255, 87, 91, 87),
                                           fontSize: 13),
@@ -147,6 +147,14 @@ class _ReturnMenuState extends State<ReturnMenu> {
                             child: ElevatedButton.icon(
                               onPressed: () {
                                 showBottomSheet(
+                                  constraints: BoxConstraints.expand(
+                                      height: 0.6 * height),
+                                  shape: const RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(20.0),
+                                      topRight: Radius.circular(20.0),
+                                    ),
+                                  ),
                                   context: context,
                                   builder: (BuildContext context) {
                                     return ReviewScreens(
@@ -174,11 +182,11 @@ class _ReturnMenuState extends State<ReturnMenu> {
                                   (Set<MaterialState> states) {
                                     final rating = food.rating ?? 0;
                                     if (rating >= 4) {
-                                      return Color.fromARGB(255, 119, 178, 122);
+                                      return const Color.fromARGB(255, 119, 178, 122);
                                     } else if (rating >= 2) {
-                                      return Color.fromARGB(255, 255, 204, 102);
+                                      return const Color.fromARGB(255, 255, 204, 102);
                                     } else {
-                                      return Color.fromARGB(255, 255, 102, 102);
+                                      return const Color.fromARGB(255, 255, 102, 102);
                                     }
                                   },
                                 ),
@@ -206,7 +214,7 @@ class _ReturnMenuState extends State<ReturnMenu> {
                 color: Colors.grey.withOpacity(0.5),
                 spreadRadius: 0.2,
                 blurRadius: 7,
-                offset: Offset(0, 3), // changes position of shadow
+                offset: const Offset(0, 3), // changes position of shadow
               ),
             ],
           ),
@@ -219,11 +227,11 @@ class _ReturnMenuState extends State<ReturnMenu> {
               });
             },
             itemBuilder: (BuildContext context) => <PopupMenuEntry<bool>>[
-              PopupMenuItem<bool>(
+              const PopupMenuItem<bool>(
                 value: false,
                 child: Text('All'),
               ),
-              PopupMenuItem<bool>(
+              const PopupMenuItem<bool>(
                 value: true,
                 child: Text('Vegan'),
               ),
