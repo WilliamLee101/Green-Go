@@ -114,10 +114,14 @@ class _WestState extends State<West> {
   final PageController _pageController = PageController(initialPage: 0);
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('West Menu'),
-        backgroundColor: darkGreen,
+        title: const Text('Menu at West', style: TextStyle(fontSize: 27)),
+        backgroundColor: Color(0xff3B7D3C),
+        toolbarHeight: .1 * height,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(bottom: Radius.circular(20))),
       ),
       body: PageView(
         controller: _pageController,

@@ -57,7 +57,6 @@ class HomePage extends StatelessWidget {
                     ],
                   ),
                 ]),
-
                 const SizedBox(
                   height: 40,
                 ),
@@ -84,10 +83,33 @@ class HomePage extends StatelessWidget {
 // Warren
                 GestureDetector(
                   onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(builder: (BuildContext context) {
-                        return const Warren();
-                      }),
+                    Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                        pageBuilder: (BuildContext context,
+                            Animation<double> animation,
+                            Animation<double> secondaryAnimation) {
+                          return Warren();
+                        },
+                        transitionDuration: Duration(milliseconds: 300),
+                        transitionsBuilder: (BuildContext context,
+                            Animation<double> animation,
+                            Animation<double> secondaryAnimation,
+                            Widget child) {
+                          var begin = Offset(0.0, 1.0);
+                          var end = Offset.zero;
+                          var tween = Tween(begin: begin, end: end);
+                          var offsetAnimation = animation.drive(tween);
+
+                          return SlideTransition(
+                            position: offsetAnimation,
+                            child: FadeTransition(
+                              opacity: animation,
+                              child: child,
+                            ),
+                          );
+                        },
+                      ),
                     );
                   },
                   child: Container(
@@ -147,10 +169,33 @@ class HomePage extends StatelessWidget {
                 // Marciano
                 GestureDetector(
                   onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(builder: (BuildContext context) {
-                        return const Marciano();
-                      }),
+                    Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                        pageBuilder: (BuildContext context,
+                            Animation<double> animation,
+                            Animation<double> secondaryAnimation) {
+                          return Marciano();
+                        },
+                        transitionDuration: Duration(milliseconds: 300),
+                        transitionsBuilder: (BuildContext context,
+                            Animation<double> animation,
+                            Animation<double> secondaryAnimation,
+                            Widget child) {
+                          var begin = Offset(0.0, 1.0);
+                          var end = Offset.zero;
+                          var tween = Tween(begin: begin, end: end);
+                          var offsetAnimation = animation.drive(tween);
+
+                          return SlideTransition(
+                            position: offsetAnimation,
+                            child: FadeTransition(
+                              opacity: animation,
+                              child: child,
+                            ),
+                          );
+                        },
+                      ),
                     );
                   },
                   child: Container(
@@ -210,10 +255,33 @@ class HomePage extends StatelessWidget {
 // West
                 GestureDetector(
                   onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(builder: (BuildContext context) {
-                        return const West();
-                      }),
+                    Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                        pageBuilder: (BuildContext context,
+                            Animation<double> animation,
+                            Animation<double> secondaryAnimation) {
+                          return West();
+                        },
+                        transitionDuration: Duration(milliseconds: 300),
+                        transitionsBuilder: (BuildContext context,
+                            Animation<double> animation,
+                            Animation<double> secondaryAnimation,
+                            Widget child) {
+                          var begin = Offset(0.0, 1.0);
+                          var end = Offset.zero;
+                          var tween = Tween(begin: begin, end: end);
+                          var offsetAnimation = animation.drive(tween);
+
+                          return SlideTransition(
+                            position: offsetAnimation,
+                            child: FadeTransition(
+                              opacity: animation,
+                              child: child,
+                            ),
+                          );
+                        },
+                      ),
                     );
                   },
                   child: Container(

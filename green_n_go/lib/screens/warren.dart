@@ -111,10 +111,14 @@ class _WarrenState extends State<Warren> {
   final Color darkGreen = Color(0xFF3B7D3C);
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Warren Menu'),
-        backgroundColor: darkGreen,
+        title: const Text('Menu at Warren', style: TextStyle(fontSize: 27)),
+        backgroundColor: Color(0xff3B7D3C),
+        toolbarHeight: .1 * height,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(bottom: Radius.circular(20))),
       ),
       body: PageView(
         controller: _pageController,

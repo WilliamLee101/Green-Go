@@ -13,6 +13,7 @@ class ReviewSurveyScreen extends StatefulWidget {
 class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
   double _rating = 0.0;
   String _comment = '';
+  final TextEditingController _commentController = TextEditingController();
 
   void _submitReview() {
     CollectionReference reviews =
@@ -23,6 +24,7 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
       'rating': _rating,
       'comment': _comment,
     }).then((value) => print('added'));
+    _commentController.clear();
   }
 
   @override
@@ -36,18 +38,18 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
                 fontSize: 17.1429, fontFamily: 'Inter', color: Colors.black87)),
       ),
       body: Container(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Icon(Icons.pets, color: Colors.green),
-            SizedBox(width: 5),
+            const Icon(Icons.pets, color: Colors.green),
+            const SizedBox(width: 5),
             const Text("How did you like it?",
                 style: TextStyle(
                     fontSize: 17.1429,
                     fontFamily: 'Inter',
                     color: Colors.black87)),
-            SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             Slider(
               activeColor: Colors.green,
               inactiveColor: Colors.black,
@@ -59,13 +61,13 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
               divisions: 5,
               label: "$_rating",
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             const Text("How much did you finish?",
                 style: TextStyle(
                     fontSize: 17.1429,
                     fontFamily: 'Inter',
                     color: Colors.black87)),
-            SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
 
             // TO DO: change the value so that it corresponds to the rating of food waste!
             Slider(
@@ -84,8 +86,9 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
                     fontSize: 17.1429,
                     fontFamily: 'Inter',
                     color: Colors.black87)),
-            SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             TextField(
+              controller: _commentController,
               maxLines: 3,
               onChanged: (value) {
                 _comment = value;
@@ -95,18 +98,19 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 10.0),
+            const SizedBox(height: 10.0),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
                   style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>(Color(0xFF006400)),
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                        const Color(0xFF006400)),
                   ),
                   onPressed: () {
                     _submitReview();
+                    _comment = "";
                   },
-                  child: Text("Submit")),
+                  child: const Text("Submit")),
             ),
           ],
         ),
@@ -125,23 +129,20 @@ class CommentScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Comments for ${foodItem.name}'),
-      ),
       body: Container(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 16.0),
-            Text(
+            const SizedBox(height: 16.0),
+            const Text(
               'Comments:',
               style: TextStyle(
                 fontSize: 18.0,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             Expanded(
               child: StreamBuilder<QuerySnapshot>(
                 stream: FirebaseFirestore.instance
@@ -153,7 +154,7 @@ class CommentScreen extends StatelessWidget {
                         .map((doc) => doc['comment' as String])
                         .toList();
                     if (comments.isEmpty) {
-                      return Center(
+                      return const Center(
                         child: Text('No comments yet.'),
                       );
                     } else {
@@ -162,16 +163,27 @@ class CommentScreen extends StatelessWidget {
                         itemBuilder: (context, index) {
                           final comment = comments[index];
                           return ListTile(
-                            title: Text(
-                              'Comment ${index + 1}',
+                            leading: const CircleAvatar(
+                              child: Icon(Icons.person),
                             ),
-                            subtitle: Text(comments[index] as String),
+                            title: Text(
+                              comments[index] as String,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            subtitle: const Text(
+                              '1 hour ago',
+                              style: TextStyle(
+                                color: Colors.grey,
+                              ),
+                            ),
                           );
                         },
                       );
                     }
                   } else {
-                    return Center(
+                    return const Center(
                       child: CircularProgressIndicator(),
                     );
                   }
@@ -209,3 +221,6 @@ class _ReviewScreensState extends State<ReviewScreens> {
     );
   }
 }
+
+
+//Comment box
