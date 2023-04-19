@@ -13,7 +13,6 @@ class ReviewSurveyScreen extends StatefulWidget {
 class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
   double _rating = 0.0;
   String _comment = '';
-  final TextEditingController _commentController = TextEditingController();
 
   void _submitReview() {
     CollectionReference reviews =
@@ -24,7 +23,6 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
       'rating': _rating,
       'comment': _comment,
     }).then((value) => print('added'));
-    _commentController.clear();
   }
 
   @override
@@ -38,18 +36,22 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
                 fontSize: 17.1429, fontFamily: 'Inter', color: Colors.black87)),
       ),
       body: Container(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Icon(Icons.pets, color: Colors.green),
-            const SizedBox(width: 5),
-            const Text("How did you like it?",
-                style: TextStyle(
-                    fontSize: 17.1429,
-                    fontFamily: 'Inter',
-                    color: Colors.black87)),
-            const SizedBox(height: 8.0),
+            Row(children: [
+              const Text("How did you like it?",
+                  style: TextStyle(
+                      fontSize: 17.1429,
+                      fontFamily: 'Inter',
+                      color: Colors.black87)),
+              SizedBox(width: 5),
+              Icon(Icons.pets, color: Colors.black),
+            ]),
+
+            SizedBox(height: 8.0),
+
             Slider(
               activeColor: Colors.green,
               inactiveColor: Colors.black,
@@ -61,13 +63,13 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
               divisions: 5,
               label: "$_rating",
             ),
-            const SizedBox(height: 16.0),
+            SizedBox(height: 16.0),
             const Text("How much did you finish?",
                 style: TextStyle(
                     fontSize: 17.1429,
                     fontFamily: 'Inter',
                     color: Colors.black87)),
-            const SizedBox(height: 8.0),
+            SizedBox(height: 8.0),
 
             // TO DO: change the value so that it corresponds to the rating of food waste!
             Slider(
@@ -86,9 +88,8 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
                     fontSize: 17.1429,
                     fontFamily: 'Inter',
                     color: Colors.black87)),
-            const SizedBox(height: 8.0),
+            SizedBox(height: 8.0),
             TextField(
-              controller: _commentController,
               maxLines: 3,
               onChanged: (value) {
                 _comment = value;
@@ -98,20 +99,32 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
                 border: OutlineInputBorder(),
               ),
             ),
-            const SizedBox(height: 10.0),
+            SizedBox(height: 10.0),
             SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                        const Color(0xFF006400)),
+                width: double.infinity,
+                child: ClipOval(
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Color(0xFF006400)),
+                    ),
+                    onPressed: () {
+                      _submitReview();
+                    },
+                    child: Text('Submit'),
                   ),
-                  onPressed: () {
-                    _submitReview();
-                    _comment = "";
-                  },
-                  child: const Text("Submit")),
-            ),
+                )
+
+                // child: ElevatedButton(
+                //     style: ButtonStyle(
+                //       backgroundColor:
+                //           MaterialStateProperty.all<Color>(Color(0xFF006400)),
+                //     ),
+                //     onPressed: () {
+                //       _submitReview();
+                //     },
+                //     child: Text("Submit")),
+                ),
           ],
         ),
       ),
@@ -129,20 +142,23 @@ class CommentScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Comments for ${foodItem.name}'),
+      ),
       body: Container(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 16.0),
-            const Text(
+            SizedBox(height: 16.0),
+            Text(
               'Comments:',
               style: TextStyle(
                 fontSize: 18.0,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 8.0),
+            SizedBox(height: 8.0),
             Expanded(
               child: StreamBuilder<QuerySnapshot>(
                 stream: FirebaseFirestore.instance
@@ -153,11 +169,8 @@ class CommentScreen extends StatelessWidget {
                     final comments = snapshot.data!.docs
                         .map((doc) => doc['comment' as String])
                         .toList();
-                    final ratings = snapshot.data!.docs
-                        .map((doc) => doc['rating' as String])
-                        .toList();
                     if (comments.isEmpty) {
-                      return const Center(
+                      return Center(
                         child: Text('No comments yet.'),
                       );
                     } else {
@@ -165,31 +178,17 @@ class CommentScreen extends StatelessWidget {
                         itemCount: comments.length,
                         itemBuilder: (context, index) {
                           final comment = comments[index];
-                          final rating = ratings[index];
                           return ListTile(
-                            
-                            leading: const CircleAvatar(
-                              child: Icon(Icons.person),
-                            ),
                             title: Text(
-                              comments[index] as String,
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                              ),
+                              'Comment ${index + 1}',
                             ),
-                            // subtitle: const Text(
-                            //   '1 hour ago',
-                            //   style: TextStyle(
-                            //     color: Colors.grey,
-                            //   ),
-                            // ),
-                            trailing: Text(ratings[index].toString()),
+                            subtitle: Text(comments[index] as String),
                           );
                         },
                       );
                     }
                   } else {
-                    return const Center(
+                    return Center(
                       child: CircularProgressIndicator(),
                     );
                   }
@@ -227,6 +226,3 @@ class _ReviewScreensState extends State<ReviewScreens> {
     );
   }
 }
-
-
-//Comment box
