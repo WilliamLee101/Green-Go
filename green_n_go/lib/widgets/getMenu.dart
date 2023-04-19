@@ -51,7 +51,7 @@ class _ReturnMenuState extends State<ReturnMenu> {
                         context: context,
                         builder: (BuildContext context) {
                           return Container(
-                            height: 1000,
+                            height: 400,
                             padding: const EdgeInsets.all(16),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -171,7 +171,7 @@ class _ReturnMenuState extends State<ReturnMenu> {
                           ButtonTheme(
                             child: ElevatedButton.icon(
                               onPressed: () {
-                                showBottomSheet(
+                                showModalBottomSheet(
                                   constraints: BoxConstraints.expand(
                                       height: 0.6 * height),
                                   shape: const RoundedRectangleBorder(
@@ -207,11 +207,14 @@ class _ReturnMenuState extends State<ReturnMenu> {
                                   (Set<MaterialState> states) {
                                     final rating = food.rating ?? 0;
                                     if (rating >= 4) {
-                                      return const Color.fromARGB(255, 119, 178, 122);
+                                      return const Color.fromARGB(
+                                          255, 119, 178, 122);
                                     } else if (rating >= 2) {
-                                      return const Color.fromARGB(255, 255, 204, 102);
+                                      return const Color.fromARGB(
+                                          255, 255, 204, 102);
                                     } else {
-                                      return const Color.fromARGB(255, 255, 102, 102);
+                                      return const Color.fromARGB(
+                                          255, 255, 102, 102);
                                     }
                                   },
                                 ),

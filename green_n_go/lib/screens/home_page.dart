@@ -30,7 +30,7 @@ class HomePage extends StatelessWidget {
                 Column(children: [
                   Row(
                     // aligning the text on the page
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       const Expanded(
@@ -65,15 +65,8 @@ class HomePage extends StatelessWidget {
                   height: 40,
                 ),
                 Align(
-                    alignment: Alignment.topLeft,
+                    alignment: Alignment.center,
                     child: Column(children: [
-                      Text(
-                        'Location',
-                        style: TextStyle(
-                          fontSize: 12.1429,
-                          color: Colors.green,
-                        ),
-                      ),
                       // text and stylying for select dining halls
                       Text(
                         'Select Dining Hall',
@@ -121,9 +114,21 @@ class HomePage extends StatelessWidget {
                   child: Container(
                     margin: EdgeInsets.all(16.0),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16.0),
-                      color: Colors.grey[200],
-                    ),
+                        borderRadius: BorderRadius.circular(16.0),
+                        color: Colors.white,
+                        border: Border.all(
+                          color: Colors.grey,
+                          width: 2,
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.7),
+                            spreadRadius: 0.2,
+                            blurRadius: 7,
+                            offset: const Offset(
+                                0, 3), // changes position of shadow
+                          ),
+                        ]),
                     child: Row(
                       children: [
                         Image.asset('assets/images/warren.png',
@@ -205,9 +210,21 @@ class HomePage extends StatelessWidget {
                   child: Container(
                     margin: EdgeInsets.all(16.0),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16.0),
-                      color: Colors.grey[200],
-                    ),
+                        borderRadius: BorderRadius.circular(16.0),
+                        color: Colors.white,
+                        border: Border.all(
+                          color: Colors.grey,
+                          width: 2,
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.7),
+                            spreadRadius: 0.2,
+                            blurRadius: 7,
+                            offset: const Offset(
+                                0, 3), // changes position of shadow
+                          ),
+                        ]),
                     child: Row(
                       children: [
                         Image.asset('assets/images/marciano.png',
@@ -289,9 +306,21 @@ class HomePage extends StatelessWidget {
                   child: Container(
                     margin: EdgeInsets.all(16.0),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16.0),
-                      color: Colors.grey[200],
-                    ),
+                        borderRadius: BorderRadius.circular(16.0),
+                        color: Colors.white,
+                        border: Border.all(
+                          color: Colors.grey,
+                          width: 2,
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.7),
+                            spreadRadius: 0.2,
+                            blurRadius: 7,
+                            offset: const Offset(
+                                0, 3), // changes position of shadow
+                          ),
+                        ]),
                     child: Row(
                       children: [
                         Image.asset('assets/images/west.png',
