@@ -71,7 +71,6 @@ class _ProfilePageState extends State<ProfilePage> {
             'name': user.displayName,
             'email': user.email,
             'photo': user.photoURL,
-            'comment': 'hello'
           });
         }
       }

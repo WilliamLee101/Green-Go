@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:green_n_go/main.dart';
 import 'package:green_n_go/screens/home_page.dart';
@@ -182,6 +183,23 @@ class _PreferencesState extends State<Preferences> {
       setState(() {
         errorMessage = e.message;
       });
+    }
+  }
+
+  final user = FirebaseAuth.instance.currentUser;
+
+  void addPreferences() {
+    if (user != null) {
+      CollectionReference users =
+          FirebaseFirestore.instance.collection('users');
+      if (user?.uid != users.doc(user?.uid).get()) {
+        users.doc(user?.uid).update({
+          'isKosher': isKosher,
+          'isVegetarian': isVegetarian,
+          'isVegan': isVegan,
+          'isGluten': isGluten,
+        });
+      }
     }
   }
 
@@ -389,8 +407,12 @@ class _PreferencesState extends State<Preferences> {
                   child: TextButton(
                     onPressed: () {
                       Navigator.pushNamedAndRemoveUntil(
-                          context, '/home', (route) => false)// Navigate to the next page on successful sign up
-                      ;
+                              context,
+                              '/home',
+                              (route) =>
+                                  false) // Navigate to the next page on successful sign up
+                          ;
+                      addPreferences();
                     },
                     child: const Text(
                       'Done!',
