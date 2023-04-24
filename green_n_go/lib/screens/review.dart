@@ -12,6 +12,7 @@ class ReviewSurveyScreen extends StatefulWidget {
 
 class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
   double _rating = 0.0;
+  double _amount_finished = 0.0;
   String _comment = '';
 
   void _submitReview() {
@@ -30,10 +31,13 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Text("Rate your experience: ${widget.foodItem.name}",
-            style: const TextStyle(
-                fontSize: 17.1429, fontFamily: 'Inter', color: Colors.black87)),
+        backgroundColor: Colors.green,
+        title: FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Text(
+            "Rate your experience: ${widget.foodItem.name}",
+          ),
+        ),
       ),
       body: Container(
         padding: EdgeInsets.all(16.0),
@@ -63,6 +67,7 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
               divisions: 5,
               label: "$_rating",
             ),
+
             SizedBox(height: 16.0),
             const Text("How much did you finish?",
                 style: TextStyle(
@@ -76,13 +81,14 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
               activeColor: Colors.green,
               inactiveColor: Colors.black,
               thumbColor: Colors.green,
-              value: _rating,
+              value: _amount_finished,
               onChanged: (newRating) {
-                setState(() => _rating = newRating);
+                setState(() => _amount_finished = newRating);
               },
               divisions: 4,
-              label: "$_rating",
+              label: "$_amount_finished",
             ),
+
             const Text("Leave a comment!",
                 style: TextStyle(
                     fontSize: 17.1429,
