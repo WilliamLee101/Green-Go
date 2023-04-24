@@ -89,7 +89,7 @@ class _ProfilePageState extends State<ProfilePage> {
               width: 300,
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 150,
                   ),
                   Image.asset(
@@ -97,18 +97,18 @@ class _ProfilePageState extends State<ProfilePage> {
                     height: 120,
                     width: 120,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 100,
                   ),
-                  Text("Welcome, Terrier!", style: TextStyle(fontSize: 15)),
-                  Text(
+                  const Text("Welcome, Terrier!", style: TextStyle(fontSize: 15)),
+                  const Text(
                     "Rhett’y to eat?",
                     style: TextStyle(
                         fontSize: 25,
                         fontWeight: FontWeight.bold,
-                        color: Colors.green),
+                        color: Color(0xff3A7D3C)),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 220,
                   ),
                   TextButton(
@@ -135,16 +135,16 @@ class _ProfilePageState extends State<ProfilePage> {
                           borderRadius: BorderRadius.circular(20),
                         ),
                       ),
-                      backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.green),
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                          const Color(0xff3B7D3C)),
                     ),
-                    child: Text('  Sign In with Google Account  ',
+                    child: const Text('  Sign In with Google Account  ',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 16,
                         )),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   TextButton(
@@ -159,16 +159,16 @@ class _ProfilePageState extends State<ProfilePage> {
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
-                          side: BorderSide(color: Colors.green, width: 2),
+                          side: const BorderSide(color: Color(0xff3B7D3C), width: 2),
                         ),
                       ),
                       backgroundColor:
                           MaterialStateProperty.all<Color>(Colors.white),
                     ),
-                    child: Text(
+                    child: const Text(
                       '           Continue as Guest           ',
                       style: TextStyle(
-                        color: Colors.green,
+                        color: Color(0xff3B7D3C),
                         fontSize: 16,
                       ),
                     ),

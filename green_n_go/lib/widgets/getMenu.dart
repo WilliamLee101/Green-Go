@@ -23,7 +23,7 @@ class _ReturnMenuState extends State<ReturnMenu> {
     } else if (widget.selectedMealType == dmenu) {
       when = 'Dinner';
     }
-
+    
     // Filter the food list based on whether it is vegan or not
     final filteredList = widget.selectedMealType.where((food) {
       return !_isVeganSelected || (food.is_vegan ?? false);
