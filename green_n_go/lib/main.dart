@@ -60,19 +60,34 @@ class _RootPageState extends State<RootPage> {
     );
   }
 
+// navigation bar 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: HomePage(),
         bottomNavigationBar: BottomNavigationBar(
-          items: const <BottomNavigationBarItem>[
+          items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(Icons.dining),
-              label: 'Menu',
+              icon: ColorFiltered(
+                colorFilter: const ColorFilter.mode(
+                  Colors.blueGrey,
+                  BlendMode.srcIn,
+                ),
+                child: Image.asset(
+                  'assets/images/terrier_logo.png',
+                  width: 22.0,
+                  height: 22.0,
+                ),
+              ),
+              label: 'Home',
             ),
-            BottomNavigationBarItem(
+            const BottomNavigationBarItem(
               icon: Icon(Icons.person_2_outlined),
               label: 'Profile',
+            ),
+            const BottomNavigationBarItem(
+              icon: Icon(Icons.emoji_events),
+              label: 'Rewards',
             ),
           ],
           onTap: _onItemTapped,
