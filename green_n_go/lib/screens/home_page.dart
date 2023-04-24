@@ -82,13 +82,14 @@ class HomePage extends StatelessWidget {
                             // text and stylying for select dining halls
                             Text(
                               "Location",
-                              style:
-                                  TextStyle(color: Color(0xff3B7D3C), fontSize: 13),
+                              style: TextStyle(
+                                  color: Color(0xff3B7D3C), fontSize: 13),
                             ),
                             Text(
                               'Select Dining Hall',
                               style: TextStyle(
-                                  fontSize: 17.1429, fontWeight: FontWeight.bold),
+                                  fontSize: 17.1429,
+                                  fontWeight: FontWeight.bold),
                             )
                           ],
                         ),
@@ -136,13 +137,9 @@ class HomePage extends StatelessWidget {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(16.0),
                           color: Colors.white,
-                          border: Border.all(
-                            color: Color(0xffA1A1A1),
-                            width: 2,
-                          ),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.grey.withOpacity(0.7),
+                              color: Colors.grey.withOpacity(0.2),
                               spreadRadius: 0.2,
                               blurRadius: 7,
                               offset: const Offset(
@@ -151,8 +148,21 @@ class HomePage extends StatelessWidget {
                           ]),
                       child: Row(
                         children: [
-                          Image.asset('assets/images/warren.png',
-                              height: 100, width: 100, fit: BoxFit.fill),
+                          Container(
+                            padding: const EdgeInsets.all(10),
+                            height: 100,
+                            width: 100,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(
+                                  16), // 50% of the width and height
+                              child: Image.asset(
+                                'assets/images/warren.png',
+                                height: 100,
+                                width: 100,
+                                fit: BoxFit.fill,
+                              ),
+                            ),
+                          ),
                           const SizedBox(
                             width: 10,
                           ),
@@ -182,7 +192,7 @@ class HomePage extends StatelessWidget {
                                   Text(
                                     '700 Commonwealth Ave, Boston, MA 02215',
                                     style: TextStyle(
-                                        fontSize: 12, color: Colors.grey),
+                                        fontSize: 10, color: Colors.grey),
                                   )
                                 ],
                               ),
@@ -234,13 +244,9 @@ class HomePage extends StatelessWidget {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(16.0),
                           color: Colors.white,
-                          border: Border.all(
-                            color: Colors.grey,
-                            width: 2,
-                          ),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.grey.withOpacity(0.7),
+                              color: Colors.grey.withOpacity(0.2),
                               spreadRadius: 0.2,
                               blurRadius: 7,
                               offset: const Offset(
@@ -249,8 +255,21 @@ class HomePage extends StatelessWidget {
                           ]),
                       child: Row(
                         children: [
-                          Image.asset('assets/images/marciano.png',
-                              height: 100, width: 100, fit: BoxFit.fill),
+                          Container(
+                            padding: const EdgeInsets.all(10),
+                            height: 100,
+                            width: 100,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(
+                                  16), // 50% of the width and height
+                              child: Image.asset(
+                                'assets/images/marciano.png',
+                                height: 100,
+                                width: 100,
+                                fit: BoxFit.fill,
+                              ),
+                            ),
+                          ),
                           const SizedBox(
                             width: 10,
                           ),
@@ -266,7 +285,7 @@ class HomePage extends StatelessWidget {
                                     color: Color(0xff3B7D3C)),
                               ),
                               const Text(
-                                'Located in East Campus',
+                                'Located In East Campus',
                                 style:
                                     TextStyle(fontSize: 15, color: Colors.grey),
                               ),
@@ -280,7 +299,7 @@ class HomePage extends StatelessWidget {
                                   Text(
                                     '100 Bay State Rd, Boston, MA 02215',
                                     style: TextStyle(
-                                        fontSize: 12, color: Colors.grey),
+                                        fontSize: 10, color: Colors.grey),
                                   )
                                 ],
                               ),
@@ -325,18 +344,16 @@ class HomePage extends StatelessWidget {
                         ),
                       );
                     },
+
+                    //West container
                     child: Container(
                       margin: EdgeInsets.all(16.0),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(16.0),
                           color: Colors.white,
-                          border: Border.all(
-                            color: Colors.grey,
-                            width: 2,
-                          ),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.grey.withOpacity(0.7),
+                              color: Colors.grey.withOpacity(0.2),
                               spreadRadius: 0.2,
                               blurRadius: 7,
                               offset: const Offset(
@@ -345,8 +362,21 @@ class HomePage extends StatelessWidget {
                           ]),
                       child: Row(
                         children: [
-                          Image.asset('assets/images/west.png',
-                              height: 100, width: 100, fit: BoxFit.fill),
+                          Container(
+                            padding: const EdgeInsets.all(10),
+                            height: 100,
+                            width: 100,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(
+                                  16), // 50% of the width and height
+                              child: Image.asset(
+                                'assets/images/west.png',
+                                height: 100,
+                                width: 100,
+                                fit: BoxFit.fill,
+                              ),
+                            ),
+                          ),
                           const SizedBox(
                             width: 10,
                           ),
@@ -362,7 +392,7 @@ class HomePage extends StatelessWidget {
                                     color: Color(0xff3B7D3C)),
                               ),
                               const Text(
-                                'Located in West Campus',
+                                'Located In West Campus',
                                 style:
                                     TextStyle(fontSize: 15, color: Colors.grey),
                               ),
@@ -376,7 +406,7 @@ class HomePage extends StatelessWidget {
                                   Text(
                                     '275 Babcock St, Boston, MA 02215',
                                     style: TextStyle(
-                                        fontSize: 12, color: Colors.grey),
+                                        fontSize: 10, color: Colors.grey),
                                   )
                                 ],
                               ),
