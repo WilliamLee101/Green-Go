@@ -10,6 +10,8 @@ class ProfileView extends StatelessWidget {
       Auth().signOut();
     }
 
+// profile page styling 
+
     return Scaffold(
         appBar: AppBar(
           title: Row(

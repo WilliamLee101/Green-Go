@@ -4,8 +4,10 @@ import 'package:green_n_go/screens/marciano.dart';
 import 'package:green_n_go/screens/warren.dart';
 import 'package:green_n_go/screens/west.dart';
 
+// importing of green
 final Color darkGreen = Color(0xFF3B7D3C);
 
+// Landing page Styling 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
   final user = FirebaseAuth.instance.currentUser;

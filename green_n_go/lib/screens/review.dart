@@ -108,28 +108,24 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
             SizedBox(height: 10.0),
             SizedBox(
                 width: double.infinity,
-                child: ClipOval(
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all<Color>(Color(0xFF006400)),
-                    ),
-                    onPressed: () {
-                      _submitReview();
-                    },
-                    child: Text('Submit'),
-                  ),
-                )
-
-                // child: ElevatedButton(
-                //     style: ButtonStyle(
-                //       backgroundColor:
-                //           MaterialStateProperty.all<Color>(Color(0xFF006400)),
-                //     ),
-                //     onPressed: () {
-                //       _submitReview();
-                //     },
-                //     child: Text("Submit")),
+               child: ClipOval(
+        child: ElevatedButton(
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF006400)),
+            shape: MaterialStateProperty.all<OutlinedBorder>(
+              CircleBorder(),
+            ),
+          ),
+          onPressed: () {
+            _submitReview();
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Icon(
+              Icons.send,
+              color: Colors.white,
+              size: 24.0,
+            ),
                 ),
           ],
         ),
