@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import '../widgets/foodItem.dart';
+import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 class ReviewSurveyScreen extends StatefulWidget {
   final FoodItem foodItem;
@@ -27,7 +28,7 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
+   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
@@ -35,7 +36,7 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
         title: FittedBox(
           fit: BoxFit.scaleDown,
           child: Text(
-            "Rate your experience: ${widget.foodItem.name}",
+            "Rate your experience",
           ),
         ),
       ),
@@ -56,16 +57,37 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
 
             SizedBox(height: 8.0),
 
-            Slider(
+            SfSlider(
               activeColor: Colors.green,
-              inactiveColor: Colors.black,
-              thumbColor: Colors.green,
+              inactiveColor: Colors.grey,
+              min: 0,
+              max: 5,
+              showLabels: true,
+              showDividers: true,
+              interval: 1,
               value: _rating,
               onChanged: (newRating) {
                 setState(() => _rating = newRating);
               },
-              divisions: 5,
-              label: "$_rating",
+              labelPlacement: LabelPlacement.onTicks,
+              labelFormatterCallback:
+                  (dynamic actualValue, String formattedText) {
+                switch (actualValue.toInt()) {
+                  case 0:
+                    return "0";
+                  case 1:
+                    return "1";
+                  case 2:
+                    return "2";
+                  case 3:
+                    return "3";
+                  case 4:
+                    return "4";
+                  case 5:
+                    return "5";
+                }
+                return actualValue.toInt();
+              },
             ),
 
             SizedBox(height: 16.0),
@@ -77,17 +99,40 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
             SizedBox(height: 8.0),
 
             // TO DO: change the value so that it corresponds to the rating of food waste!
-            Slider(
+            SfSlider(
               activeColor: Colors.green,
-              inactiveColor: Colors.black,
-              thumbColor: Colors.green,
+              inactiveColor: Colors.grey,
+              min: 0,
+              max: 100,
+              showLabels: true,
+              showDividers: true,
+              interval: 20,
               value: _amount_finished,
               onChanged: (newRating) {
                 setState(() => _amount_finished = newRating);
               },
-              divisions: 4,
-              label: "$_amount_finished",
+              labelPlacement: LabelPlacement.onTicks,
+              labelFormatterCallback:
+                  (dynamic actualValue, String formattedText) {
+                switch (actualValue.toInt()) {
+                  case 0:
+                    return "0%";
+                  case 20:
+                    return "";
+                  case 40:
+                    return "";
+                  case 60:
+                    return "";
+                  case 80:
+                    return "";
+                  case 100:
+                    return "100%";
+                }
+                return actualValue.toInt();
+              },
             ),
+
+            SizedBox(height: 15.0),
 
             const Text("Leave a comment!",
                 style: TextStyle(
@@ -106,27 +151,30 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
               ),
             ),
             SizedBox(height: 10.0),
+
             SizedBox(
-                width: double.infinity,
-               child: ClipOval(
-        child: ElevatedButton(
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF006400)),
-            shape: MaterialStateProperty.all<OutlinedBorder>(
-              CircleBorder(),
-            ),
-          ),
-          onPressed: () {
-            _submitReview();
-          },
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Icon(
-              Icons.send,
-              color: Colors.white,
-              size: 24.0,
-            ),
+              width: double.infinity,
+              child: ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Color(0xFF006400)),
+                  shape: MaterialStateProperty.all<OutlinedBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                  ),
+                  minimumSize: MaterialStateProperty.all<Size>(Size.zero),
                 ),
+                onPressed: () {
+                  _submitReview();
+                },
+                child: Padding(
+                  padding:
+                      EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                  child: Text('Get Started'),
+                ),
+              ),
+            ),
           ],
         ),
       ),
@@ -145,7 +193,7 @@ class CommentScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Comments for ${foodItem.name}'),
+        title: Text('Comments'),
       ),
       body: Container(
         padding: EdgeInsets.all(16.0),
@@ -204,6 +252,90 @@ class CommentScreen extends StatelessWidget {
   }
 }
 
+class NutritionScreen extends StatelessWidget {
+  final FoodItem foodItem;
+
+  NutritionScreen({required this.foodItem});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text('Nutrition Details'),
+        ),
+        body: Container(
+          height: 400,
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const Text(
+                "Nutritional Detail",
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Divider(
+                color: Colors.green[800],
+                thickness: 2,
+              ),
+
+              // make space
+              const SizedBox(
+                height: 10,
+              ),
+              Text(
+                foodItem.name,
+                style: const TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                foodItem.description ?? '',
+                style: const TextStyle(fontSize: 16, color: Colors.grey),
+              ),
+              const SizedBox(height: 15),
+              const Text(
+                "Nutritional Detail",
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                '${foodItem.carbs?.toString() ?? ''} carbs',
+                style: const TextStyle(fontSize: 16),
+              ),
+              Text(
+                '${foodItem.protiens?.toString() ?? ''} protiens',
+                style: const TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                '${foodItem.satFat?.toString() ?? ''} satFat',
+                style: const TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                '${foodItem.sugars?.toString() ?? ''} sugars',
+                style: const TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                '${foodItem.cals?.toString() ?? ''} cals',
+                style: const TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 8),
+            ],
+          ),
+        ));
+  }
+}
+
 class ReviewScreens extends StatefulWidget {
   final FoodItem foodItem;
   ReviewScreens({required this.foodItem});
@@ -213,7 +345,7 @@ class ReviewScreens extends StatefulWidget {
 }
 
 class _ReviewScreensState extends State<ReviewScreens> {
-  final _pageController = PageController();
+  final PageController _pageController = PageController(initialPage: 1);
 
   @override
   Widget build(BuildContext context) {
@@ -221,10 +353,18 @@ class _ReviewScreensState extends State<ReviewScreens> {
       body: PageView(
         controller: _pageController,
         children: [
+          NutritionScreen(foodItem: widget.foodItem),
           ReviewSurveyScreen(foodItem: widget.foodItem),
           CommentScreen(foodItem: widget.foodItem),
         ],
+        onPageChanged: (index) {},
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
   }
 }

@@ -44,6 +44,7 @@ dependencies:
   google_sign_in: ^6.0.2
   sliding_up_panel: ^2.0.0+1
   shared_preferences: ^2.1.0
+  syncfusion_flutter_sliders: ^21.1.41
 
  
  
