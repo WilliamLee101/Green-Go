@@ -27,6 +27,7 @@ Step 4. cd into 'green_n_go' folder and run ```flutter run```
 ### Sign In
 Once you have read and passed the introduction screens, you may either choose to login as a guest or through a google account if you are a BU student. If you are a BU student you should be able to select your dietary preferences as they will be saved to your personal profile.<br />
 ![](https://github.com/Tylerr198/Green-Go/blob/main/green_n_go/screenshots/signIn.gif)<br />
+<img src="https://github.com/Tylerr198/Green-Go/blob/main/green_n_go/screenshots/signIn.gif" width="250" height="250"/><br />
 
 ### Navigation Bar & Profile
 You may navigate through different screens of our applicaiton via the navigation bar on the bottom banner on the screen. There are 3 distinct pages you can visit. The first is the home page which you are currently viewing, the second is your personal profile page and the third is the accomplishment/rewards page. Your personal profile will store the personal preferences as well as a place where you will be able to log out of the application. The rewards page will hold badges that a you can earn dependent on how many comments or ratings you have made.<br />
