@@ -14,7 +14,7 @@ Step 1. Make sure to have the following Flutter version and dependecies download
 
 Step 2. Open a new terminal and run 'flutter doctor' to ensure that then flutter  dependcies are satified. 
 
-Step 3. Next, open a simulator with the following command so you are able to display the applcation: 'open -a siumlator'
+Step 3. Next, open a simulator with the following command so you are able to display the application: 'open -a simulator'
 
 Step 3. Clone the repository onto your desktop. 
 
