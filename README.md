@@ -8,7 +8,7 @@ This application tech stack includes the following: Flutter, Xcode, Android Stud
 
 Getting started with the Terrier Taste application: 
 
-Step 1. Make sure to have at least (equal to higher) the following Flutter version and dependecies downloaded on your device: 
+Step 1. Make sure to have at least (equal or higher) the following Flutter version and dependecies downloaded on your device: 
 * Flutter Version: 3.7.4 
 * Dart SDK Version: 2.19.2 <br />
 (To check the flutter version, Run ```flutter --version```)<br />
