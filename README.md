@@ -2,7 +2,7 @@
 
 Terrier Taste is an application that aims to reduce food waste at Boston University dining halls by creating a food rating feedback system. A BU student  will have the ability to review, rate and comment on menu items served at any dining hall on campus.
 
-This application tech stack includes the following: Flutter, Xcode, Android Studio and Firebase. 
+This application tech stack includes the following: Flutter, Xcode, Android Studio, Python and Firebase. 
 
 ## Getting Started
 
