@@ -31,5 +31,5 @@ You may navigate through different screens of our applicaiton via the navigation
 ![](https://github.com/Tylerr198/Green-Go/blob/main/green_n_go/screenshots/navigation_bar.gif)
 
 Next, you will be directed to the home page where you can choose one of three dining halls on campus. You will have the ability to look at the menu items, ratings, comments and reivews of each of the menus at the three locations. When giving a rating you may simply click on any of the paw icon buttons on a given menu item and rate the food from a 1-5, how much of the plate you have eaten and leave a comment. If you are to swipe right of the reivew screen the nutritional details are presented, if you are to swipe to the right of the review screen thats where you will see all of the comments previous users have commented. 
-![](https://github.com/Tylerr198/Green-Go/blob/main/green_n_go/screenshots/menu.gif)
+![](https://github.com/Tylerr198/Green-Go/blob/main/green_n_go/screenshots/menu.gif width="250" height="250")
 
