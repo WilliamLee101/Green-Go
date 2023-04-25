@@ -296,30 +296,4 @@ class _PreferencesState extends State<Preferences> {
   }
 }
 
-// Enrty field widget
-Widget _entryField(String title, TextEditingController controller) {
-  return Container(
-    height: 47,
-    width: 300,
-    margin: const EdgeInsets.only(left: 1, right: 20),
-    decoration: const BoxDecoration(
-        border:
-            Border(bottom: BorderSide(color: Color(0xffD9D9D9), width: 2.0))),
-    child: Padding(
-      padding: const EdgeInsets.only(bottom: 2),
-      child: TextField(
-        obscureText: (title == "Password") ? true : false,
-        controller: controller,
-        decoration: InputDecoration(
-            border: InputBorder.none,
-            hintText: title,
-            hintStyle: const TextStyle(
-                fontFamily: "Inter",
-                fontWeight: FontWeight.normal,
-                color: Color(0xffBABABA))),
-        style:
-            const TextStyle(fontFamily: "Inter", fontWeight: FontWeight.normal),
-      ),
-    ),
-  );
-}
+

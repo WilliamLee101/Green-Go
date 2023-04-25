@@ -13,6 +13,7 @@ final List<FoodItem> dmenu = [];
 
 final ref = FirebaseDatabase.instance.ref();
 
+//Create widget for displaying west dininng hall
 class West extends StatefulWidget {
   const West({super.key});
 
@@ -47,6 +48,7 @@ class _WestState extends State<West> {
     );
   }
 
+  //Main function to populate array of food items from firebase
   Future<void> getMenu() async {
     final snapshot =
         await ref.child("menu/$formattedDate/west/Breakfast").get();

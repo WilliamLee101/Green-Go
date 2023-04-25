@@ -2,28 +2,32 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SplashScreen extends StatefulWidget {
-  static const String id = "/splashScreen";
+
+//This utility is used to only show the intro screens the first time the user opens the download from a download. Otherwise will redirect users
+class ShowOnceUtil extends StatefulWidget {
+  static const String id = "/ShowOnceUtil";
+
+  const ShowOnceUtil({super.key});
   @override
-  _Splash createState() => _Splash();
+  _ShowOnce createState() => _ShowOnce();
 }
 
-class _Splash extends State<SplashScreen> {
+class _ShowOnce extends State<ShowOnceUtil> {
   Future checkFirstSeen() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool _seen = (prefs.getBool('seen') ?? false);
+    bool seen = (prefs.getBool('seen') ?? false);
 
-    if (_seen) {
+    if (seen) {
       _handleStartScreen();
     } else {
       await prefs.setBool('seen', true);
-      Navigator.pushNamed(context, '/home');
+      Navigator.pushNamed(context, '/intro');
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Center(
         child: CircularProgressIndicator(),
       ),

@@ -50,7 +50,9 @@ class HomePage extends StatelessWidget {
                             style: TextStyle(fontSize: 25, color: Colors.white),
                             textAlign: TextAlign.center),
                         Text(
-                          '${user?.displayName}!',
+                          user?.displayName == null
+                              ? 'Terrier!'
+                              : '${user?.displayName}!',
                           style: const TextStyle(
                               fontSize: 25,
                               fontWeight: FontWeight.bold,
