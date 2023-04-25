@@ -1,36 +1,21 @@
-# green_n_go
+# Terrier Taste
 
-### Getting Started
+Terrier Taste is an application that aims to reduce food waste at Boston University dining halls by creating a food rating feedback system. A BU student  will have the ability to review, rate and comment on menu items served at any dining hall on campus.
 
-This project is a starting point for a Flutter application.
+This application tech stack includes the following: Flutter, Xcode, Android Studio and Firebase. 
 
-A few resources to get you started if this is your first Flutter project:
+## Getting Started
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Getting started with the Terrier Taste application: 
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Step 1. Make sure to have the following Flutter version and dependecies downloaded on your device: 
+    Flutter Version: 3.7.4 
+    Dart SDK Version: 2.19.2
 
-### Application Stack:
-* Frontend: Flutter
-* Backend: Python, Firebase
+Step 2. Open a new terminal and run 'flutter doctor' to ensure that then flutter  dependcies are satified. 
 
-### Specifications:
-* Webscrapping: Beautifulsoup library
+Step 3. Next, open a simulator with the following command so you are able to display the applcation: 'open -a siumlator'
 
+Step 3. Clone the repository onto your desktop. 
 
-### How to run the backend:
-1. Get a copy of the files:
-```git clone https://github.com/Tylerr198/Green-Go.git```
-2. open the terminal
-3. Run ```python path/to/collective.py```
-
-### How to run the mobile applicaiton:
-1. Get a copy of the files:
-```git clone https://github.com/Tylerr198/Green-Go.git```
-2. Open Terminal
-2. Run ```flutter doctor```
-3. (Optional) open a simulator (MacOS) ```open -a simulator```
-5. Run ```flutter run```
+Step 4. cd into 'green_n_go' folder and run 'flutter run'
