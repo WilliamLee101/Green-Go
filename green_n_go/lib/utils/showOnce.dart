@@ -1,8 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:green_n_go/screens/home_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 
 class SplashScreen extends StatefulWidget {
   static const String id = "/splashScreen";
@@ -19,7 +17,7 @@ class _Splash extends State<SplashScreen> {
       _handleStartScreen();
     } else {
       await prefs.setBool('seen', true);
-      Navigator.pushNamed(context, '/intro');
+      Navigator.pushNamed(context, '/home');
     }
   }
 
@@ -43,7 +41,7 @@ class _Splash extends State<SplashScreen> {
     if (user != null) {
       Navigator.pushReplacementNamed(context, '/home');
     } else {
-      Navigator.pushReplacementNamed(context, '/login');
+      Navigator.pushReplacementNamed(context, '/signIn');
     }
   }
 }

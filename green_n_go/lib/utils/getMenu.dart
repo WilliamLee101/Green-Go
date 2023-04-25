@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:green_n_go/widgets/foodItem.dart';
+import 'package:green_n_go/classes/foodItem.dart';
 import 'package:green_n_go/screens/marciano.dart';
 import 'package:green_n_go/screens/review.dart';
 
@@ -23,7 +23,7 @@ class _ReturnMenuState extends State<ReturnMenu> {
     } else if (widget.selectedMealType == dmenu) {
       when = 'Dinner';
     }
-    
+
     // Filter the food list based on whether it is vegan or not
     final filteredList = widget.selectedMealType.where((food) {
       return !_isVeganSelected || (food.is_vegan ?? false);

@@ -29,14 +29,14 @@ void signOut() {
   FirebaseAuth.instance.signOut();
 }
 
-class ProfilePage extends StatefulWidget {
-  const ProfilePage({Key? key}) : super(key: key);
+class SignInPage extends StatefulWidget {
+  const SignInPage({Key? key}) : super(key: key);
 
   @override
-  State<ProfilePage> createState() => _ProfilePageState();
+  State<SignInPage> createState() => _SignInPageState();
 }
 
-class _ProfilePageState extends State<ProfilePage> {
+class _SignInPageState extends State<SignInPage> {
   bool loggedIn = false;
 
   Future<void> signOut() async {
@@ -100,7 +100,8 @@ class _ProfilePageState extends State<ProfilePage> {
                   const SizedBox(
                     height: 100,
                   ),
-                  const Text("Welcome, Terrier!", style: TextStyle(fontSize: 15)),
+                  const Text("Welcome, Terrier!",
+                      style: TextStyle(fontSize: 15)),
                   const Text(
                     "Rhett’y to eat?",
                     style: TextStyle(
@@ -159,7 +160,8 @@ class _ProfilePageState extends State<ProfilePage> {
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
-                          side: const BorderSide(color: Color(0xff3B7D3C), width: 2),
+                          side: const BorderSide(
+                              color: Color(0xff3B7D3C), width: 2),
                         ),
                       ),
                       backgroundColor:

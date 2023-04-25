@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:green_n_go/google_auth.dart';
-import 'package:green_n_go/profilePage.dart';
-import 'package:green_n_go/screens/login_register_page.dart';
-import 'package:green_n_go/widgetTree.dart';
+import 'package:green_n_go/screens/signInPage.dart';
 
 class IntroScreen extends StatefulWidget {
   const IntroScreen({super.key});
@@ -18,7 +15,7 @@ class _IntroScreenState extends State<IntroScreen>
     IntroScreen1(),
     IntroScreen2(),
     IntroScreen3(),
-    ProfilePage(),
+    SignInPage(),
   ];
 
   void _onPageChanged(int index) {
@@ -83,12 +80,15 @@ class IntroScreen1 extends StatelessWidget {
       body: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
- 
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               SizedBox(height: 170),
-              Image.asset("assets/images/logo.png",height: 153, width: 153,),
+              Image.asset(
+                "assets/images/logo.png",
+                height: 153,
+                width: 153,
+              ),
               SizedBox(height: 350),
               Stack(children: [
                 Padding(
@@ -196,79 +196,6 @@ class IntroScreen3 extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                     fontFamily: "Inter"),
               )
-            ],
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class IntroScreen4 extends StatelessWidget {
-  const IntroScreen4({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Column(
-            children: [
-              const Padding(
-                padding: EdgeInsets.only(top: 100),
-                child: Image(
-                  image: AssetImage('assets/images/rafiki2.png'),
-                  height: 276,
-                  width: 370.41,
-                ),
-              ),
-              const Text(
-                "Motivation",
-                style: TextStyle(
-                    height: 3,
-                    fontSize: 30,
-                    color: Color(0xFF3A7D3C),
-                    fontWeight: FontWeight.bold),
-              ),
-              const Text(
-                "Join us in reducing food waste on campus,\n one plate at a time.",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    color: Color(0xffB3B3B3),
-                    fontSize: 17,
-                    fontWeight: FontWeight.w500,
-                    fontFamily: "Inter"),
-              ),
-              SizedBox(
-                height: 120,
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: const Color(0xff3B7D3C),
-                    width: 2,
-                  ),
-                  borderRadius: BorderRadius.circular(15),
-                  color: const Color(0xff3B7D3C),
-                ),
-                child: SizedBox(
-                    height: 40,
-                    width: 187,
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const LoginPage()),
-                        );
-                      },
-                      child: const Text(
-                        'Get Started!',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    )),
-              ),
             ],
           )
         ],

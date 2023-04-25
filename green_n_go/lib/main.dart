@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:green_n_go/intro_screen.dart';
-import 'package:green_n_go/profileView.dart';
+import 'package:green_n_go/screens/intro_screen.dart';
+import 'package:green_n_go/screens/personalProfile.dart';
 import 'package:green_n_go/screens/home_page.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:green_n_go/profilePage.dart';
-import 'package:green_n_go/screens/login_register_page.dart';
-import 'package:green_n_go/screens/splash_screen.dart';
-import 'package:green_n_go/screens/user_setup.dart';
-import 'package:green_n_go/widgetTree.dart';
-import 'firebase_options.dart';
+import 'package:green_n_go/screens/signInPage.dart';
+import 'package:green_n_go/utils/showOnce.dart';
+import 'package:green_n_go/utils/firebase_options.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -32,9 +29,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(primarySwatch: Colors.green, fontFamily: "Inter"),
       home: SplashScreen(),
       routes: {
-        '/login': (context) => const WidgetTree(),
         '/home': (context) => const RootPage(),
         '/intro': (context) => const IntroScreen(),
+        '/signIn': (context) => const SignInPage(),
       },
     );
   }
@@ -62,7 +59,7 @@ class _RootPageState extends State<RootPage> {
     );
   }
 
-// navigation bar 
+// navigation bar
   @override
   Widget build(BuildContext context) {
     return Scaffold(

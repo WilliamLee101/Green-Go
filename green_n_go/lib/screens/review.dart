@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import '../widgets/foodItem.dart';
+import '../classes/foodItem.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 class ReviewSurveyScreen extends StatefulWidget {
@@ -28,7 +28,7 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
   }
 
   @override
-   Widget build(BuildContext context) {
+  Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: AppBar(

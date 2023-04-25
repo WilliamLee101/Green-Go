@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:green_n_go/auth.dart';
+import 'package:green_n_go/utils/auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class ProfileView extends StatelessWidget {
@@ -10,7 +10,7 @@ class ProfileView extends StatelessWidget {
       Auth().signOut();
     }
 
-// profile page styling 
+// profile page styling
 
     return Scaffold(
         appBar: AppBar(
