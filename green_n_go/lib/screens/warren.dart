@@ -15,6 +15,7 @@ final List<FoodItem> dmenu = [];
 
 final ref = FirebaseDatabase.instance.ref();
 
+//Create widget for displaying warren dininng hall
 class Warren extends StatefulWidget {
   const Warren({super.key});
   @override
@@ -43,6 +44,7 @@ class _WarrenState extends State<Warren> {
     );
   }
 
+  //Main function to populate warren dining hall menu
   Future<void> getMenu() async {
     print(formattedDate);
     final snapshot =

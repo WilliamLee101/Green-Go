@@ -1,3 +1,4 @@
+//FoodItem class
 class FoodItem {
   final String name;
   final String? description;

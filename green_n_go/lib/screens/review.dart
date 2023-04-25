@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../classes/foodItem.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
+
+//This is the review screen widget that is displayed when users want to create a review
 class ReviewSurveyScreen extends StatefulWidget {
   final FoodItem foodItem;
   ReviewSurveyScreen({required this.foodItem});
@@ -16,6 +18,7 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
   double _amount_finished = 0.0;
   String _comment = '';
 
+  //Function to upload user review data to firebase
   void _submitReview() {
     CollectionReference reviews =
         FirebaseFirestore.instance.collection(widget.foodItem.name);
@@ -252,6 +255,7 @@ class CommentScreen extends StatelessWidget {
   }
 }
 
+//When user swipes to the left, this screen containing the food's nutrition is displayed
 class NutritionScreen extends StatelessWidget {
   final FoodItem foodItem;
 
@@ -336,6 +340,8 @@ class NutritionScreen extends StatelessWidget {
   }
 }
 
+
+//The main widget that holds all 3 screens of the swipeup feature
 class ReviewScreens extends StatefulWidget {
   final FoodItem foodItem;
   ReviewScreens({required this.foodItem});
