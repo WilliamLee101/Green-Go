@@ -14,10 +14,10 @@ Step 1. Make sure to have the following Flutter version and dependecies download
 (To check the flutter version, Run 'flutter --version')<br />
 (To check the Dart SDK version, Run 'dart --version')<br />
 
-Step 2. Open a new terminal and run 'flutter doctor' to ensure that then flutter  dependcies are satified. 
+Step 2. Open a new terminal and run ```flutter doctor``` to ensure that then flutter  dependcies are satified. 
 
-Step 3. Next, open a simulator with the following command so you are able to display the application: 'open -a simulator'
+Step 3. Next, open a simulator with the following command so you are able to display the application: ```open -a simulator```
 
 Step 3. Clone the repository onto your desktop. 
 
-Step 4. cd into 'green_n_go' folder and run 'flutter run'
+Step 4. cd into 'green_n_go' folder and run ```flutter run```
