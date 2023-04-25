@@ -10,9 +10,9 @@ Getting started with the Terrier Taste application:
 
 Step 1. Make sure to have the following Flutter version and dependecies downloaded on your device: 
 * Flutter Version: 3.7.4 
-- (To check the flutter version, Run ```flutter --version```<br />
 * Dart SDK Version: 2.19.2 <br />
-- To check the Dart SDK version, Run ```dart --version```<br />
+(To check the flutter version, Run ```flutter --version```)<br />
+(To check the Dart SDK version, Run ```dart --version```)<br />
 
 Step 2. Open a new terminal and run ```flutter doctor``` to ensure that then flutter  dependcies are satified. 
 
