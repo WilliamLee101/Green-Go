@@ -173,7 +173,7 @@ class _ReturnMenuState extends State<ReturnMenu> {
                               onPressed: () {
                                 showModalBottomSheet(
                                   constraints: BoxConstraints.expand(
-                                      height: 0.6 * height),
+                                      height: 0.9 * height),
                                   shape: const RoundedRectangleBorder(
                                     borderRadius: BorderRadius.only(
                                       topLeft: Radius.circular(20.0),
