@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:green_n_go/screens/signInPage.dart';
 
+
+//Set of intro screens that users see when they first download the app
 class IntroScreen extends StatefulWidget {
   const IntroScreen({super.key});
 

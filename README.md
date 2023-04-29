@@ -1,36 +1,37 @@
-# green_n_go
+# Terrier Taste
 
-### Getting Started
+Terrier Taste is an application that aims to reduce food waste at Boston University dining halls by creating a food rating feedback system. A BU student  will have the ability to review, rate and comment on menu items served at any dining hall on campus.
 
-This project is a starting point for a Flutter application.
+This application tech stack includes the following: Flutter, Xcode, Android Studio, Python and Firebase. 
 
-A few resources to get you started if this is your first Flutter project:
+## Getting Started
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Getting started with the Terrier Taste application: 
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Step 1. Make sure to have at least (equal or higher) the following Flutter version and dependecies downloaded on your device: 
+* Flutter Version: 3.7.4 
+* Dart SDK Version: 2.19.2 <br />
+(To check the flutter version, Run ```flutter --version```)<br />
+(To check the Dart SDK version, Run ```dart --version```)<br />
 
-### Application Stack:
-* Frontend: Flutter
-* Backend: Python, Firebase
+Step 2. Open a new terminal and run ```flutter doctor``` to ensure that then flutter  dependcies are satified. 
 
-### Specifications:
-* Webscrapping: Beautifulsoup library
+Step 3. Next, open a simulator with the following command so you are able to display the application: ```open -a simulator```
 
+Step 3. Clone the repository onto your desktop. 
 
-### How to run the backend:
-1. Get a copy of the files:
-```git clone https://github.com/Tylerr198/Green-Go.git```
-2. open the terminal
-3. Run ```python path/to/collective.py```
+Step 4. cd into 'green_n_go' folder and run ```flutter run```
 
-### How to run the mobile applicaiton:
-1. Get a copy of the files:
-```git clone https://github.com/Tylerr198/Green-Go.git```
-2. Open Terminal
-2. Run ```flutter doctor```
-3. (Optional) open a simulator (MacOS) ```open -a simulator```
-5. Run ```flutter run```
+# How to use Terrier Taste: 
+
+### Sign In
+Once you have read and passed the introduction screens, you may either choose to login as a guest or through a google account if you are a BU student. If you are a BU student you should be able to select your dietary preferences as they will be saved to your personal profile.<br />
+<img src="https://github.com/Tylerr198/Green-Go/blob/main/green_n_go/screenshots/signIn.gif" width="250"/><br />
+
+### Navigation Bar & Profile
+You may navigate through different screens of our applicaiton via the navigation bar on the bottom banner on the screen. There are 3 distinct pages you can visit. The first is the home page which you are currently viewing, the second is your personal profile page and the third is the accomplishment/rewards page. Your personal profile will store the personal preferences as well as a place where you will be able to log out of the application. The rewards page will hold badges that a you can earn dependent on how many comments or ratings you have made.<br />
+<img src="https://github.com/Tylerr198/Green-Go/blob/main/green_n_go/screenshots/navigation_bar.gif" width="250"/><br />
+
+### Dining Halls & Menu Features 
+Next, you will be directed to the home page where you can choose one of three dining halls on campus. You will have the ability to look at the menu items, ratings, comments and reivews of each of the menus at the three locations. When giving a rating you may simply click on any of the paw icon buttons on a given menu item and rate the food from a 1-5, how much of the plate you have eaten and leave a comment. If you are to swipe right of the reivew screen the nutritional details are presented, if you are to swipe to the right of the review screen thats where you will see all of the comments previous users have commented.<br />
+<img src="https://github.com/Tylerr198/Green-Go/blob/main/green_n_go/screenshots/menu.gif" width="250"/><br />

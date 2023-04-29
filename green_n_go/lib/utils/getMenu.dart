@@ -179,7 +179,7 @@ class _ReturnMenuState extends State<ReturnMenu> {
             iconSize: 60,
             onSelected: (value) {
               setState(() {
-                _isVeganSelected = value ?? false;
+                _isVeganSelected = value;
               });
             },
             itemBuilder: (BuildContext context) => <PopupMenuEntry<bool>>[

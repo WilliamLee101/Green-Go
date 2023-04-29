@@ -5,9 +5,12 @@ import '../classes/foodItem.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/material.dart';
-import 'package:file_picker/file_picker.dart';
+import 'package:intl/intl.dart';
 
+DateTime now = DateTime.now();
+String formattedDate = DateFormat('yyyy-MM-dd').format(now);
+
+//This is the review screen widget that is displayed when users want to create a review
 class ReviewSurveyScreen extends StatefulWidget {
   final FoodItem foodItem;
   final String diningHall;
@@ -43,12 +46,18 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
     await ref.putFile(imageFile!);
   }
 
+  //Function to upload user review data to firebase
   void _submitReview() {
-    CollectionReference reviews =
-        FirebaseFirestore.instance.collection(widget.foodItem.name);
+    // Create a reference to the top-level food collection
+    CollectionReference foodCollectionRef =
+        FirebaseFirestore.instance.collection('food');
+    CollectionReference dateCollectionRef =
+        foodCollectionRef.doc(formattedDate).collection(widget.foodItem.name);
+    // CollectionReference reviews =
+    //     FirebaseFirestore.instance.collection(widget.foodItem.name);
     // Submit review to backend
     // Navigator.of(context).pop();
-    reviews.add({
+    dateCollectionRef.add({
       'rating': _rating,
       'comment': _comment,
     }).then((value) => print('added'));
@@ -60,7 +69,7 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
         backgroundColor: Colors.green,
-        title: FittedBox(
+        title: const FittedBox(
           fit: BoxFit.scaleDown,
           child: Text(
             "Rate your experience",
@@ -68,12 +77,12 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
         ),
       ),
       body: Container(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(children: [
-              const Text("How did you like it?",
+            Row(children: const [
+              Text("How did you like it?",
                   style: TextStyle(
                       fontSize: 17.1429,
                       fontFamily: 'Inter',
@@ -82,7 +91,7 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
               Icon(Icons.pets, color: Colors.black),
             ]),
 
-            SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
 
             SfSlider(
               activeColor: Colors.green,
@@ -117,13 +126,13 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
               },
             ),
 
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             const Text("How much did you finish?",
                 style: TextStyle(
                     fontSize: 17.1429,
                     fontFamily: 'Inter',
                     color: Colors.black87)),
-            SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
 
             // TO DO: change the value so that it corresponds to the rating of food waste!
             SfSlider(
@@ -159,14 +168,14 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
               },
             ),
 
-            SizedBox(height: 15.0),
+            const SizedBox(height: 15.0),
 
             const Text("Leave a comment!",
                 style: TextStyle(
                     fontSize: 17.1429,
                     fontFamily: 'Inter',
                     color: Colors.black87)),
-            SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             TextField(
               maxLines: 3,
               onChanged: (value) {
@@ -200,7 +209,7 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
               child: ElevatedButton(
                 style: ButtonStyle(
                   backgroundColor:
-                      MaterialStateProperty.all<Color>(Color(0xFF006400)),
+                      MaterialStateProperty.all<Color>(const Color(0xFF006400)),
                   shape: MaterialStateProperty.all<OutlinedBorder>(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0),
@@ -211,7 +220,7 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
                 onPressed: () {
                   _submitReview();
                 },
-                child: Padding(
+                child: const Padding(
                   padding:
                       EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
                   child: Text('Get Started'),
@@ -236,25 +245,27 @@ class CommentScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Comments'),
+        title: const Text('Comments'),
       ),
       body: Container(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 16.0),
-            Text(
+            const SizedBox(height: 16.0),
+            const Text(
               'Comments:',
               style: TextStyle(
                 fontSize: 18.0,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             Expanded(
               child: StreamBuilder<QuerySnapshot>(
                 stream: FirebaseFirestore.instance
+                    .collection('food')
+                    .doc(formattedDate)
                     .collection(foodItem.name)
                     .snapshots(),
                 builder: (context, snapshot) {
@@ -263,7 +274,7 @@ class CommentScreen extends StatelessWidget {
                         .map((doc) => doc['comment' as String])
                         .toList();
                     if (comments.isEmpty) {
-                      return Center(
+                      return const Center(
                         child: Text('No comments yet.'),
                       );
                     } else {
@@ -281,7 +292,7 @@ class CommentScreen extends StatelessWidget {
                       );
                     }
                   } else {
-                    return Center(
+                    return const Center(
                       child: CircularProgressIndicator(),
                     );
                   }
@@ -295,6 +306,7 @@ class CommentScreen extends StatelessWidget {
   }
 }
 
+//When user swipes to the left, this screen containing the food's nutrition is displayed
 class NutritionScreen extends StatelessWidget {
   final FoodItem foodItem;
 
@@ -304,7 +316,7 @@ class NutritionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Nutrition Details'),
+          title: const Text('Nutrition Details'),
         ),
         body: Container(
           height: 400,
@@ -379,6 +391,7 @@ class NutritionScreen extends StatelessWidget {
   }
 }
 
+//The main widget that holds all 3 screens of the swipeup feature
 class ReviewScreens extends StatefulWidget {
   final FoodItem foodItem;
   final String diningHall;

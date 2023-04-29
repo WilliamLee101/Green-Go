@@ -7,6 +7,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+<<<<<<< HEAD
+=======
+import 'package:green_n_go/main.dart';
+>>>>>>> origin/newb
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {

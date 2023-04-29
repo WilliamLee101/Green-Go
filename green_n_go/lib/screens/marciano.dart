@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:green_n_go/utils/navBar.dart';
 import 'package:intl/intl.dart';
 import 'package:green_n_go/screens/personalProfile.dart';
 
 import '../classes/foodItem.dart';
 import '../utils/getMenu.dart';
 
+//Getting today's date
 DateTime now = DateTime.now();
 String formattedDate = DateFormat('yyyy-MM-dd').format(now);
 
@@ -15,8 +17,11 @@ final List<FoodItem> dmenu = [];
 
 final ref = FirebaseDatabase.instance.ref();
 
+//Function to populate arrays from firebase database
 Future<void> getMenu() async {
   print(formattedDate);
+
+  //Populate breakfast array
   final snapshot =
       await ref.child("menu/$formattedDate/marciano/Breakfast").get();
   if (snapshot.exists && snapshot.value is Map<dynamic, dynamic>) {
@@ -37,6 +42,8 @@ Future<void> getMenu() async {
   } else {
     print('No data available.');
   }
+
+  //Populate lunch array
   final snapshot1 = await ref.child("menu/$formattedDate/marciano/Lunch").get();
   if (snapshot1.exists && snapshot1.value is Map<dynamic, dynamic>) {
     (snapshot1.value as Map<dynamic, dynamic>).forEach((key, value) {
@@ -56,6 +63,8 @@ Future<void> getMenu() async {
   } else {
     print('No data available.');
   }
+
+  //Populate dinner array
   final snapshot2 =
       await ref.child("menu/$formattedDate/marciano/Dinner").get();
   if (snapshot2.exists && snapshot2.value is Map<dynamic, dynamic>) {
@@ -78,6 +87,7 @@ Future<void> getMenu() async {
   }
 }
 
+//Create widget for displaying marciano dininng hall
 class Marciano extends StatefulWidget {
   const Marciano({super.key});
   @override
@@ -111,35 +121,21 @@ class _MarcianoState extends State<Marciano> {
     double height = MediaQuery.of(context).size.height;
     getMenu();
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Menu at Marciano', style: TextStyle(fontSize: 27)),
-        backgroundColor: Color(0xff3B7D3C),
-        toolbarHeight: .1 * height,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(bottom: Radius.circular(20))),
-      ),
-      body: PageView(
-        controller: _pageController,
-        children: [
-          ReturnMenu(selectedMealType: bmenu, dhall: "marciano"),
-          ReturnMenu(selectedMealType: lmenu, dhall: "marciano"),
-          ReturnMenu(selectedMealType: dmenu, dhall: "marciano"),
-        ],
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.dining),
-            label: 'Menu',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_2_outlined),
-            label: 'Profile',
-          ),
-        ],
-        onTap: _onItemTapped,
-        currentIndex: _selectedIndex,
-      ),
-    );
+        appBar: AppBar(
+          title: const Text('Menu at Marciano', style: TextStyle(fontSize: 27)),
+          backgroundColor: Color(0xff3B7D3C),
+          toolbarHeight: .1 * height,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(bottom: Radius.circular(20))),
+        ),
+        body: PageView(
+          controller: _pageController,
+          children: [
+            ReturnMenu(selectedMealType: bmenu, dhall: "marciano"),
+            ReturnMenu(selectedMealType: lmenu, dhall: "marciano"),
+            ReturnMenu(selectedMealType: dmenu, dhall: "marciano"),
+          ],
+        ),
+        bottomNavigationBar: const NavBar());
   }
 }

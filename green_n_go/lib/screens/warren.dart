@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:green_n_go/utils/navBar.dart';
 import 'package:intl/intl.dart';
 import 'package:green_n_go/screens/personalProfile.dart';
 
@@ -15,6 +16,7 @@ final List<FoodItem> dmenu = [];
 
 final ref = FirebaseDatabase.instance.ref();
 
+//Create widget for displaying warren dininng hall
 class Warren extends StatefulWidget {
   const Warren({super.key});
   @override
@@ -43,6 +45,7 @@ class _WarrenState extends State<Warren> {
     );
   }
 
+  //Main function to populate warren dining hall menu
   Future<void> getMenu() async {
     print(formattedDate);
     final snapshot =
@@ -111,35 +114,21 @@ class _WarrenState extends State<Warren> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Menu at Warren', style: TextStyle(fontSize: 27)),
-        backgroundColor: Color(0xff3B7D3C),
-        toolbarHeight: .1 * height,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(bottom: Radius.circular(20))),
-      ),
-      body: PageView(
-        controller: _pageController,
-        children: [
-          ReturnMenu(selectedMealType: bmenu, dhall: "warren"),
-          ReturnMenu(selectedMealType: lmenu, dhall: "warren"),
-          ReturnMenu(selectedMealType: dmenu, dhall: "warren"),
-        ],
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.dining),
-            label: 'Menu',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_2_outlined),
-            label: 'Profile',
-          ),
-        ],
-        onTap: _onItemTapped,
-        currentIndex: _selectedIndex,
-      ),
-    );
+        appBar: AppBar(
+          title: const Text('Menu at Warren', style: TextStyle(fontSize: 27)),
+          backgroundColor: Color(0xff3B7D3C),
+          toolbarHeight: .1 * height,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(bottom: Radius.circular(20))),
+        ),
+        body: PageView(
+          controller: _pageController,
+          children: [
+            ReturnMenu(selectedMealType: bmenu, dhall: "warren"),
+            ReturnMenu(selectedMealType: lmenu, dhall: "warren"),
+            ReturnMenu(selectedMealType: dmenu, dhall: "warren"),
+          ],
+        ),
+        bottomNavigationBar: const NavBar());
   }
 }

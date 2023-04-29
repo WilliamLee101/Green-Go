@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:green_n_go/utils/getMenu.dart';
+import 'package:green_n_go/utils/navBar.dart';
 import 'package:intl/intl.dart';
 import '../classes/foodItem.dart';
 import 'package:green_n_go/screens/personalProfile.dart';
@@ -13,6 +14,7 @@ final List<FoodItem> dmenu = [];
 
 final ref = FirebaseDatabase.instance.ref();
 
+//Create widget for displaying west dininng hall
 class West extends StatefulWidget {
   const West({super.key});
 
@@ -47,6 +49,7 @@ class _WestState extends State<West> {
     );
   }
 
+  //Main function to populate array of food items from firebase
   Future<void> getMenu() async {
     final snapshot =
         await ref.child("menu/$formattedDate/west/Breakfast").get();
@@ -114,35 +117,21 @@ class _WestState extends State<West> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Menu at West', style: TextStyle(fontSize: 27)),
-        backgroundColor: Color(0xff3B7D3C),
-        toolbarHeight: .1 * height,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(bottom: Radius.circular(20))),
-      ),
-      body: PageView(
-        controller: _pageController,
-        children: [
-          ReturnMenu(selectedMealType: bmenu, dhall: "west"),
-          ReturnMenu(selectedMealType: lmenu, dhall: "west"),
-          ReturnMenu(selectedMealType: dmenu, dhall: "west"),
-        ],
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.dining),
-            label: 'Menu',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_2_outlined),
-            label: 'Profile',
-          ),
-        ],
-        onTap: _onItemTapped,
-        currentIndex: _selectedIndex,
-      ),
-    );
+        appBar: AppBar(
+          title: const Text('Menu at West', style: TextStyle(fontSize: 27)),
+          backgroundColor: Color(0xff3B7D3C),
+          toolbarHeight: .1 * height,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(bottom: Radius.circular(20))),
+        ),
+        body: PageView(
+          controller: _pageController,
+          children: [
+            ReturnMenu(selectedMealType: bmenu, dhall: "west"),
+            ReturnMenu(selectedMealType: lmenu, dhall: "west"),
+            ReturnMenu(selectedMealType: dmenu, dhall: "west"),
+          ],
+        ),
+        bottomNavigationBar: const NavBar());
   }
 }
