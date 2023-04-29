@@ -5,26 +5,32 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:green_n_go/utils/navBar.dart';
 
 class ProfileView extends StatelessWidget {
-  final user = FirebaseAuth.instance.currentUser;
+  Future<void> signOut() async {
+    Auth().signOut();
+  }
+
   @override
   Widget build(BuildContext context) {
-    Future<void> signOut() async {
-      Auth().signOut();
-    }
-
-    double screenHeight = MediaQuery.of(context).size.height;
+    final user = FirebaseAuth.instance.currentUser;
+    double height = MediaQuery.of(context).size.height;
 // profile page styling
     if (user != null) {
       return Scaffold(
           bottomNavigationBar: NavBar(),
           appBar: AppBar(
+            automaticallyImplyLeading: false,
+            backgroundColor: Color(0xff3B7D3C),
+            toolbarHeight: .1 * height,
+            shape: const RoundedRectangleBorder(
+                borderRadius:
+                    BorderRadius.vertical(bottom: Radius.circular(20))),
             title: Row(
               children: [
-                Text(
+                const Text(
                   'My Profile',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(width: 200),
+                const SizedBox(width: 200),
                 Image.asset(
                   'assets/images/terrier_logo.png',
                   width: 30.0,
@@ -43,7 +49,7 @@ class ProfileView extends StatelessWidget {
               ),
               SizedBox(width: 16),
               Text(
-                '${user?.displayName}',
+                '${user.displayName}',
                 style: const TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
@@ -205,7 +211,7 @@ class ProfileView extends StatelessWidget {
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(height: screenHeight * 0.5),
+            SizedBox(height: height * 0.5),
             Text("You are not logged in"),
             TextButton(
               onPressed: () async {

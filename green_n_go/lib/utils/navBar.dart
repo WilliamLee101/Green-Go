@@ -4,6 +4,8 @@ import '../main.dart';
 import '../screens/personalProfile.dart';
 import '../screens/rewards_page.dart';
 
+int _selectedIndex = 0;
+
 class NavBar extends StatefulWidget {
   const NavBar({super.key});
 
@@ -12,8 +14,6 @@ class NavBar extends StatefulWidget {
 }
 
 class _NavBarState extends State<NavBar> {
-  int _selectedIndex = 0;
-
   final List<Widget> _pages = <Widget>[
     HomePage(),
     ProfileView(),
@@ -28,8 +28,10 @@ class _NavBarState extends State<NavBar> {
     if (_selectedIndex != temp) {
       Navigator.push(
         context,
-        MaterialPageRoute(
-          builder: (context) => _pages[index],
+        PageRouteBuilder(
+          pageBuilder: (context, animation1, animation2) => _pages[index],
+          transitionDuration: Duration.zero,
+          reverseTransitionDuration: Duration.zero,
         ),
       );
     }
@@ -40,10 +42,10 @@ class _NavBarState extends State<NavBar> {
     return Container(
       decoration: BoxDecoration(boxShadow: [
         BoxShadow(
-          color: Colors.grey.withOpacity(0.5),
+          color: Color.fromARGB(255, 181, 179, 179).withOpacity(0.7),
           spreadRadius: 5,
           blurRadius: 7,
-          offset: Offset(0, 3),
+          offset: Offset(0, 6),
         ),
       ]),
       child: BottomNavigationBar(

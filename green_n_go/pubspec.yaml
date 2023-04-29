@@ -45,6 +45,7 @@ dependencies:
   sliding_up_panel: ^2.0.0+1
   shared_preferences: ^2.1.0
   syncfusion_flutter_sliders: ^21.1.41
+  page_transition: ^2.0.9
 
  
  

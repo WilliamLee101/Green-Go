@@ -17,6 +17,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
+    final user = FirebaseAuth.instance.currentUser;
     return Scaffold(
       bottomNavigationBar: const NavBar(),
       body: Center(

@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.green, fontFamily: "Inter"),
-      home: const ShowOnceUtil(),
+      home: IntroScreen(),
       routes: {
         '/home': (context) => HomePage(),
         '/intro': (context) => const IntroScreen(),

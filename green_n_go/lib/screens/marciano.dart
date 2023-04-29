@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:green_n_go/utils/navBar.dart';
 import 'package:intl/intl.dart';
 import 'package:green_n_go/screens/personalProfile.dart';
 
 import '../classes/foodItem.dart';
 import '../utils/getMenu.dart';
-
 
 //Getting today's date
 DateTime now = DateTime.now();
@@ -20,7 +20,7 @@ final ref = FirebaseDatabase.instance.ref();
 //Function to populate arrays from firebase database
 Future<void> getMenu() async {
   print(formattedDate);
-  
+
   //Populate breakfast array
   final snapshot =
       await ref.child("menu/$formattedDate/marciano/Breakfast").get();
@@ -87,7 +87,6 @@ Future<void> getMenu() async {
   }
 }
 
-
 //Create widget for displaying marciano dininng hall
 class Marciano extends StatefulWidget {
   const Marciano({super.key});
@@ -122,35 +121,21 @@ class _MarcianoState extends State<Marciano> {
     double height = MediaQuery.of(context).size.height;
     getMenu();
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Menu at Marciano', style: TextStyle(fontSize: 27)),
-        backgroundColor: Color(0xff3B7D3C),
-        toolbarHeight: .1 * height,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(bottom: Radius.circular(20))),
-      ),
-      body: PageView(
-        controller: _pageController,
-        children: [
-          ReturnMenu(selectedMealType: bmenu),
-          ReturnMenu(selectedMealType: lmenu),
-          ReturnMenu(selectedMealType: dmenu),
-        ],
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.dining),
-            label: 'Menu',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_2_outlined),
-            label: 'Profile',
-          ),
-        ],
-        onTap: _onItemTapped,
-        currentIndex: _selectedIndex,
-      ),
-    );
+        appBar: AppBar(
+          title: const Text('Menu at Marciano', style: TextStyle(fontSize: 27)),
+          backgroundColor: Color(0xff3B7D3C),
+          toolbarHeight: .1 * height,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(bottom: Radius.circular(20))),
+        ),
+        body: PageView(
+          controller: _pageController,
+          children: [
+            ReturnMenu(selectedMealType: bmenu),
+            ReturnMenu(selectedMealType: lmenu),
+            ReturnMenu(selectedMealType: dmenu),
+          ],
+        ),
+        bottomNavigationBar: const NavBar());
   }
 }

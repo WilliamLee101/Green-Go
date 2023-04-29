@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:green_n_go/utils/navBar.dart';
 import 'package:intl/intl.dart';
 import 'package:green_n_go/screens/personalProfile.dart';
 
@@ -128,20 +129,7 @@ class _WarrenState extends State<Warren> {
           ReturnMenu(selectedMealType: dmenu),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.dining),
-            label: 'Menu',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_2_outlined),
-            label: 'Profile',
-          ),
-        ],
-        onTap: _onItemTapped,
-        currentIndex: _selectedIndex,
-      ),
+      bottomNavigationBar:const NavBar()
     );
   }
 }

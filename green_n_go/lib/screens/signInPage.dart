@@ -7,6 +7,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:green_n_go/screens/user_setup.dart';
 import 'package:green_n_go/utils/auth.dart';
+import 'package:page_transition/page_transition.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({Key? key}) : super(key: key);
