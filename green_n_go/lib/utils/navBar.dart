@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:green_n_go/screens/home_page.dart';
 import '../main.dart';
 import '../screens/personalProfile.dart';
+import '../screens/rewards_page.dart';
 
 class NavBar extends StatefulWidget {
   const NavBar({super.key});
@@ -13,7 +14,11 @@ class NavBar extends StatefulWidget {
 class _NavBarState extends State<NavBar> {
   int _selectedIndex = 0;
 
-  final List<Widget> _pages = <Widget>[HomePage(), ProfileView()];
+  final List<Widget> _pages = <Widget>[
+    HomePage(),
+    ProfileView(),
+    RewardsPage()
+  ];
 
   void _onItemTapped(int index) {
     int temp = _selectedIndex;
@@ -23,7 +28,9 @@ class _NavBarState extends State<NavBar> {
     if (_selectedIndex != temp) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => _pages[index]),
+        MaterialPageRoute(
+          builder: (context) => _pages[index],
+        ),
       );
     }
   }

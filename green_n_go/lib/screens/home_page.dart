@@ -24,7 +24,7 @@ class HomePage extends StatelessWidget {
           children: [
             Container(
               height: 0.2 * height,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Color(0xff3B7D3C),
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(30),

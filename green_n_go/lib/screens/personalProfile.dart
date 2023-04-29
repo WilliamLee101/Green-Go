@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:green_n_go/screens/user_setup.dart';
 import 'package:green_n_go/utils/auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:green_n_go/utils/navBar.dart';
 
 class ProfileView extends StatelessWidget {
   final user = FirebaseAuth.instance.currentUser;
@@ -10,10 +11,12 @@ class ProfileView extends StatelessWidget {
     Future<void> signOut() async {
       Auth().signOut();
     }
+
     double screenHeight = MediaQuery.of(context).size.height;
 // profile page styling
     if (user != null) {
       return Scaffold(
+          bottomNavigationBar: NavBar(),
           appBar: AppBar(
             title: Row(
               children: [
@@ -198,10 +201,11 @@ class ProfileView extends StatelessWidget {
           ]));
     } else {
       return Scaffold(
+        bottomNavigationBar: NavBar(),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(height: screenHeight*0.5),
+            SizedBox(height: screenHeight * 0.5),
             Text("You are not logged in"),
             TextButton(
               onPressed: () async {

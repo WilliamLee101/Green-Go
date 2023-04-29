@@ -10,6 +10,6 @@ class RewardsPage extends StatefulWidget {
 class _RewardsPageState extends State<RewardsPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(body: Text("notthing"));
   }
 }
