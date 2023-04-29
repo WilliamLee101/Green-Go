@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:green_n_go/intro_screen.dart';
-import 'package:green_n_go/profileView.dart';
+import 'package:green_n_go/screens/intro_screen.dart';
+import 'package:green_n_go/screens/personalProfile.dart';
 import 'package:green_n_go/screens/home_page.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:green_n_go/profilePage.dart';
-import 'package:green_n_go/screens/login_register_page.dart';
-import 'package:green_n_go/screens/user_setup.dart';
-import 'package:green_n_go/widgetTree.dart';
-import 'firebase_options.dart';
+import 'package:green_n_go/screens/signInPage.dart';
+import 'package:green_n_go/utils/showOnce.dart';
+import 'package:green_n_go/utils/firebase_options.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -29,10 +27,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.green, fontFamily: "Inter"),
-      home: const IntroScreen(),
+      home: SplashScreen(),
       routes: {
-        '/login': (context) => const WidgetTree(),
         '/home': (context) => const RootPage(),
+        '/intro': (context) => const IntroScreen(),
+        '/signIn': (context) => const SignInPage(),
       },
     );
   }
@@ -60,19 +59,34 @@ class _RootPageState extends State<RootPage> {
     );
   }
 
+// navigation bar
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: HomePage(),
         bottomNavigationBar: BottomNavigationBar(
-          items: const <BottomNavigationBarItem>[
+          items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(Icons.dining),
-              label: 'Menu',
+              icon: ColorFiltered(
+                colorFilter: const ColorFilter.mode(
+                  Colors.blueGrey,
+                  BlendMode.srcIn,
+                ),
+                child: Image.asset(
+                  'assets/images/terrier_logo.png',
+                  width: 22.0,
+                  height: 22.0,
+                ),
+              ),
+              label: 'Home',
             ),
-            BottomNavigationBarItem(
+            const BottomNavigationBarItem(
               icon: Icon(Icons.person_2_outlined),
               label: 'Profile',
+            ),
+            const BottomNavigationBarItem(
+              icon: Icon(Icons.emoji_events),
+              label: 'Rewards',
             ),
           ],
           onTap: _onItemTapped,

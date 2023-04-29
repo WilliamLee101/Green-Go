@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:firebase_database/ui/firebase_animated_list.dart';
-import 'package:green_n_go/screens/review.dart';
 import 'package:intl/intl.dart';
-import 'package:green_n_go/profileView.dart';
+import 'package:green_n_go/screens/personalProfile.dart';
 
-import '../widgets/foodItem.dart';
-import '../widgets/getMenu.dart';
+import '../classes/foodItem.dart';
+import '../utils/getMenu.dart';
 
 DateTime now = DateTime.now();
 String formattedDate = DateFormat('yyyy-MM-dd').format(now);
@@ -111,17 +109,21 @@ class _WarrenState extends State<Warren> {
   final Color darkGreen = Color(0xFF3B7D3C);
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Warren Menu'),
-        backgroundColor: darkGreen,
+        title: const Text('Menu at Warren', style: TextStyle(fontSize: 27)),
+        backgroundColor: Color(0xff3B7D3C),
+        toolbarHeight: .1 * height,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(bottom: Radius.circular(20))),
       ),
       body: PageView(
         controller: _pageController,
         children: [
-          ReturnMenu(selectedMealType: bmenu),
-          ReturnMenu(selectedMealType: lmenu),
-          ReturnMenu(selectedMealType: dmenu),
+          ReturnMenu(selectedMealType: bmenu, dhall: "warren"),
+          ReturnMenu(selectedMealType: lmenu, dhall: "warren"),
+          ReturnMenu(selectedMealType: dmenu, dhall: "warren"),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(

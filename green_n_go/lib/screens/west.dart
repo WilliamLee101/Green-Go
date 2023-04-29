@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:firebase_database/ui/firebase_animated_list.dart';
-import 'package:green_n_go/widgets/getMenu.dart';
-import 'package:green_n_go/screens/review.dart';
+import 'package:green_n_go/utils/getMenu.dart';
 import 'package:intl/intl.dart';
-import '../widgets/foodItem.dart';
-import 'package:green_n_go/profileView.dart';
+import '../classes/foodItem.dart';
+import 'package:green_n_go/screens/personalProfile.dart';
 
 DateTime now = DateTime.now();
 String formattedDate = DateFormat('yyyy-MM-dd').format(now);
@@ -114,17 +112,21 @@ class _WestState extends State<West> {
   final PageController _pageController = PageController(initialPage: 0);
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('West Menu'),
-        backgroundColor: darkGreen,
+        title: const Text('Menu at West', style: TextStyle(fontSize: 27)),
+        backgroundColor: Color(0xff3B7D3C),
+        toolbarHeight: .1 * height,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(bottom: Radius.circular(20))),
       ),
       body: PageView(
         controller: _pageController,
         children: [
-          ReturnMenu(selectedMealType: bmenu),
-          ReturnMenu(selectedMealType: lmenu),
-          ReturnMenu(selectedMealType: dmenu),
+          ReturnMenu(selectedMealType: bmenu, dhall: "west"),
+          ReturnMenu(selectedMealType: lmenu, dhall: "west"),
+          ReturnMenu(selectedMealType: dmenu, dhall: "west"),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
