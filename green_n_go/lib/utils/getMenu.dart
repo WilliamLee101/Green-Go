@@ -30,8 +30,9 @@ class _ReturnMenuState extends State<ReturnMenu> {
     final filteredList = widget.selectedMealType.where((food) {
       return !_isVeganSelected || (food.is_vegan ?? false);
     }).toList();
+
     double screenHeight = MediaQuery.of(context).size.height;
-    double height = screenHeight * 0.9;
+    double height = screenHeight;
 
     return Stack(children: [
       Column(
@@ -98,7 +99,7 @@ class _ReturnMenuState extends State<ReturnMenu> {
                           onPressed: () {
                             showModalBottomSheet(
                               constraints:
-                                  BoxConstraints.expand(height: 0.8 * height),
+                                  BoxConstraints.expand(height: 0.6 * height),
                               isScrollControlled: true,
                               shape: const RoundedRectangleBorder(
                                 borderRadius: BorderRadius.vertical(

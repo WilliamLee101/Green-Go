@@ -17,6 +17,8 @@ class SignInPage extends StatefulWidget {
 
 class _SignInPageState extends State<SignInPage> {
   bool loggedIn = false;
+  int num_comments_made = 0;
+  int num_plates_finished = 0;
 
   Future<void> signOut() async {
     try {
@@ -50,6 +52,8 @@ class _SignInPageState extends State<SignInPage> {
             'name': user.displayName,
             'email': user.email,
             'photo': user.photoURL,
+            "num_comments_made": num_comments_made,
+            "num_plates_finished": num_plates_finished
           });
         }
       }
