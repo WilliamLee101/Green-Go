@@ -54,7 +54,6 @@ class _IntroScreenState extends State<IntroScreen>
             borderStyle: BorderStyle.none,
             selectedColor: Color(0xff3B7D3C),
           ),
-         
         ],
       ),
     );
