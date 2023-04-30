@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:green_n_go/utils/getMenu.dart';
 import 'package:green_n_go/utils/navBar.dart';
 import 'package:intl/intl.dart';
-import '../classes/foodItem.dart';
 import 'package:green_n_go/screens/personalProfile.dart';
+
+import '../classes/foodItem.dart';
+import '../utils/getMenu.dart';
 
 DateTime now = DateTime.now();
 String formattedDate = DateFormat('yyyy-MM-dd').format(now);
+
 final List<FoodItem> bmenu = [];
 final List<FoodItem> lmenu = [];
 final List<FoodItem> dmenu = [];
@@ -17,14 +19,14 @@ final ref = FirebaseDatabase.instance.ref();
 //Create widget for displaying west dininng hall
 class West extends StatefulWidget {
   const West({super.key});
-
   @override
   State<West> createState() => _WestState();
 }
 
 class _WestState extends State<West> with TickerProviderStateMixin {
-  List<FoodItem> _selectedMealType = bmenu;
+  final PageController _pageController = PageController(initialPage: 0);
   TabController? controller;
+  int _currentPageIndex = 0;
 
   @override
   void initState() {
@@ -35,6 +37,7 @@ class _WestState extends State<West> with TickerProviderStateMixin {
       vsync: this,
     );
   }
+
 
   List<String> mealTimes = ["Breakfast", "Lunch", "Dinner"];
   int mealTimeIndex = 0;
@@ -47,7 +50,9 @@ class _WestState extends State<West> with TickerProviderStateMixin {
   }
 
   //Main function to populate array of food items from firebase
+
   Future<void> getMenu() async {
+    print(formattedDate);
     final snapshot =
         await ref.child("menu/$formattedDate/west/Breakfast").get();
     if (snapshot.exists && snapshot.value is Map<dynamic, dynamic>) {
@@ -56,7 +61,7 @@ class _WestState extends State<West> with TickerProviderStateMixin {
             name: value['name'],
             description: value['description'],
             carbs: value['carbohydrates'],
-            protiens: value['protein'],
+            proteins: value['protein'],
             satFat: value['saturated_fat'],
             // sugars: value['sugars'],
             cals: value['calories'],
@@ -75,7 +80,7 @@ class _WestState extends State<West> with TickerProviderStateMixin {
             name: value['name'],
             description: value['description'],
             carbs: value['carbohydrates'],
-            protiens: value['protein'],
+            proteins: value['protein'],
             satFat: value['saturated_fat'],
             // sugars: value['sugars'],
             cals: value['calories'],
@@ -94,7 +99,7 @@ class _WestState extends State<West> with TickerProviderStateMixin {
             name: value['name'],
             description: value['description'],
             carbs: value['carbohydrates'],
-            protiens: value['protein'],
+            proteins: value['protein'],
             satFat: value['saturated_fat'],
             // sugars: value['sugars'],
             cals: value['calories'],
@@ -106,10 +111,16 @@ class _WestState extends State<West> with TickerProviderStateMixin {
     } else {
       print('No data available.');
     }
+    setState(() {}); // trigger a re-build of the UI
+  }
+
+  void _onPageChanged(int index) {
+    setState(() {
+      controller?.index = index;
+    });
   }
 
   final Color darkGreen = Color(0xFF3B7D3C);
-  final PageController _pageController = PageController();
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;

@@ -7,7 +7,6 @@ import 'package:green_n_go/screens/personalProfile.dart';
 import '../classes/foodItem.dart';
 import '../utils/getMenu.dart';
 
-//Getting today's date
 DateTime now = DateTime.now();
 String formattedDate = DateFormat('yyyy-MM-dd').format(now);
 
@@ -17,79 +16,8 @@ final List<FoodItem> dmenu = [];
 
 final ref = FirebaseDatabase.instance.ref();
 
-//Function to populate arrays from firebase database
-Future<void> getMenu() async {
-  print(formattedDate);
 
-  //Populate breakfast array
-  final snapshot =
-      await ref.child("menu/$formattedDate/marciano/Breakfast").get();
-  if (snapshot.exists && snapshot.value is Map<dynamic, dynamic>) {
-    (snapshot.value as Map<dynamic, dynamic>).forEach((key, value) {
-      final food = FoodItem(
-          name: value['name'],
-          description: value['description'],
-          carbs: value['carbohydrates'],
-          protiens: value['protein'],
-          satFat: value['saturated_fat'],
-          // sugars: value['sugars'],
-          cals: value['calories'],
-          rating: value['rating'],
-          is_vegan: value['is_vegan'],
-          is_vegetarian: value['is_vegetarian']);
-      bmenu.add(food);
-    });
-  } else {
-    print(bmenu.length);
-    print('No data available for breakfast.');
-  }
-
-  //Populate lunch array
-  final snapshot1 = await ref.child("menu/$formattedDate/marciano/Lunch").get();
-  if (snapshot1.exists && snapshot1.value is Map<dynamic, dynamic>) {
-    (snapshot1.value as Map<dynamic, dynamic>).forEach((key, value) {
-      final food = FoodItem(
-          name: value['name'],
-          description: value['description'],
-          carbs: value['carbohydrates'],
-          protiens: value['protein'],
-          satFat: value['saturated_fat'],
-          // sugars: value['sugars'],
-          cals: value['calories'],
-          rating: value['rating'],
-          is_vegan: value['is_vegan'],
-          is_vegetarian: value['is_vegetarian']);
-      lmenu.add(food);
-    });
-  } else {
-    print('No data available for lunch.');
-    print(bmenu.length);
-  }
-
-  //Populate dinner array
-  final snapshot2 =
-      await ref.child("menu/$formattedDate/marciano/Dinner").get();
-  if (snapshot2.exists && snapshot2.value is Map<dynamic, dynamic>) {
-    (snapshot2.value as Map<dynamic, dynamic>).forEach((key, value) {
-      final food = FoodItem(
-          name: value['name'],
-          description: value['description'],
-          carbs: value['carbohydrates'],
-          protiens: value['protein'],
-          satFat: value['saturated_fat'],
-          // sugars: value['sugars'],
-          cals: value['calories'],
-          rating: value['rating'],
-          is_vegan: value['is_vegan'],
-          is_vegetarian: value['is_vegetarian']);
-      dmenu.add(food);
-    });
-  } else {
-    print('No data available for dinner .');
-  }
-}
-
-//Create widget for displaying marciano dininng hall
+//Create widget for displaying Marciano dininng hall
 class Marciano extends StatefulWidget {
   const Marciano({super.key});
   @override
@@ -99,6 +27,7 @@ class Marciano extends StatefulWidget {
 class _MarcianoState extends State<Marciano> with TickerProviderStateMixin {
   final PageController _pageController = PageController(initialPage: 0);
   TabController? controller;
+  int _currentPageIndex = 0;
 
   @override
   void initState() {
@@ -110,8 +39,75 @@ class _MarcianoState extends State<Marciano> with TickerProviderStateMixin {
     );
   }
 
+
   List<String> mealTimes = ["Breakfast", "Lunch", "Dinner"];
   int mealTimeIndex = 0;
+
+  //Main function to populate Marciano dining hall menu
+  Future<void> getMenu() async {
+    print(formattedDate);
+    final snapshot =
+        await ref.child("menu/$formattedDate/marciano/Breakfast").get();
+    if (snapshot.exists && snapshot.value is Map<dynamic, dynamic>) {
+      (snapshot.value as Map<dynamic, dynamic>).forEach((key, value) {
+        final food = FoodItem(
+            name: value['name'],
+            description: value['description'],
+            carbs: value['carbohydrates'],
+            proteins: value['protein'],
+            satFat: value['saturated_fat'],
+            // sugars: value['sugars'],
+            cals: value['calories'],
+            rating: value['rating'],
+            is_vegan: value['is_vegan'],
+            is_vegetarian: value['is_vegetarian']);
+        bmenu.add(food);
+      });
+    } else {
+      print('No data available.');
+    }
+    final snapshot1 =
+        await ref.child("menu/$formattedDate/marciano/Lunch").get();
+    if (snapshot1.exists && snapshot1.value is Map<dynamic, dynamic>) {
+      (snapshot1.value as Map<dynamic, dynamic>).forEach((key, value) {
+        final food = FoodItem(
+            name: value['name'],
+            description: value['description'],
+            carbs: value['carbohydrates'],
+            proteins: value['protein'],
+            satFat: value['saturated_fat'],
+            // sugars: value['sugars'],
+            cals: value['calories'],
+            rating: value['rating'],
+            is_vegan: value['is_vegan'],
+            is_vegetarian: value['is_vegetarian']);
+        lmenu.add(food);
+      });
+    } else {
+      print('No data available.');
+    }
+    final snapshot2 =
+        await ref.child("menu/$formattedDate/marciano/Dinner").get();
+    if (snapshot2.exists && snapshot2.value is Map<dynamic, dynamic>) {
+      (snapshot2.value as Map<dynamic, dynamic>).forEach((key, value) {
+        final food = FoodItem(
+            name: value['name'],
+            description: value['description'],
+            carbs: value['carbohydrates'],
+            proteins: value['protein'],
+            satFat: value['saturated_fat'],
+            // sugars: value['sugars'],
+            cals: value['calories'],
+            rating: value['rating'],
+            is_vegan: value['is_vegan'],
+            is_vegetarian: value['is_vegetarian']);
+        dmenu.add(food);
+      });
+    } else {
+      print('No data available.');
+    }
+    setState(() {}); // trigger a re-build of the UI
+  }
 
   void _onPageChanged(int index) {
     setState(() {
@@ -124,7 +120,6 @@ class _MarcianoState extends State<Marciano> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    getMenu();
     return Scaffold(
         appBar: AppBar(
           title: Text('${mealTimes[mealTimeIndex]} at Marciano',

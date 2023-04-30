@@ -1,3 +1,4 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:green_n_go/classes/foodItem.dart';
 import 'package:green_n_go/screens/marciano.dart';
@@ -22,17 +23,29 @@ class ReturnMenu extends StatefulWidget {
 }
 
 class _ReturnMenuState extends State<ReturnMenu> {
+  late List<FoodItem> filteredList;
   bool _isVeganSelected = false;
 
   @override
   Widget build(BuildContext context) {
     // Filter the food list based on whether it is vegan or not
-    final filteredList = widget.selectedMealType.where((food) {
-      return !_isVeganSelected || (food.is_vegan ?? false);
+
+    filteredList = widget.selectedMealType.where((food) {
+      if (_isVeganSelected == true) {
+        return (food.is_vegan ?? false);
+      } else {
+        return (true);
+      }
     }).toList();
+
+    // print("inside widget");
+    // print(widget.mealTime);
+    // print(widget.dhall);
+    // print(widget.selectedMealType);
 
     double screenHeight = MediaQuery.of(context).size.height;
     double height = screenHeight;
+
 
     //Case where there are no food items available
     if (widget.selectedMealType.isEmpty) {
@@ -232,5 +245,6 @@ class _ReturnMenuState extends State<ReturnMenu> {
         )
       ]);
     }
+
   }
 }

@@ -26,6 +26,7 @@ class Warren extends StatefulWidget {
 class _WarrenState extends State<Warren> with TickerProviderStateMixin {
   final PageController _pageController = PageController(initialPage: 0);
   TabController? controller;
+  int _currentPageIndex = 0;
 
   @override
   void initState() {
@@ -48,7 +49,7 @@ class _WarrenState extends State<Warren> with TickerProviderStateMixin {
             name: value['name'],
             description: value['description'],
             carbs: value['carbohydrates'],
-            protiens: value['protein'],
+            proteins: value['protein'],
             satFat: value['saturated_fat'],
             // sugars: value['sugars'],
             cals: value['calories'],
@@ -67,7 +68,7 @@ class _WarrenState extends State<Warren> with TickerProviderStateMixin {
             name: value['name'],
             description: value['description'],
             carbs: value['carbohydrates'],
-            protiens: value['protein'],
+            proteins: value['protein'],
             satFat: value['saturated_fat'],
             // sugars: value['sugars'],
             cals: value['calories'],
@@ -87,7 +88,7 @@ class _WarrenState extends State<Warren> with TickerProviderStateMixin {
             name: value['name'],
             description: value['description'],
             carbs: value['carbohydrates'],
-            protiens: value['protein'],
+            proteins: value['protein'],
             satFat: value['saturated_fat'],
             // sugars: value['sugars'],
             cals: value['calories'],
@@ -99,6 +100,7 @@ class _WarrenState extends State<Warren> with TickerProviderStateMixin {
     } else {
       print('No data available.');
     }
+    setState(() {}); // trigger a re-build of the UI
   }
 
   List<String> mealTimes = ["Breakfast", "Lunch", "Dinner"];
