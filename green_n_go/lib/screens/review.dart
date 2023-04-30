@@ -154,7 +154,6 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
                 Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    SizedBox(height: height * 0.1),
                     const Text(
                       "Rate your experience",
                       style: TextStyle(color: Colors.black, fontSize: 20),
@@ -219,9 +218,10 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
                       },
                     ),
                   ),
+                  
                 ),
 
-                SizedBox(height: height * 0.02),
+                SizedBox(height: height * 0.01),
 
                 Padding(
                   padding: EdgeInsets.all(width * 0.05),
@@ -375,7 +375,6 @@ class CommentScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: height * 0.1),
             const Text(
               'Comments:',
               style: TextStyle(
@@ -476,11 +475,6 @@ class NutritionScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-
-          SizedBox(
-            height: height * 0.1,
-          ),
-
           const Text(
             "Nutritional Detail",
             style: TextStyle(
