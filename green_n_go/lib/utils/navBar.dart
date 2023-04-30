@@ -3,8 +3,7 @@ import 'package:green_n_go/screens/home_page.dart';
 import '../main.dart';
 import '../screens/personalProfile.dart';
 import '../screens/rewards_page.dart';
-
-int _selectedIndex = 0;
+import 'package:green_n_go/utils/globals.dart' as globals;
 
 class NavBar extends StatefulWidget {
   const NavBar({super.key});
@@ -21,11 +20,11 @@ class _NavBarState extends State<NavBar> {
   ];
 
   void _onItemTapped(int index) {
-    int temp = _selectedIndex;
+    int temp = globals.selectedIndex;
     setState(() {
-      _selectedIndex = index;
+      globals.selectedIndex = index;
     });
-    if (_selectedIndex != temp) {
+    if (globals.selectedIndex != temp) {
       Navigator.push(
         context,
         PageRouteBuilder(
@@ -74,7 +73,7 @@ class _NavBarState extends State<NavBar> {
           ),
         ],
         onTap: _onItemTapped,
-        currentIndex: _selectedIndex,
+        currentIndex: globals.selectedIndex,
       ),
     );
   }

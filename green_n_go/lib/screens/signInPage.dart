@@ -5,8 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:green_n_go/main.dart';
+import 'package:green_n_go/screens/home_page.dart';
 import 'package:green_n_go/screens/user_setup.dart';
 import 'package:green_n_go/utils/auth.dart';
+import 'package:green_n_go/utils/globals.dart' as globals;
 
 class SignInPage extends StatefulWidget {
   const SignInPage({Key? key}) : super(key: key);
@@ -46,19 +49,37 @@ class _SignInPageState extends State<SignInPage> {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
-      if (user != null) {
+      // if (user != null) {
+      //   CollectionReference users =
+      //       FirebaseFirestore.instance.collection('users');
+      //   if (user.uid != users.doc(user.uid).get()) {
+      //     users.doc(user.uid).update({
+      //       'name': user.displayName,
+      //       'email': user.email,
+      //       'photo': user.photoURL,
+      //       "num_comments_made": num_comments_made,
+      //       "num_plates_finished": num_plates_finished
+      //     });
+      //   }
+      // }
+      FirebaseFirestore.instance
+          .collection('users')
+          .doc(user?.uid)
+          .get()
+          .then((docSnapshot) {
         CollectionReference users =
             FirebaseFirestore.instance.collection('users');
-        if (user.uid != users.doc(user.uid).get()) {
-          users.doc(user.uid).set({
+        if (!docSnapshot.exists) {
+          users.doc(user!.uid).set({
             'name': user.displayName,
             'email': user.email,
             'photo': user.photoURL,
             "num_comments_made": num_comments_made,
             "num_plates_finished": num_plates_finished
           });
+          globals.firstTimeLogin = true;
         }
-      }
+      });
     });
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -102,13 +123,17 @@ class _SignInPageState extends State<SignInPage> {
                       try {
                         UserCredential userCredential =
                             await signInWithGoogle();
-                        if (userCredential.user != null) {
+                        if (globals.firstTimeLogin == true) {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => const UserSetup()));
                         } else {
                           // Show error message to user
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => HomePage()));
                         }
                       } catch (e) {
                         print(e);

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:green_n_go/screens/home_page.dart';
+import 'package:green_n_go/screens/signInPage.dart';
 import 'package:green_n_go/screens/user_setup.dart';
 import 'package:green_n_go/utils/auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:green_n_go/utils/navBar.dart';
+import 'package:green_n_go/utils/globals.dart' as globals;
 
 class ProfileView extends StatelessWidget {
   Future<void> signOut() async {
@@ -14,7 +17,9 @@ class ProfileView extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     final user = FirebaseAuth.instance.currentUser;
-    // double height = MediaQuery.of(context).size.height;
+
+    globals.selectedIndex = 1;
+
 // profile page styling
     if (user != null) {
       return Scaffold(
@@ -30,6 +35,7 @@ class ProfileView extends StatelessWidget {
               children: [
                 const Text(
                   'My Profile',
+
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.normal),
                 ),
 
@@ -41,7 +47,7 @@ class ProfileView extends StatelessWidget {
             Row(children: [
               SizedBox(height: 0.2 * height),
               Image.asset(
-                'assets/images/profileicon.png',
+                user.photoURL!,
                 width: 100.0,
                 height: 100.0,
               ),
@@ -215,13 +221,14 @@ class ProfileView extends StatelessWidget {
               onPressed: () async {
                 try {
                   UserCredential userCredential = await signInWithGoogle();
-                  if (userCredential.user != null) {
+                  if (globals.firstTimeLogin == true) {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => const UserSetup()));
                   } else {
-                    // Show error message to user
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => HomePage()));
                   }
                 } catch (e) {
                   print(e);
