@@ -9,6 +9,7 @@ import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:intl/intl.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 
 DateTime now = DateTime.now();
 String formattedDate = DateFormat('yyyy-MM-dd').format(now);
@@ -190,80 +191,34 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(children: [
-                  SizedBox(height: height * 0.05),
-                  SizedBox(width: width * 0.05),
-                  const Text("Rate your experience",
-                      style: TextStyle(color: Colors.black)),
-                  SizedBox(height: height * 0.05),
-                  SizedBox(width: width * 0.05),
-                  const Text("How did you like it?",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 17.1429,
-                          fontFamily: 'Inter',
-                          color: Colors.black87)),
-                  SizedBox(width: width * 0.1),
-                  const Icon(Icons.pets, color: Colors.black),
-                ]),
-                SizedBox(width: width * 0.05),
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.grey,
-                      width: width * 0.002,
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    const Text(
+                      "Rate your experience",
+                      style: TextStyle(color: Colors.black, fontSize: 20),
                     ),
-                  ),
-                  child: SfSlider(
-                    activeColor: Colors.green,
-                    inactiveColor: Colors.grey,
-                    min: 0,
-                    max: 5,
-                    stepSize: 1,
-                    showLabels: true,
-                    showDividers: true,
-                    interval: 1,
-                    value: _rating,
-                    onChanged: (newRating) {
-                      setState(() => _rating = newRating);
-                    },
-                    labelPlacement: LabelPlacement.onTicks,
-                    labelFormatterCallback:
-                        (dynamic actualValue, String formattedText) {
-                      switch (actualValue.toInt()) {
-                        case 0:
-                          return "0";
-                        case 1:
-                          return "1";
-                        case 2:
-                          return "2";
-                        case 3:
-                          return "3";
-                        case 4:
-                          return "4";
-                        case 5:
-                          return "5";
-                      }
-                      return actualValue.toInt();
-                    },
-                  ),
+                    SizedBox(height: height * 0.01),
+                    Row(children: [
+                      SizedBox(height: height * 0.05),
+                      SizedBox(width: width * 0.05),
+                      const Text("How did you like it?",
+                          style: TextStyle(
+                              fontWeight: FontWeight.normal,
+                              fontSize: 17.1429,
+                              fontFamily: 'Inter',
+                              color: Colors.black87)),
+                      SizedBox(width: width * 0.01),
+                      const Icon(Icons.pets, color: Colors.black),
+                    ]),
+                  ],
                 ),
-
-                SizedBox(height: height * 0.03),
                 SizedBox(width: width * 0.05),
-
-                const Text("How much did you finish?",
-                    style: TextStyle(
-                        fontSize: 17.1429,
-                        fontFamily: 'Inter',
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black87)),
-
-                SizedBox(height: height * 0.02),
-
-                // TO DO: change the value so that it corresponds to the rating of food waste!
-                Container(
+                Padding(
+                  padding: EdgeInsets.all(width * 0.02),
+                  child: Container(
                     decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
                       border: Border.all(
                         color: Colors.grey,
                         width: width * 0.002,
@@ -273,64 +228,132 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
                       activeColor: Colors.green,
                       inactiveColor: Colors.grey,
                       min: 0,
-                      max: 100,
-                      stepSize: 20,
+                      max: 5,
+                      stepSize: 1,
                       showLabels: true,
                       showDividers: true,
-                      interval: 20,
-                      value: _amount_finished,
+                      interval: 1,
+                      value: _rating,
                       onChanged: (newRating) {
-                        setState(() => _amount_finished = newRating);
+                        setState(() => _rating = newRating);
                       },
                       labelPlacement: LabelPlacement.onTicks,
                       labelFormatterCallback:
                           (dynamic actualValue, String formattedText) {
                         switch (actualValue.toInt()) {
                           case 0:
-                            return "0%";
-                          case 20:
-                            return "";
-                          case 40:
-                            return "";
-                          case 60:
-                            return "";
-                          case 80:
-                            return "";
-                          case 100:
-                            return "100%";
+                            return "0";
+                          case 1:
+                            return "1";
+                          case 2:
+                            return "2";
+                          case 3:
+                            return "3";
+                          case 4:
+                            return "4";
+                          case 5:
+                            return "5";
                         }
                         return actualValue.toInt();
                       },
-                    )),
+                    ),
+                  ),
+                  
+                ),
+
+                SizedBox(height: height * 0.01),
+
+                Padding(
+                  padding: EdgeInsets.all(width * 0.05),
+                  child: const Text("How much did you finish?",
+                      style: TextStyle(
+                          fontSize: 17.1429,
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.normal,
+                          color: Colors.black87)),
+                ),
+
+                // TO DO: change the value so that it corresponds to the rating of food waste!
+                Padding(
+                  padding: EdgeInsets.all(width * 0.02),
+                  child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                          color: Colors.grey,
+                          width: width * 0.002,
+                        ),
+                      ),
+                      child: SfSlider(
+                        activeColor: Colors.green,
+                        inactiveColor: Colors.grey,
+                        min: 0,
+                        max: 100,
+                        stepSize: 20,
+                        showLabels: true,
+                        showDividers: true,
+                        interval: 20,
+                        value: _amount_finished,
+                        onChanged: (newRating) {
+                          setState(() => _amount_finished = newRating);
+                        },
+                        labelPlacement: LabelPlacement.onTicks,
+                        labelFormatterCallback:
+                            (dynamic actualValue, String formattedText) {
+                          switch (actualValue.toInt()) {
+                            case 0:
+                              return "0%";
+                            case 20:
+                              return "";
+                            case 40:
+                              return "";
+                            case 60:
+                              return "";
+                            case 80:
+                              return "";
+                            case 100:
+                              return "100%";
+                          }
+                          return actualValue.toInt();
+                        },
+                      )),
+                ),
                 SizedBox(height: height * 0.03),
                 SizedBox(width: width * 0.05),
-                const Text("Leave a comment!",
-                    style: TextStyle(
-                        fontSize: 17.1429,
-                        fontFamily: 'Inter',
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black87)),
+                Padding(
+                  padding: EdgeInsets.all(width * 0.03),
+                  child: const Text("Leave a comment!",
+                      style: TextStyle(
+                          fontSize: 17.1429,
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.normal,
+                          color: Colors.black87)),
+                ),
 
-                SizedBox(height: height * 0.03),
-                SizedBox(width: width * 0.03),
-                TextField(
-                  controller: _commentController,
-                  maxLines: 3,
-                  onChanged: (value) {
-                    _comment = value;
-                  },
-                  decoration: const InputDecoration(
-                    hintText: "Type here",
-                    border: OutlineInputBorder(),
+                Padding(
+                  padding: EdgeInsets.all(width * 0.02),
+                  child: TextField(
+                    controller: _commentController,
+                    maxLines: 3,
+                    onChanged: (value) {
+                      _comment = value;
+                    },
+                    decoration: const InputDecoration(
+                      hintText: "Type here",
+                      border: OutlineInputBorder(),
+                    ),
                   ),
                 ),
                 SizedBox(height: height * 0.01),
-                const Text("Photo Upload",
-                    style: TextStyle(
-                        fontSize: 17.1429,
-                        fontFamily: 'Inter',
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black87)),
+                Padding(
+                  padding: EdgeInsets.all(width * 0.03),
+                  child: const Text("Photo Upload",
+                      style: TextStyle(
+                          fontSize: 17.1429,
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.normal,
+                          color: Colors.black87)),
+                ),
                 SizedBox(height: height * 0.03),
 
                 Center(
@@ -387,20 +410,16 @@ class CommentScreen extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Comments'),
-      ),
       body: Container(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: height * 0.01),
             const Text(
               'Comments:',
               style: TextStyle(
                 fontSize: 18.0,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.normal,
               ),
             ),
             SizedBox(height: height * 0.01),
@@ -490,80 +509,121 @@ class NutritionScreen extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Nutrition Details'),
-        ),
         body: Container(
-          height: height,
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+      height: height,
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const Text(
+            "Nutritional Detail",
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.normal,
+            ),
+          ),
+
+          // make space
+          SizedBox(
+            height: height * 0.02,
+          ),
+          const Text(
+            "About",
+            style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.normal,
+                color: Colors.green),
+          ),
+          SizedBox(
+            height: height * 0.01,
+          ),
+
+          Text(
+            foodItem.description ?? '',
+            style: const TextStyle(fontSize: 16, color: Colors.grey),
+          ),
+          SizedBox(height: height * 0.03),
+          const Text(
+            "Nutritional Value",
+            style: TextStyle(
+                fontSize: 15, fontWeight: FontWeight.bold, color: Colors.green),
+          ),
+
+          SizedBox(height: height * 0.01),
+
+          Row(
             children: [
-              const Text(
-                "Nutritional Detail",
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.normal,
-                ),
-              ),
-
-              // make space
-              SizedBox(
-                height: height * 0.02,
-              ),
-              const Text(
-                "About",
-                style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.normal,
-                    color: Colors.green),
-              ),
-              SizedBox(
-                height: height * 0.01,
-              ),
-
               Text(
-                foodItem.description ?? '',
-                style: const TextStyle(fontSize: 16, color: Colors.grey),
-              ),
-              SizedBox(height: height * 0.03),
-              const Text(
-                "Nutritional Value",
-                style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.green),
-              ),
-
-              SizedBox(height: height * 0.01),
-              Text(
-                'Carbs ${foodItem.carbs?.toString() ?? ''}g',
+                'Carbs',
                 style: const TextStyle(fontSize: 12),
               ),
-              SizedBox(height: height * 0.01),
+              SizedBox(width: width * 0.50),
               Text(
-                'Protiens ${foodItem.protiens?.toString() ?? ''}g',
+                '${foodItem.carbs?.toString() ?? ''}g',
                 style: const TextStyle(fontSize: 12),
               ),
-              SizedBox(height: height * 0.01),
-              Text(
-                'Saturated Fats ${foodItem.satFat?.toString() ?? ''}g',
-                style: const TextStyle(fontSize: 12),
-              ),
-              SizedBox(height: height * 0.01),
-              Text(
-                'Sugar ${foodItem.sugars?.toString() ?? ''}g',
-                style: const TextStyle(fontSize: 12),
-              ),
-              SizedBox(height: height * 0.01),
-              Text(
-                'Calories ${foodItem.cals?.toString() ?? ''}g',
-                style: const TextStyle(fontSize: 12),
-              ),
-              SizedBox(height: height * 0.01),
             ],
           ),
-        ));
+
+          Row(
+            children: [
+              Text(
+                'Protiens',
+                style: const TextStyle(fontSize: 12),
+              ),
+              SizedBox(width: width * 0.47),
+              Text(
+                '${foodItem.protiens?.toString() ?? ''}g',
+                style: const TextStyle(fontSize: 12),
+              ),
+            ],
+          ),
+
+          Row(
+            children: [
+              Text(
+                'Saturated Fats',
+                style: const TextStyle(fontSize: 12),
+              ),
+              SizedBox(width: width * 0.39),
+              Text(
+                '${foodItem.satFat?.toString() ?? ''}g',
+                style: const TextStyle(fontSize: 12),
+              ),
+            ],
+          ),
+
+          Row(
+            children: [
+              Text(
+                'Sugar',
+                style: const TextStyle(fontSize: 12),
+              ),
+              SizedBox(width: width * 0.5),
+              Text(
+                '${foodItem.sugars?.toString() ?? ''}g',
+                style: const TextStyle(fontSize: 12),
+              ),
+            ],
+          ),
+
+          Row(
+            children: [
+              Text(
+                'Calories',
+                style: const TextStyle(fontSize: 12),
+              ),
+              SizedBox(width: width * 0.455),
+              Text(
+                '${foodItem.cals?.toString() ?? ''}g',
+                style: const TextStyle(fontSize: 12),
+              ),
+            ],
+          ),
+          SizedBox(height: height * 0.01),
+        ],
+      ),
+    ));
   }
 }
 
@@ -586,8 +646,49 @@ class _ReviewScreensState extends State<ReviewScreens> {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Scaffold(
-      resizeToAvoidBottomInset: true,
+      appBar: CupertinoNavigationBar(
+          leading: Padding(
+            padding: EdgeInsets.only(left: 30),
+            child: IconTheme(
+              data: IconThemeData(size: 35.0),
+              child: IconButton(
+                icon: Icon(CupertinoIcons.back),
+                color: Color(0xff3B7D3C),
+                onPressed: () {
+                  _pageController.previousPage(
+                      duration: Duration(milliseconds: 200),
+                      curve: Curves.easeInOut);
+                },
+              ),
+            ),
+          ),
+          middle: Column(
+            children: [
+              Image.asset(
+                'assets/images/rectangle.png',
+                width: width * 0.13,
+                height: kTextTabBarHeight * 0.7,
+              ),
+            ],
+          ),
+          trailing: Padding(
+            padding: EdgeInsets.only(right: 30),
+            child: IconTheme(
+              data: IconThemeData(size: 32.0),
+              child: IconButton(
+                icon: Icon(CupertinoIcons.forward),
+                color: Color(0xff3B7D3C),
+                onPressed: () {
+                  _pageController.nextPage(
+                      duration: Duration(milliseconds: 200),
+                      curve: Curves.easeInOut);
+                },
+              ),
+            ),
+          )),
       body: PageView(
         controller: _pageController,
         children: [
@@ -607,5 +708,34 @@ class _ReviewScreensState extends State<ReviewScreens> {
   void dispose() {
     _pageController.dispose();
     super.dispose();
+  }
+}
+
+class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const MyAppBar({Key? key});
+
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight + 30);
+
+  @override
+  Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+
+    return CupertinoNavigationBar(
+      leading: Icon(CupertinoIcons.back),
+      middle: Column(
+        children: [
+          Image.asset(
+            'assets/images/rectangle.png',
+            width: width * 0.13,
+            height: kTextTabBarHeight * 0.7,
+          ),
+        ],
+      ),
+      trailing: IconButton(
+        icon: Icon(CupertinoIcons.forward),
+        onPressed: () {},
+      ),
+    );
   }
 }

@@ -100,11 +100,11 @@ class _SignInPageState extends State<SignInPage> {
                   ),
                   Image.asset(
                     'assets/images/logo.png',
-                    height: 120,
-                    width: 120,
+                    height: width * 0.3,
+                    width: width * 0.3,
                   ),
-                  const SizedBox(
-                    height: 100,
+                  SizedBox(
+                    height: height * 0.2,
                   ),
                   const Text("Welcome, Terrier!",
                       style: TextStyle(fontSize: 15)),
@@ -155,8 +155,8 @@ class _SignInPageState extends State<SignInPage> {
                           fontSize: 16,
                         )),
                   ),
-                  const SizedBox(
-                    height: 10,
+                  SizedBox(
+                    height: height * 0.01,
                   ),
                   TextButton(
                     onPressed: () {

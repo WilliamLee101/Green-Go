@@ -6,6 +6,7 @@ import 'package:green_n_go/screens/review.dart';
 import 'package:green_n_go/utils/navBar.dart';
 import 'package:intl/intl.dart';
 
+
 class ReturnMenu extends StatefulWidget {
   final List<FoodItem> selectedMealType;
   final String dhall;
@@ -148,6 +149,8 @@ class _ReturnMenuState extends State<ReturnMenu> {
                           child: ElevatedButton.icon(
                             onPressed: () {
                               showModalBottomSheet(
+                                isDismissible: true,
+                                enableDrag: true,
                                 constraints:
                                     BoxConstraints.expand(height: 0.6 * height),
                                 isScrollControlled: true,
@@ -156,8 +159,11 @@ class _ReturnMenuState extends State<ReturnMenu> {
                                     top: Radius.circular(20.0),
                                   ),
                                 ),
+                                backgroundColor: Colors.transparent,
+                                clipBehavior: Clip.antiAlias,
                                 context: context,
                                 builder: (BuildContext context) {
+                                
                                   return ReviewScreens(
                                     foodItem: food,
                                     diningHall: widget.dhall,

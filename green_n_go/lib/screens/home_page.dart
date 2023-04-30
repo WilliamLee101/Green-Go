@@ -68,7 +68,7 @@ class HomePage extends StatelessWidget {
                     ),
                   ]),
                   SizedBox(
-                    height: 0.04 * height,
+                    height: 0.1 * height,
                   ),
                   Align(
                     alignment: Alignment.center,
@@ -82,11 +82,6 @@ class HomePage extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: const [
                             // text and stylying for select dining halls
-                            Text(
-                              "Location",
-                              style: TextStyle(
-                                  color: Color(0xff3B7D3C), fontSize: 13),
-                            ),
                             Text(
                               'Select Dining Hall',
                               style: TextStyle(
