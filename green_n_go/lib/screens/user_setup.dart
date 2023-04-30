@@ -4,7 +4,7 @@ import 'package:green_n_go/utils/auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 //Global variables
-var isKosher = false;
+var isHalal = false;
 var isVegetarian = false;
 var isVegan = false;
 var isGluten = false;
@@ -62,7 +62,7 @@ class _PreferencesState extends State<Preferences> {
           FirebaseFirestore.instance.collection('users');
       if (user?.uid != users.doc(user?.uid).get()) {
         users.doc(user?.uid).update({
-          'isKosher': isKosher,
+          'isHalal': isHalal,
           'isVegetarian': isVegetarian,
           'isVegan': isVegan,
           'isGluten': isGluten,
@@ -139,18 +139,17 @@ class _PreferencesState extends State<Preferences> {
                                 child: TextButton(
                                   onPressed: () {
                                     setState(() {
-                                      isKosher = !isKosher;
+                                      isHalal = !isHalal;
                                     });
                                   },
                                   style: ButtonStyle(
                                     backgroundColor:
-                                        MaterialStateProperty.all<Color>(
-                                            isKosher
-                                                ? const Color(0xff3A7D3C)
-                                                : const Color(0xffB3B3B3)),
+                                        MaterialStateProperty.all<Color>(isHalal
+                                            ? const Color(0xff3A7D3C)
+                                            : const Color(0xffB3B3B3)),
                                   ),
                                   child: const Text(
-                                    "Kosher",
+                                    "Halal",
                                     style: TextStyle(color: Colors.white),
                                   ),
                                 ),
@@ -295,5 +294,3 @@ class _PreferencesState extends State<Preferences> {
     ;
   }
 }
-
-
