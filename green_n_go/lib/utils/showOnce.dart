@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
 //This utility is used to only show the intro screens the first time the user opens the download from a download. Otherwise will redirect users
 class ShowOnceUtil extends StatefulWidget {
   static const String id = "/ShowOnceUtil";

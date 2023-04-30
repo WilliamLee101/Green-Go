@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:green_n_go/screens/signInPage.dart';
 
-
 //Set of intro screens that users see when they first download the app
 class IntroScreen extends StatefulWidget {
   const IntroScreen({super.key});
@@ -19,6 +18,8 @@ class _IntroScreenState extends State<IntroScreen>
     IntroScreen3(),
     SignInPage(),
   ];
+
+  //Functions for indicating page, breakfast, lunch, dinner
 
   void _onPageChanged(int index) {
     setState(() {
@@ -53,6 +54,7 @@ class _IntroScreenState extends State<IntroScreen>
             borderStyle: BorderStyle.none,
             selectedColor: Color(0xff3B7D3C),
           ),
+         
         ],
       ),
     );

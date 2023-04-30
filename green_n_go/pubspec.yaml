@@ -45,6 +45,10 @@ dependencies:
   sliding_up_panel: ^2.0.0+1
   shared_preferences: ^2.1.0
   syncfusion_flutter_sliders: ^21.1.41
+  material: ^1.0.0+2
+  image_picker: ^0.8.7+4
+  firebase_storage: ^11.1.1
+  camera: ^0.9.4+5
 
  
  

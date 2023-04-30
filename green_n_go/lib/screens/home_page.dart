@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:green_n_go/screens/marciano.dart';
 import 'package:green_n_go/screens/warren.dart';
 import 'package:green_n_go/screens/west.dart';
+import 'package:green_n_go/utils/navBar.dart';
+import 'package:green_n_go/utils/globals.dart' as globals;
 
 // importing of green
 final Color darkGreen = Color(0xFF3B7D3C);
@@ -16,13 +18,16 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
+    final user = FirebaseAuth.instance.currentUser;
+    globals.selectedIndex = 0;
     return Scaffold(
+      bottomNavigationBar: const NavBar(),
       body: Center(
         child: Stack(
           children: [
             Container(
               height: 0.2 * height,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Color(0xff3B7D3C),
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(30),
