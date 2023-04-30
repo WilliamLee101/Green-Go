@@ -44,11 +44,28 @@ class _SignInPageState extends State<SignInPage> {
   @override
   Widget build(BuildContext context) {
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
-      if (user != null) {
+      // if (user != null) {
+      //   CollectionReference users =
+      //       FirebaseFirestore.instance.collection('users');
+      //   if (user.uid != users.doc(user.uid).get()) {
+      //     users.doc(user.uid).update({
+      //       'name': user.displayName,
+      //       'email': user.email,
+      //       'photo': user.photoURL,
+      //       "num_comments_made": num_comments_made,
+      //       "num_plates_finished": num_plates_finished
+      //     });
+      //   }
+      // }
+      FirebaseFirestore.instance
+          .collection('users')
+          .doc(user?.uid)
+          .get()
+          .then((docSnapshot) {
         CollectionReference users =
             FirebaseFirestore.instance.collection('users');
-        if (user.uid != users.doc(user.uid).get()) {
-          users.doc(user.uid).set({
+        if (!docSnapshot.exists) {
+          users.doc(user!.uid).set({
             'name': user.displayName,
             'email': user.email,
             'photo': user.photoURL,
@@ -56,7 +73,7 @@ class _SignInPageState extends State<SignInPage> {
             "num_plates_finished": num_plates_finished
           });
         }
-      }
+      });
     });
     return Scaffold(
       resizeToAvoidBottomInset: false,
