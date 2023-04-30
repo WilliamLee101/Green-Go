@@ -14,9 +14,13 @@ class ProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     final user = FirebaseAuth.instance.currentUser;
+
     double height = MediaQuery.of(context).size.height;
     globals.selectedIndex = 1;
+
 // profile page styling
     if (user != null) {
       return Scaffold(
@@ -32,20 +36,17 @@ class ProfileView extends StatelessWidget {
               children: [
                 const Text(
                   'My Profile',
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.normal),
                 ),
-                const SizedBox(width: 150),
-                Image.asset(
-                  'assets/images/terrier_logo.png',
-                  width: 30.0,
-                  height: 30.0,
-                ),
+
                 // Add some spacing between the image and the text
               ],
             ),
           ),
           body: Column(children: [
             Row(children: [
+              SizedBox(height: 0.2 * height),
               Image.asset(
                 user.photoURL!,
                 width: 100.0,
@@ -65,102 +66,102 @@ class ProfileView extends StatelessWidget {
                 alignment: Alignment.topLeft,
                 child: Column(children: [
                   // make space
-                  const SizedBox(
-                    height: 10,
+                  SizedBox(
+                    height: 0.01 * height,
                   ),
                   Container(
-                    padding: EdgeInsets.only(right: 20.0),
+                    padding: EdgeInsets.only(left: width * 0.05),
                     child: const Text(
                       'Dietary Preference',
                       style: TextStyle(
-                        fontSize: 15,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
+                          fontSize: 15,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Inter'),
                     ),
                   ),
 
                   // make space
-                  const SizedBox(
-                    height: 10,
+                  SizedBox(
+                    height: 0.01 * height,
                   ),
                   Container(
-                    padding: EdgeInsets.only(right: 20.0),
+                    padding: EdgeInsets.only(left: width * 0.02),
                     child: const Text(
                       'No Preference',
                       style: TextStyle(
-                        fontSize: 15,
-                        color: Colors.black,
-                        fontWeight: FontWeight.normal,
-                      ),
+                          fontSize: 15,
+                          color: Colors.grey,
+                          fontWeight: FontWeight.normal,
+                          fontFamily: 'Inter'),
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.only(right: 20.0),
+                    padding: EdgeInsets.only(right: width * 0.1),
                     child: const Text(
                       'Vegan',
                       style: TextStyle(
-                        fontSize: 15,
-                        color: Colors.black,
-                        fontWeight: FontWeight.normal,
-                      ),
+                          fontSize: 15,
+                          color: Colors.grey,
+                          fontWeight: FontWeight.normal,
+                          fontFamily: 'Inter'),
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.only(right: 20.0),
+                    padding: EdgeInsets.only(right: width * 0.1),
                     child: const Text(
                       'Kosher',
                       style: TextStyle(
-                        fontSize: 15,
-                        color: Colors.black,
-                        fontWeight: FontWeight.normal,
-                      ),
+                          fontSize: 15,
+                          color: Colors.grey,
+                          fontWeight: FontWeight.normal,
+                          fontFamily: 'Inter'),
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.only(right: 20.0),
+                    padding: EdgeInsets.only(right: width * 0.01),
                     child: const Text(
                       'Gluten-free',
                       style: TextStyle(
-                        fontSize: 15,
-                        color: Colors.black,
-                        fontWeight: FontWeight.normal,
-                      ),
+                          fontSize: 15,
+                          color: Colors.grey,
+                          fontWeight: FontWeight.normal,
+                          fontFamily: 'Inter'),
                     ),
                   )
                 ])),
             // make space
-            const SizedBox(
-              height: 20,
+            SizedBox(
+              height: height * 0.02,
             ),
             Align(
                 alignment: Alignment.centerLeft,
                 child: Container(
-                  padding: EdgeInsets.only(right: 20.0),
+                  padding: EdgeInsets.only(left: width * 0.05),
                   child: const Text(
                     'Activites',
                     style: TextStyle(
-                      fontSize: 15,
-                      color: Colors.green,
-                      fontWeight: FontWeight.normal,
-                    ),
+                        fontSize: 15,
+                        color: Colors.green,
+                        fontWeight: FontWeight.normal,
+                        fontFamily: 'Inter'),
                   ),
                 )),
             // make space
-            const SizedBox(
-              height: 10,
+            SizedBox(
+              height: height * 0.01,
             ),
             Align(
                 alignment: Alignment.centerLeft,
                 child: Container(
-                  padding: EdgeInsets.only(right: 20.0),
+                  padding: EdgeInsets.only(left: width * 0.05),
                   child: const Text(
                     'Your Terrier Type',
                     style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.black,
-                      fontWeight: FontWeight.normal,
-                    ),
+                        fontSize: 20,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Inter'),
                   ),
                 )),
             const SizedBox(
@@ -171,43 +172,43 @@ class ProfileView extends StatelessWidget {
                 child: Container(
                   padding: EdgeInsets.only(right: 20.0),
                   child: const Text(
-                    'TERRIER PERSONA',
+                    'INSERT TERRIER PERSONA',
                     style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                    ),
+                        fontSize: 20,
+                        color: Colors.black,
+                        fontWeight: FontWeight.normal,
+                        fontFamily: 'Inter'),
                   ),
                 )),
-            const SizedBox(
-              height: 50,
+            SizedBox(
+              height: height * 0.05,
             ),
             Align(
                 alignment: Alignment.centerLeft,
                 child: Container(
-                  padding: EdgeInsets.only(right: 20.0),
+                  padding: EdgeInsets.only(left: width * 0.05),
                   child: const Text(
                     'My Account',
                     style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                    ),
+                        fontSize: 20,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Inter'),
                   ),
                 )),
 
-            const SizedBox(
-              height: 10,
+            SizedBox(
+              height: height * 0.01,
             ),
             Align(
                 alignment: Alignment.centerLeft,
                 child: ElevatedButton(
                     onPressed: signOut,
-                    child: const Text("Log out",
-                        style: const TextStyle(color: Colors.red)),
                     style: ButtonStyle(
                         backgroundColor:
-                            MaterialStateProperty.all(Colors.white))))
+                            MaterialStateProperty.all(Colors.white)),
+                    child: const Text("Log out",
+                        style: TextStyle(color: Colors.red))))
           ]));
     } else {
       return Scaffold(
@@ -216,7 +217,7 @@ class ProfileView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(height: height * 0.5),
-            Text("You are not logged in"),
+            const Text("You are not logged in"),
             TextButton(
               onPressed: () async {
                 try {
