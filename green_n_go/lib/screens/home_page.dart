@@ -150,8 +150,8 @@ class HomePage extends StatelessWidget {
                         children: [
                           Container(
                             padding: const EdgeInsets.all(10),
-                            height: 0.1 * height,
-                            width: 0.3 * width,
+                            height: 0.2 * width,
+                            width: 0.2 * width,
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(
                                   16), // 50% of the width and height
@@ -258,8 +258,8 @@ class HomePage extends StatelessWidget {
                         children: [
                           Container(
                             padding: const EdgeInsets.all(10),
-                            height: 0.1 * height,
-                            width: 0.3 * width,
+                            height: 0.2 * width,
+                            width: 0.2 * width,
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(
                                   16), // 50% of the width and height
@@ -366,8 +366,8 @@ class HomePage extends StatelessWidget {
                         children: [
                           Container(
                             padding: const EdgeInsets.all(10),
-                            height: 0.1 * height,
-                            width: 0.3 * width,
+                            height: 0.2 * width,
+                            width: 0.2 * width,
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(
                                   16), // 50% of the width and height

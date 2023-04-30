@@ -144,17 +144,16 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
         onTap: () => FocusScope.of(context).unfocus(),
         child: Scaffold(
           resizeToAvoidBottomInset: true, // remove the extra argument here
-          appBar: AppBar(
-            backgroundColor: Colors.green,
-            title: Text("Rate your experience",
-                style: TextStyle(color: Colors.white)),
-          ),
 
           body: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(children: [
+                  SizedBox(height: height * 0.05),
+                  SizedBox(width: width * 0.05),
+                  const Text("Rate your experience",
+                      style: TextStyle(color: Colors.black)),
                   SizedBox(height: height * 0.05),
                   SizedBox(width: width * 0.05),
                   const Text("How did you like it?",

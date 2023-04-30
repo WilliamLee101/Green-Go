@@ -79,6 +79,8 @@ class IntroScreen1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -86,7 +88,7 @@ class IntroScreen1 extends StatelessWidget {
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              SizedBox(height: 170),
+              SizedBox(height: height * 0.1),
               Image.asset(
                 "assets/images/logo.png",
                 height: 153,
