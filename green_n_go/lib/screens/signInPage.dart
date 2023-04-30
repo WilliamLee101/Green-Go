@@ -46,6 +46,8 @@ class _SignInPageState extends State<SignInPage> {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
       // if (user != null) {
       //   CollectionReference users =
@@ -113,8 +115,8 @@ class _SignInPageState extends State<SignInPage> {
                         fontWeight: FontWeight.bold,
                         color: Color(0xff3A7D3C)),
                   ),
-                  const SizedBox(
-                    height: 220,
+                  SizedBox(
+                    height: height * 0.02,
                   ),
                   TextButton(
                     onPressed: () async {
