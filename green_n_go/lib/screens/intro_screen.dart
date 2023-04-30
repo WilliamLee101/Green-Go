@@ -54,7 +54,6 @@ class _IntroScreenState extends State<IntroScreen>
             borderStyle: BorderStyle.none,
             selectedColor: Color(0xff3B7D3C),
           ),
-         
         ],
       ),
     );
@@ -80,6 +79,8 @@ class IntroScreen1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -87,13 +88,13 @@ class IntroScreen1 extends StatelessWidget {
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              SizedBox(height: 170),
+              SizedBox(height: height * 0.1),
               Image.asset(
                 "assets/images/logo.png",
-                height: 153,
-                width: 153,
+                height: width * 0.3,
+                width: width * 0.3,
               ),
-              SizedBox(height: 350),
+              SizedBox(height: height * 0.35),
               Stack(children: [
                 Padding(
                   padding: const EdgeInsets.only(bottom: 0, left: 35),

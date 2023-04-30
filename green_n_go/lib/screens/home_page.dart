@@ -26,7 +26,7 @@ class HomePage extends StatelessWidget {
         child: Stack(
           children: [
             Container(
-              height: 0.2 * height,
+              height: 0.22 * height,
               decoration: const BoxDecoration(
                 color: Color(0xff3B7D3C),
                 borderRadius: BorderRadius.only(
@@ -64,18 +64,11 @@ class HomePage extends StatelessWidget {
                               color: Colors.white),
                           textAlign: TextAlign.left,
                         ),
-                        Expanded(
-                          child: Image.asset(
-                            'assets/images/terrier_logo.png',
-                            width: 30.0,
-                            height: 30.0,
-                          ),
-                        ),
                       ],
                     ),
                   ]),
-                  const SizedBox(
-                    height: 40,
+                  SizedBox(
+                    height: 0.1 * height,
                   ),
                   Align(
                     alignment: Alignment.center,
@@ -90,11 +83,6 @@ class HomePage extends StatelessWidget {
                           children: const [
                             // text and stylying for select dining halls
                             Text(
-                              "Location",
-                              style: TextStyle(
-                                  color: Color(0xff3B7D3C), fontSize: 13),
-                            ),
-                            Text(
                               'Select Dining Hall',
                               style: TextStyle(
                                   fontSize: 17.1429,
@@ -106,8 +94,8 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   // make space
-                  const SizedBox(
-                    height: 10,
+                  SizedBox(
+                    height: 0.01 * height,
                   ),
                   // Warren
                   GestureDetector(
@@ -159,8 +147,8 @@ class HomePage extends StatelessWidget {
                         children: [
                           Container(
                             padding: const EdgeInsets.all(10),
-                            height: 100,
-                            width: 100,
+                            height: 0.2 * width,
+                            width: 0.2 * width,
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(
                                   16), // 50% of the width and height
@@ -172,8 +160,8 @@ class HomePage extends StatelessWidget {
                               ),
                             ),
                           ),
-                          const SizedBox(
-                            width: 10,
+                          SizedBox(
+                            width: 0.01 * width,
                           ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -211,8 +199,9 @@ class HomePage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(
-                      height: 16), // Add some space between the buttons
+                  SizedBox(
+                      height:
+                          0.01 * height), // Add some space between the buttons
 
                   // Marciano
                   GestureDetector(
@@ -266,8 +255,8 @@ class HomePage extends StatelessWidget {
                         children: [
                           Container(
                             padding: const EdgeInsets.all(10),
-                            height: 100,
-                            width: 100,
+                            height: 0.2 * width,
+                            width: 0.2 * width,
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(
                                   16), // 50% of the width and height
@@ -318,8 +307,9 @@ class HomePage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(
-                      height: 16), // Add some space between the buttons
+                  SizedBox(
+                      height:
+                          0.01 * height), // Add some space between the buttons
 
                   // West
                   GestureDetector(
@@ -373,8 +363,8 @@ class HomePage extends StatelessWidget {
                         children: [
                           Container(
                             padding: const EdgeInsets.all(10),
-                            height: 100,
-                            width: 100,
+                            height: 0.2 * width,
+                            width: 0.2 * width,
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(
                                   16), // 50% of the width and height
@@ -386,8 +376,8 @@ class HomePage extends StatelessWidget {
                               ),
                             ),
                           ),
-                          const SizedBox(
-                            width: 10,
+                          SizedBox(
+                            width: 0.01 * width,
                           ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,

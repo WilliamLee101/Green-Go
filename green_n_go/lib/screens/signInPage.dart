@@ -46,6 +46,8 @@ class _SignInPageState extends State<SignInPage> {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
       // if (user != null) {
       //   CollectionReference users =
@@ -98,11 +100,11 @@ class _SignInPageState extends State<SignInPage> {
                   ),
                   Image.asset(
                     'assets/images/logo.png',
-                    height: 120,
-                    width: 120,
+                    height: width * 0.3,
+                    width: width * 0.3,
                   ),
-                  const SizedBox(
-                    height: 100,
+                  SizedBox(
+                    height: height * 0.2,
                   ),
                   const Text("Welcome, Terrier!",
                       style: TextStyle(fontSize: 15)),
@@ -113,8 +115,8 @@ class _SignInPageState extends State<SignInPage> {
                         fontWeight: FontWeight.bold,
                         color: Color(0xff3A7D3C)),
                   ),
-                  const SizedBox(
-                    height: 220,
+                  SizedBox(
+                    height: height * 0.02,
                   ),
                   TextButton(
                     onPressed: () async {
@@ -153,8 +155,8 @@ class _SignInPageState extends State<SignInPage> {
                           fontSize: 16,
                         )),
                   ),
-                  const SizedBox(
-                    height: 10,
+                  SizedBox(
+                    height: height * 0.01,
                   ),
                   TextButton(
                     onPressed: () {
