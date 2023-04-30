@@ -38,20 +38,34 @@ class _ReturnMenuState extends State<ReturnMenu> {
     if (widget.selectedMealType.isEmpty) {
       print("emtpy array ");
       return Scaffold(
-        body: Column(
+        body: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(
-              height: 0.1 * height,
-            ),
-            const Text(
-              'No food items available',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(
-              height: 20,
+            Column(
+              children: [
+                SizedBox(height: height * 0.2),
+                const Text(
+                  "Oops!",
+                  style: TextStyle(
+                    color: Color(0xff3B7D3C),
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Text(
+                  'There are no ${widget.mealTime.toLowerCase()}\n items available at this time.',
+                  style: const TextStyle(
+                    color: Color(0xff3B7D3C),
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: height > 700 ? TextAlign.center : TextAlign.left,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+              ],
             ),
           ],
         ),
