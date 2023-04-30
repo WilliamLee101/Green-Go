@@ -18,7 +18,6 @@ class ProfileView extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
     final user = FirebaseAuth.instance.currentUser;
 
-    double height = MediaQuery.of(context).size.height;
     globals.selectedIndex = 1;
 
 // profile page styling

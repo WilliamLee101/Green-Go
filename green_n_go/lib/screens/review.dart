@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:green_n_go/main.dart';
 import 'package:image_picker/image_picker.dart';
 import '../classes/foodItem.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
@@ -7,6 +8,7 @@ import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:intl/intl.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 
 DateTime now = DateTime.now();
 String formattedDate = DateFormat('yyyy-MM-dd').format(now);
@@ -346,9 +348,6 @@ class CommentScreen extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Comments'),
-      ),
       body: Container(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -449,80 +448,75 @@ class NutritionScreen extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Nutrition Details'),
-        ),
         body: Container(
-          height: height,
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              const Text(
-                "Nutritional Detail",
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.normal,
-                ),
-              ),
-
-              // make space
-              SizedBox(
-                height: height * 0.02,
-              ),
-              const Text(
-                "About",
-                style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.normal,
-                    color: Colors.green),
-              ),
-              SizedBox(
-                height: height * 0.01,
-              ),
-
-              Text(
-                foodItem.description ?? '',
-                style: const TextStyle(fontSize: 16, color: Colors.grey),
-              ),
-              SizedBox(height: height * 0.03),
-              const Text(
-                "Nutritional Value",
-                style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.green),
-              ),
-
-              SizedBox(height: height * 0.01),
-              Text(
-                'Carbs ${foodItem.carbs?.toString() ?? ''}g',
-                style: const TextStyle(fontSize: 12),
-              ),
-              SizedBox(height: height * 0.01),
-              Text(
-                'Protiens ${foodItem.protiens?.toString() ?? ''}g',
-                style: const TextStyle(fontSize: 12),
-              ),
-              SizedBox(height: height * 0.01),
-              Text(
-                'Saturated Fats ${foodItem.satFat?.toString() ?? ''}g',
-                style: const TextStyle(fontSize: 12),
-              ),
-              SizedBox(height: height * 0.01),
-              Text(
-                'Sugar ${foodItem.sugars?.toString() ?? ''}g',
-                style: const TextStyle(fontSize: 12),
-              ),
-              SizedBox(height: height * 0.01),
-              Text(
-                'Calories ${foodItem.cals?.toString() ?? ''}g',
-                style: const TextStyle(fontSize: 12),
-              ),
-              SizedBox(height: height * 0.01),
-            ],
+      height: height,
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const Text(
+            "Nutritional Detail",
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.normal,
+            ),
           ),
-        ));
+
+          // make space
+          SizedBox(
+            height: height * 0.02,
+          ),
+          const Text(
+            "About",
+            style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.normal,
+                color: Colors.green),
+          ),
+          SizedBox(
+            height: height * 0.01,
+          ),
+
+          Text(
+            foodItem.description ?? '',
+            style: const TextStyle(fontSize: 16, color: Colors.grey),
+          ),
+          SizedBox(height: height * 0.03),
+          const Text(
+            "Nutritional Value",
+            style: TextStyle(
+                fontSize: 15, fontWeight: FontWeight.bold, color: Colors.green),
+          ),
+
+          SizedBox(height: height * 0.01),
+          Text(
+            'Carbs ${foodItem.carbs?.toString() ?? ''}g',
+            style: const TextStyle(fontSize: 12),
+          ),
+          SizedBox(height: height * 0.01),
+          Text(
+            'Protiens ${foodItem.protiens?.toString() ?? ''}g',
+            style: const TextStyle(fontSize: 12),
+          ),
+          SizedBox(height: height * 0.01),
+          Text(
+            'Saturated Fats ${foodItem.satFat?.toString() ?? ''}g',
+            style: const TextStyle(fontSize: 12),
+          ),
+          SizedBox(height: height * 0.01),
+          Text(
+            'Sugar ${foodItem.sugars?.toString() ?? ''}g',
+            style: const TextStyle(fontSize: 12),
+          ),
+          SizedBox(height: height * 0.01),
+          Text(
+            'Calories ${foodItem.cals?.toString() ?? ''}g',
+            style: const TextStyle(fontSize: 12),
+          ),
+          SizedBox(height: height * 0.01),
+        ],
+      ),
+    ));
   }
 }
 
@@ -541,8 +535,49 @@ class _ReviewScreensState extends State<ReviewScreens> {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Scaffold(
-      resizeToAvoidBottomInset: true,
+      appBar: CupertinoNavigationBar(
+          leading: Padding(
+            padding: EdgeInsets.only(left: 30),
+            child: IconTheme(
+              data: IconThemeData(size: 35.0),
+              child: IconButton(
+                icon: Icon(CupertinoIcons.back),
+                color: Color(0xff3B7D3C),
+                onPressed: () {
+                  _pageController.previousPage(
+                      duration: Duration(milliseconds: 200),
+                      curve: Curves.easeInOut);
+                },
+              ),
+            ),
+          ),
+          middle: Column(
+            children: [
+              Image.asset(
+                'assets/images/rectangle.png',
+                width: width * 0.13,
+                height: kTextTabBarHeight * 0.7,
+              ),
+            ],
+          ),
+          trailing: Padding(
+            padding: EdgeInsets.only(right: 30),
+            child: IconTheme(
+              data: IconThemeData(size: 32.0),
+              child: IconButton(
+                icon: Icon(CupertinoIcons.forward),
+                color: Color(0xff3B7D3C),
+                onPressed: () {
+                  _pageController.nextPage(
+                      duration: Duration(milliseconds: 200),
+                      curve: Curves.easeInOut);
+                },
+              ),
+            ),
+          )),
       body: PageView(
         controller: _pageController,
         children: [
@@ -560,5 +595,34 @@ class _ReviewScreensState extends State<ReviewScreens> {
   void dispose() {
     _pageController.dispose();
     super.dispose();
+  }
+}
+
+class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const MyAppBar({Key? key});
+
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight + 30);
+
+  @override
+  Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+
+    return CupertinoNavigationBar(
+      leading: Icon(CupertinoIcons.back),
+      middle: Column(
+        children: [
+          Image.asset(
+            'assets/images/rectangle.png',
+            width: width * 0.13,
+            height: kTextTabBarHeight * 0.7,
+          ),
+        ],
+      ),
+      trailing: IconButton(
+        icon: Icon(CupertinoIcons.forward),
+        onPressed: () {},
+      ),
+    );
   }
 }
