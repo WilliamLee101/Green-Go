@@ -94,25 +94,24 @@ class Marciano extends StatefulWidget {
   State<Marciano> createState() => _MarcianoState();
 }
 
-class _MarcianoState extends State<Marciano> {
+class _MarcianoState extends State<Marciano> with TickerProviderStateMixin {
   final PageController _pageController = PageController(initialPage: 0);
+  TabController? controller;
+
   @override
   void initState() {
     super.initState();
+    getMenu();
+    controller = TabController(
+      length: 3,
+      vsync: this,
+    );
   }
 
-  int _selectedIndex = 0;
-
-  static List<Widget> _pages = <Widget>[Marciano(), ProfileView()];
-
-  void _onItemTapped(int index) {
+  void _onPageChanged(int index) {
     setState(() {
-      _selectedIndex = index;
+      controller?.index = index;
     });
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => _pages[index]),
-    );
   }
 
   final Color darkGreen = Color(0xFF3B7D3C);
@@ -128,12 +127,42 @@ class _MarcianoState extends State<Marciano> {
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(bottom: Radius.circular(20))),
         ),
-        body: PageView(
-          controller: _pageController,
+        body: Column(
           children: [
-            ReturnMenu(selectedMealType: bmenu, dhall: "marciano"),
-            ReturnMenu(selectedMealType: lmenu, dhall: "marciano"),
-            ReturnMenu(selectedMealType: dmenu, dhall: "marciano"),
+            SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                TabPageSelector(
+                  controller: controller,
+                  color: Color(0xffD9D9D9),
+                  borderStyle: BorderStyle.none,
+                  selectedColor: Color(0xff3B7D3C),
+                ),
+                const SizedBox(width: 20)
+              ],
+            ),
+            SizedBox(height: 10),
+            Expanded(
+              child: PageView(
+                controller: _pageController,
+                onPageChanged: _onPageChanged,
+                children: [
+                  ReturnMenu(
+                      selectedMealType: bmenu,
+                      dhall: "marciano",
+                      mealTime: "Breakfast"),
+                  ReturnMenu(
+                      selectedMealType: lmenu,
+                      dhall: "marciano",
+                      mealTime: "Lunch"),
+                  ReturnMenu(
+                      selectedMealType: dmenu,
+                      dhall: "marciano",
+                      mealTime: "Dinner"),
+                ],
+              ),
+            ),
           ],
         ),
         bottomNavigationBar: const NavBar());

@@ -151,6 +151,7 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
               ),
             ),
           ),
+
           body: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -164,6 +165,7 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
                   SizedBox(width: 5),
                   Icon(Icons.pets, color: Colors.black),
                 ]),
+
 
                 const SizedBox(height: 8.0),
 
@@ -244,8 +246,6 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
                   },
                 ),
 
-                const SizedBox(height: 15.0),
-
                 const Text("Leave a comment!",
                     style: TextStyle(
                         fontSize: 17.1429,
@@ -303,6 +303,7 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
                       child: Text('Get Started'),
                     ),
                   ),
+
                 ),
               ],
             ),

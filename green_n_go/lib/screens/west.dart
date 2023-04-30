@@ -22,31 +22,24 @@ class West extends StatefulWidget {
   State<West> createState() => _WestState();
 }
 
-class _WestState extends State<West> {
+class _WestState extends State<West> with TickerProviderStateMixin {
   List<FoodItem> _selectedMealType = bmenu;
+  TabController? controller;
+
   @override
   void initState() {
     super.initState();
-    getMenu().then((value) {
-      setState(() {
-        // set the selected meal type to breakfast by default
-        _selectedMealType = bmenu;
-      });
-    });
+    getMenu();
+    controller = TabController(
+      length: 3,
+      vsync: this,
+    );
   }
 
-  int _selectedIndex = 0;
-
-  static List<Widget> _pages = <Widget>[West(), ProfileView()];
-
-  void _onItemTapped(int index) {
+  void _onPageChanged(int index) {
     setState(() {
-      _selectedIndex = index;
+      controller?.index = index;
     });
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => _pages[index]),
-    );
   }
 
   //Main function to populate array of food items from firebase
@@ -112,7 +105,7 @@ class _WestState extends State<West> {
   }
 
   final Color darkGreen = Color(0xFF3B7D3C);
-  final PageController _pageController = PageController(initialPage: 0);
+  final PageController _pageController = PageController();
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -124,12 +117,42 @@ class _WestState extends State<West> {
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(bottom: Radius.circular(20))),
         ),
-        body: PageView(
-          controller: _pageController,
+        body: Column(
           children: [
-            ReturnMenu(selectedMealType: bmenu, dhall: "west"),
-            ReturnMenu(selectedMealType: lmenu, dhall: "west"),
-            ReturnMenu(selectedMealType: dmenu, dhall: "west"),
+            SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                TabPageSelector(
+                  controller: controller,
+                  color: Color(0xffD9D9D9),
+                  borderStyle: BorderStyle.none,
+                  selectedColor: Color(0xff3B7D3C),
+                ),
+                const SizedBox(width: 20)
+              ],
+            ),
+            SizedBox(height: 10),
+            Expanded(
+              child: PageView(
+                controller: _pageController,
+                onPageChanged: _onPageChanged,
+                children: [
+                  ReturnMenu(
+                      selectedMealType: bmenu,
+                      dhall: "west",
+                      mealTime: "Breakfast"),
+                  ReturnMenu(
+                      selectedMealType: lmenu,
+                      dhall: "west",
+                      mealTime: "Lunch"),
+                  ReturnMenu(
+                      selectedMealType: dmenu,
+                      dhall: "west",
+                      mealTime: "Dinner"),
+                ],
+              ),
+            ),
           ],
         ),
         bottomNavigationBar: const NavBar());
