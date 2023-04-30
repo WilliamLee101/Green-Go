@@ -91,10 +91,10 @@ class IntroScreen1 extends StatelessWidget {
               SizedBox(height: height * 0.1),
               Image.asset(
                 "assets/images/logo.png",
-                height: 153,
-                width: 153,
+                height: width * 0.3,
+                width: width * 0.3,
               ),
-              SizedBox(height: 350),
+              SizedBox(height: height * 0.35),
               Stack(children: [
                 Padding(
                   padding: const EdgeInsets.only(bottom: 0, left: 35),
