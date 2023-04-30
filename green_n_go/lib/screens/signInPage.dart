@@ -9,6 +9,7 @@ import 'package:green_n_go/main.dart';
 import 'package:green_n_go/screens/home_page.dart';
 import 'package:green_n_go/screens/user_setup.dart';
 import 'package:green_n_go/utils/auth.dart';
+import 'package:green_n_go/utils/globals.dart' as globals;
 
 class SignInPage extends StatefulWidget {
   const SignInPage({Key? key}) : super(key: key);
@@ -21,7 +22,6 @@ class _SignInPageState extends State<SignInPage> {
   bool loggedIn = false;
   int num_comments_made = 0;
   int num_plates_finished = 0;
-  bool firstTime = false;
 
   Future<void> signOut() async {
     try {
@@ -75,7 +75,7 @@ class _SignInPageState extends State<SignInPage> {
             "num_comments_made": num_comments_made,
             "num_plates_finished": num_plates_finished
           });
-          firstTime = true;
+          globals.firstTimeLogin = true;
         }
       });
     });
@@ -121,7 +121,7 @@ class _SignInPageState extends State<SignInPage> {
                       try {
                         UserCredential userCredential =
                             await signInWithGoogle();
-                        if (firstTime == true) {
+                        if (globals.firstTimeLogin == true) {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
