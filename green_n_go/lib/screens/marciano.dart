@@ -40,7 +40,8 @@ Future<void> getMenu() async {
       bmenu.add(food);
     });
   } else {
-    print('No data available.');
+    print(bmenu.length);
+    print('No data available for breakfast.');
   }
 
   //Populate lunch array
@@ -61,7 +62,8 @@ Future<void> getMenu() async {
       lmenu.add(food);
     });
   } else {
-    print('No data available.');
+    print('No data available for lunch.');
+    print(bmenu.length);
   }
 
   //Populate dinner array
@@ -83,7 +85,7 @@ Future<void> getMenu() async {
       dmenu.add(food);
     });
   } else {
-    print('No data available.');
+    print('No data available for dinner .');
   }
 }
 
@@ -108,9 +110,13 @@ class _MarcianoState extends State<Marciano> with TickerProviderStateMixin {
     );
   }
 
+  List<String> mealTimes = ["Breakfast", "Lunch", "Dinner"];
+  int mealTimeIndex = 0;
+
   void _onPageChanged(int index) {
     setState(() {
       controller?.index = index;
+      mealTimeIndex = index;
     });
   }
 
@@ -121,7 +127,8 @@ class _MarcianoState extends State<Marciano> with TickerProviderStateMixin {
     getMenu();
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Menu at Marciano', style: TextStyle(fontSize: 27)),
+          title: Text('${mealTimes[mealTimeIndex]} at Marciano',
+              style: TextStyle(fontSize: 27)),
           backgroundColor: Color(0xff3B7D3C),
           toolbarHeight: .1 * height,
           shape: RoundedRectangleBorder(
