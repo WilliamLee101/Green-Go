@@ -76,8 +76,7 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
           ),
         ),
       ),
-      body: Container(
-        padding: const EdgeInsets.all(16.0),
+      body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -177,7 +176,8 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
                     color: Colors.black87)),
             const SizedBox(height: 8.0),
             TextField(
-              maxLines: 3,
+              autofocus: true,
+              maxLines: 2,
               onChanged: (value) {
                 _comment = value;
               },
@@ -223,7 +223,7 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
                 child: const Padding(
                   padding:
                       EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-                  child: Text('Get Started'),
+                  child: Text('Submit'),
                 ),
               ),
             ),

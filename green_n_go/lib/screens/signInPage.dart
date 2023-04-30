@@ -129,6 +129,7 @@ class _SignInPageState extends State<SignInPage> {
                   ),
                   TextButton(
                     onPressed: () {
+                      signOut();
                       Navigator.pushNamedAndRemoveUntil(
                         context,
                         '/home',

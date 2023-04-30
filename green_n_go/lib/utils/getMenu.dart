@@ -2,12 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:green_n_go/classes/foodItem.dart';
 import 'package:green_n_go/screens/marciano.dart';
 import 'package:green_n_go/screens/review.dart';
+import 'package:intl/intl.dart';
 
 class ReturnMenu extends StatefulWidget {
   final List<FoodItem> selectedMealType;
   final String dhall;
+  final String mealTime;
 
-  ReturnMenu({Key? key, required this.selectedMealType, required this.dhall})
+  ReturnMenu(
+      {Key? key,
+      required this.selectedMealType,
+      required this.dhall,
+      required this.mealTime})
       : super(key: key);
 
   @override
@@ -16,16 +22,10 @@ class ReturnMenu extends StatefulWidget {
 
 class _ReturnMenuState extends State<ReturnMenu> {
   bool _isVeganSelected = false;
+  final FocusNode _focusNode = FocusNode();
 
   @override
   Widget build(BuildContext context) {
-    String when = 'Breakfast';
-    if (widget.selectedMealType == lmenu) {
-      when = 'Lunch';
-    } else if (widget.selectedMealType == dmenu) {
-      when = 'Dinner';
-    }
-
     // Filter the food list based on whether it is vegan or not
     final filteredList = widget.selectedMealType.where((food) {
       return !_isVeganSelected || (food.is_vegan ?? false);
@@ -36,7 +36,11 @@ class _ReturnMenuState extends State<ReturnMenu> {
     return Stack(children: [
       Column(
         children: [
-          SizedBox(height: 20, child: Text(when)),
+          // SizedBox(
+          //     height: 20,
+          //     child: Text(widget.mealTime,
+          //         style: const TextStyle(
+          //             fontSize: 20, fontWeight: FontWeight.bold))),
           Expanded(
             child: GridView.builder(
               gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
@@ -107,11 +111,9 @@ class _ReturnMenuState extends State<ReturnMenu> {
                               ),
                               context: context,
                               builder: (BuildContext context) {
-                                return SizedBox(
-                                  child: ReviewScreens(
-                                    foodItem: food,
-                                    diningHall: widget.dhall,
-                                  ),
+                                return ReviewScreens(
+                                  foodItem: food,
+                                  diningHall: widget.dhall,
                                 );
                               },
                             );
@@ -196,5 +198,70 @@ class _ReturnMenuState extends State<ReturnMenu> {
         ),
       )
     ]);
+  }
+}
+
+DateTime now = DateTime.now();
+String formattedDate = DateFormat('yyyy-MM-dd').format(now);
+
+Future<void> getMenu() async {
+  print(formattedDate);
+  final snapshot =
+      await ref.child("menu/$formattedDate/warren/Breakfast").get();
+  if (snapshot.exists && snapshot.value is Map<dynamic, dynamic>) {
+    (snapshot.value as Map<dynamic, dynamic>).forEach((key, value) {
+      final food = FoodItem(
+          name: value['name'],
+          description: value['description'],
+          carbs: value['carbohydrates'],
+          protiens: value['protein'],
+          satFat: value['saturated_fat'],
+          // sugars: value['sugars'],
+          cals: value['calories'],
+          rating: value['rating'],
+          is_vegan: value['is_vegan'],
+          is_vegetarian: value['is_vegetarian']);
+      bmenu.add(food);
+    });
+  } else {
+    print('No data available.');
+  }
+  final snapshot1 = await ref.child("menu/$formattedDate/warren/Lunch").get();
+  if (snapshot1.exists && snapshot1.value is Map<dynamic, dynamic>) {
+    (snapshot1.value as Map<dynamic, dynamic>).forEach((key, value) {
+      final food = FoodItem(
+          name: value['name'],
+          description: value['description'],
+          carbs: value['carbohydrates'],
+          protiens: value['protein'],
+          satFat: value['saturated_fat'],
+          // sugars: value['sugars'],
+          cals: value['calories'],
+          rating: value['rating'],
+          is_vegan: value['is_vegan'],
+          is_vegetarian: value['is_vegetarian']);
+      lmenu.add(food);
+    });
+  } else {
+    print('No data available.');
+  }
+  final snapshot2 = await ref.child("menu/$formattedDate/warren/Dinner").get();
+  if (snapshot2.exists && snapshot2.value is Map<dynamic, dynamic>) {
+    (snapshot2.value as Map<dynamic, dynamic>).forEach((key, value) {
+      final food = FoodItem(
+          name: value['name'],
+          description: value['description'],
+          carbs: value['carbohydrates'],
+          protiens: value['protein'],
+          satFat: value['saturated_fat'],
+          // sugars: value['sugars'],
+          cals: value['calories'],
+          rating: value['rating'],
+          is_vegan: value['is_vegan'],
+          is_vegetarian: value['is_vegetarian']);
+      dmenu.add(food);
+    });
+  } else {
+    print('No data available.');
   }
 }
