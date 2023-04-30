@@ -20,5 +20,6 @@ class FoodItem {
       this.cals,
       this.rating,
       this.is_vegan,
-      this.is_vegetarian});
+      this.is_vegetarian,
+      required proteins});
 }
