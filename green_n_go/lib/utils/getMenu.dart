@@ -46,7 +46,6 @@ class _ReturnMenuState extends State<ReturnMenu> {
     double screenHeight = MediaQuery.of(context).size.height;
     double height = screenHeight;
 
-
     //Case where there are no food items available
     if (widget.selectedMealType.isEmpty) {
       print("emtpy array ");
@@ -84,6 +83,8 @@ class _ReturnMenuState extends State<ReturnMenu> {
         ),
       );
     } else {
+      print("widget.selectedMealType.length");
+      print(widget.selectedMealType.length);
       return Stack(children: [
         Column(
           children: [
@@ -160,6 +161,7 @@ class _ReturnMenuState extends State<ReturnMenu> {
                                   return ReviewScreens(
                                     foodItem: food,
                                     diningHall: widget.dhall,
+                                    mealTime: widget.mealTime,
                                   );
                                 },
                               );
@@ -245,6 +247,5 @@ class _ReturnMenuState extends State<ReturnMenu> {
         )
       ]);
     }
-
   }
 }

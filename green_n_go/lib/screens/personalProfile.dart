@@ -17,8 +17,6 @@ class ProfileView extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     final user = FirebaseAuth.instance.currentUser;
-
-    double height = MediaQuery.of(context).size.height;
     globals.selectedIndex = 1;
 
 // profile page styling
@@ -36,7 +34,6 @@ class ProfileView extends StatelessWidget {
               children: [
                 const Text(
                   'My Profile',
-
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.normal),
                 ),
 

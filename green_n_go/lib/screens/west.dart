@@ -38,7 +38,6 @@ class _WestState extends State<West> with TickerProviderStateMixin {
     );
   }
 
-
   List<String> mealTimes = ["Breakfast", "Lunch", "Dinner"];
   int mealTimeIndex = 0;
 
@@ -112,12 +111,6 @@ class _WestState extends State<West> with TickerProviderStateMixin {
       print('No data available.');
     }
     setState(() {}); // trigger a re-build of the UI
-  }
-
-  void _onPageChanged(int index) {
-    setState(() {
-      controller?.index = index;
-    });
   }
 
   final Color darkGreen = Color(0xFF3B7D3C);
