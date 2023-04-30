@@ -16,6 +16,7 @@ final List<FoodItem> dmenu = [];
 
 final ref = FirebaseDatabase.instance.ref();
 
+
 //Create widget for displaying Marciano dininng hall
 class Marciano extends StatefulWidget {
   const Marciano({super.key});
@@ -37,6 +38,10 @@ class _MarcianoState extends State<Marciano> with TickerProviderStateMixin {
       vsync: this,
     );
   }
+
+
+  List<String> mealTimes = ["Breakfast", "Lunch", "Dinner"];
+  int mealTimeIndex = 0;
 
   //Main function to populate Marciano dining hall menu
   Future<void> getMenu() async {
@@ -107,6 +112,7 @@ class _MarcianoState extends State<Marciano> with TickerProviderStateMixin {
   void _onPageChanged(int index) {
     setState(() {
       controller?.index = index;
+      mealTimeIndex = index;
     });
   }
 
@@ -116,7 +122,8 @@ class _MarcianoState extends State<Marciano> with TickerProviderStateMixin {
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Menu at Marciano', style: TextStyle(fontSize: 27)),
+          title: Text('${mealTimes[mealTimeIndex]} at Marciano',
+              style: TextStyle(fontSize: 27)),
           backgroundColor: Color(0xff3B7D3C),
           toolbarHeight: .1 * height,
           shape: RoundedRectangleBorder(

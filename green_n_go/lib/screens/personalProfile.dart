@@ -34,9 +34,9 @@ class ProfileView extends StatelessWidget {
                   'My Profile',
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                 ),
-                const SizedBox(width: 200),
-                Image.network(
-                  user.photoURL.toString(),
+                const SizedBox(width: 150),
+                Image.asset(
+                  'assets/images/terrier_logo.png',
                   width: 30.0,
                   height: 30.0,
                 ),
@@ -47,7 +47,7 @@ class ProfileView extends StatelessWidget {
           body: Column(children: [
             Row(children: [
               Image.asset(
-                'assets/images/profileicon.png',
+                user.photoURL!,
                 width: 100.0,
                 height: 100.0,
               ),

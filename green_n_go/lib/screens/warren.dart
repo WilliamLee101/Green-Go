@@ -103,9 +103,13 @@ class _WarrenState extends State<Warren> with TickerProviderStateMixin {
     setState(() {}); // trigger a re-build of the UI
   }
 
+  List<String> mealTimes = ["Breakfast", "Lunch", "Dinner"];
+  int mealTimeIndex = 0;
+
   void _onPageChanged(int index) {
     setState(() {
       controller?.index = index;
+      mealTimeIndex = index;
     });
   }
 
@@ -115,7 +119,8 @@ class _WarrenState extends State<Warren> with TickerProviderStateMixin {
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Menu at Warren', style: TextStyle(fontSize: 27)),
+          title: Text('${mealTimes[mealTimeIndex]} at Warren',
+              style: TextStyle(fontSize: 27)),
           backgroundColor: Color(0xff3B7D3C),
           toolbarHeight: .1 * height,
           shape: RoundedRectangleBorder(
