@@ -20,11 +20,25 @@ class ProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser;
-
     globals.selectedIndex = 1;
 
 // profile page styling
     if (user != null) {
+      return Scaffold(
+          bottomNavigationBar: NavBar(),
+          appBar: AppBar(
+            automaticallyImplyLeading: false,
+            backgroundColor: Color(0xff3B7D3C),
+            toolbarHeight: .1 * height,
+            shape: const RoundedRectangleBorder(
+                borderRadius:
+                    BorderRadius.vertical(bottom: Radius.circular(20))),
+            title: Row(
+              children: [
+                const Text(
+                  'My Profile',
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.normal),
+                ),
       return const UserProfile();
     } else {
       return const GuestProfile();

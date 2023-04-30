@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:green_n_go/main.dart';
 import 'package:image_picker/image_picker.dart';
@@ -17,8 +18,12 @@ String formattedDate = DateFormat('yyyy-MM-dd').format(now);
 class ReviewSurveyScreen extends StatefulWidget {
   final FoodItem foodItem;
   final String diningHall;
+  final String mealTime;
 
-  ReviewSurveyScreen({required this.foodItem, required this.diningHall});
+  ReviewSurveyScreen(
+      {required this.foodItem,
+      required this.diningHall,
+      required this.mealTime});
 
   @override
   _ReviewSurveyScreenState createState() => _ReviewSurveyScreenState();
@@ -53,6 +58,9 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
 
   //Function to upload user review data to firebase
   void _submitReview() {
+    int database_num_rating = 0;
+    double database_rating = 0.0;
+
     // Create a reference to the top-level food collection
     CollectionReference foodCollectionRef =
         FirebaseFirestore.instance.collection('food');
@@ -89,6 +97,38 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
         print("error during updating num_plates_finished");
       });
     }
+
+    // update realtime database
+    final DatabaseReference dbRef = FirebaseDatabase.instance
+        .reference()
+        .child('menu')
+        .child(formattedDate)
+        .child(widget.diningHall)
+        .child(widget.mealTime)
+        .child(widget.foodItem.name);
+
+    dbRef.once().then((DatabaseEvent event) {
+      DataSnapshot snapshot = event.snapshot;
+      dynamic foodData = snapshot.value;
+      database_rating = foodData["rating"];
+      database_num_rating = foodData["num_rating"];
+
+      String inString = ((database_rating * database_num_rating + _rating) /
+              (database_num_rating + 1))
+          .toStringAsFixed(1);
+
+      double newRating = double.parse(inString);
+
+      int newNumRatings = database_num_rating + 1;
+
+      dbRef.update({"rating": newRating, "num_rating": newNumRatings});
+
+      print(widget.foodItem.name);
+      print("database_rating");
+      print(database_rating);
+      print("newRating");
+      print(newRating);
+    });
 
     // Submit review to backend
     dateCollectionRef.add({
@@ -591,7 +631,11 @@ class NutritionScreen extends StatelessWidget {
 class ReviewScreens extends StatefulWidget {
   final FoodItem foodItem;
   final String diningHall;
-  ReviewScreens({required this.foodItem, required this.diningHall});
+  final String mealTime;
+  ReviewScreens(
+      {required this.foodItem,
+      required this.diningHall,
+      required this.mealTime});
 
   @override
   State<ReviewScreens> createState() => _ReviewScreensState();
@@ -650,7 +694,9 @@ class _ReviewScreensState extends State<ReviewScreens> {
         children: [
           NutritionScreen(foodItem: widget.foodItem),
           ReviewSurveyScreen(
-              foodItem: widget.foodItem, diningHall: widget.diningHall),
+              foodItem: widget.foodItem,
+              diningHall: widget.diningHall,
+              mealTime: widget.mealTime),
           CommentScreen(foodItem: widget.foodItem),
         ],
         onPageChanged: (index) {},

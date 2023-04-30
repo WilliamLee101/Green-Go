@@ -8,14 +8,14 @@ import '../classes/foodItem.dart';
 import '../utils/getMenu.dart';
 
 DateTime now = DateTime.now();
-String formattedDate = DateFormat('yyyy-MM-dd').format(now);
+// String formattedDate = DateFormat('yyyy-MM-dd').format(now);
+String formattedDate = "2023-05-02";
 
 final List<FoodItem> bmenu = [];
 final List<FoodItem> lmenu = [];
 final List<FoodItem> dmenu = [];
 
 final ref = FirebaseDatabase.instance.ref();
-
 
 //Create widget for displaying Marciano dininng hall
 class Marciano extends StatefulWidget {
@@ -38,7 +38,6 @@ class _MarcianoState extends State<Marciano> with TickerProviderStateMixin {
       vsync: this,
     );
   }
-
 
   List<String> mealTimes = ["Breakfast", "Lunch", "Dinner"];
   int mealTimeIndex = 0;
