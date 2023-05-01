@@ -20,7 +20,7 @@ class ProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser;
-    globals.selectedIndex = 1;
+    globals.selectedIndex = 2;
 
 // profile page styling
     if (user != null) {
@@ -95,12 +95,13 @@ class _UserProfileState extends State<UserProfile> {
             ]),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(width: width * 0.05),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text("No Preferences"),
                     isVegan
                         ? const Text("Vegan",
                             style: TextStyle(
