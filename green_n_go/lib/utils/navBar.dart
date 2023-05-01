@@ -15,8 +15,8 @@ class NavBar extends StatefulWidget {
 class _NavBarState extends State<NavBar> {
   final List<Widget> _pages = <Widget>[
     HomePage(),
+    RewardsPage(),
     ProfileView(),
-    RewardsPage()
   ];
 
   void _onItemTapped(int index) {
@@ -64,12 +64,12 @@ class _NavBarState extends State<NavBar> {
             label: 'Home',
           ),
           const BottomNavigationBarItem(
-            icon: Icon(Icons.person_2_outlined),
-            label: 'Profile',
-          ),
-          const BottomNavigationBarItem(
             icon: Icon(Icons.emoji_events),
             label: 'Rewards',
+          ),
+          const BottomNavigationBarItem(
+            icon: Icon(Icons.person_2_outlined),
+            label: 'Profile',
           ),
         ],
         onTap: _onItemTapped,

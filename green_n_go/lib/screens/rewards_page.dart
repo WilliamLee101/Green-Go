@@ -54,7 +54,7 @@ class _RewardsPageState extends State<RewardsPage> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    globals.selectedIndex = 2;
+    globals.selectedIndex = 1;
 
     if (signIn == true) {
       return Scaffold(
