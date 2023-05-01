@@ -40,6 +40,8 @@ class _IntroScreenState extends State<IntroScreen>
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Column(
         children: [
@@ -56,6 +58,7 @@ class _IntroScreenState extends State<IntroScreen>
             borderStyle: BorderStyle.none,
             selectedColor: Color(0xff3B7D3C),
           ),
+          SizedBox(height: height * 0.015),
         ],
       ),
     );
@@ -90,11 +93,11 @@ class IntroScreen1 extends StatelessWidget {
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              SizedBox(height: height * 0.1),
+              SizedBox(height: height * 0.2),
               Image.asset(
                 "assets/images/logo.png",
-                height: width * 0.2,
-                width: width * 0.2,
+                height: width * 0.3,
+                width: width * 0.3,
                 fit: BoxFit.cover,
               ),
               SizedBox(height: height * 0.35),

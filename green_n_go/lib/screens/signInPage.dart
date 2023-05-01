@@ -49,19 +49,6 @@ class _SignInPageState extends State<SignInPage> {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
-      // if (user != null) {
-      //   CollectionReference users =
-      //       FirebaseFirestore.instance.collection('users');
-      //   if (user.uid != users.doc(user.uid).get()) {
-      //     users.doc(user.uid).update({
-      //       'name': user.displayName,
-      //       'email': user.email,
-      //       'photo': user.photoURL,
-      //       "num_comments_made": num_comments_made,
-      //       "num_plates_finished": num_plates_finished
-      //     });
-      //   }
-      // }
       FirebaseFirestore.instance
           .collection('users')
           .doc(user?.uid)
@@ -92,16 +79,15 @@ class _SignInPageState extends State<SignInPage> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Container(
-              width: 300,
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 150,
+                width: 300,
+                child: Column(children: [
+                  SizedBox(
+                    height: height * 0.15,
                   ),
                   Image.asset(
                     'assets/images/logo.png',
-                    height: width * 0.2,
-                    width: width * 0.2,
+                    height: width * 0.3,
+                    width: width * 0.3,
                     fit: BoxFit.cover,
                   ),
                   SizedBox(
@@ -117,77 +103,87 @@ class _SignInPageState extends State<SignInPage> {
                         color: Color(0xff3A7D3C)),
                   ),
                   SizedBox(
-                    height: height * 0.02,
+                    height: height * 0.15,
                   ),
-                  TextButton(
-                    onPressed: () async {
-                      try {
-                        UserCredential userCredential =
-                            await signInWithGoogle();
-                        if (globals.firstTimeLogin == true) {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const UserSetup()));
-                        } else {
+                ])),
+            Expanded(
+              child: Container(
+                alignment: Alignment.bottomCenter,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    TextButton(
+                      onPressed: () async {
+                        try {
+                          UserCredential userCredential =
+                              await signInWithGoogle();
+                          if (globals.firstTimeLogin == true) {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const UserSetup()));
+                          } else {
+                            // Show error message to user
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomePage()));
+                          }
+                        } catch (e) {
+                          print(e);
                           // Show error message to user
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => HomePage()));
                         }
-                      } catch (e) {
-                        print(e);
-                        // Show error message to user
-                      }
-                    },
-                    style: ButtonStyle(
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
+                      },
+                      style: ButtonStyle(
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
                         ),
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                            const Color(0xff3B7D3C)),
                       ),
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                          const Color(0xff3B7D3C)),
+                      child: const Text('  Sign In with Google Account  ',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                          )),
                     ),
-                    child: const Text('  Sign In with Google Account  ',
+                    SizedBox(
+                      height: height * 0.01,
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        signOut();
+                        Navigator.pushNamedAndRemoveUntil(
+                          context,
+                          '/home',
+                          (route) => false,
+                        );
+                      },
+                      style: ButtonStyle(
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            side: const BorderSide(
+                                color: Color(0xff3B7D3C), width: 2),
+                          ),
+                        ),
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.white),
+                      ),
+                      child: const Text(
+                        '           Continue as Guest           ',
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Color(0xff3B7D3C),
                           fontSize: 16,
-                        )),
-                  ),
-                  SizedBox(
-                    height: height * 0.01,
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      signOut();
-                      Navigator.pushNamedAndRemoveUntil(
-                        context,
-                        '/home',
-                        (route) => false,
-                      );
-                    },
-                    style: ButtonStyle(
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          side: const BorderSide(
-                              color: Color(0xff3B7D3C), width: 2),
                         ),
                       ),
-                      backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.white),
                     ),
-                    child: const Text(
-                      '           Continue as Guest           ',
-                      style: TextStyle(
-                        color: Color(0xff3B7D3C),
-                        fontSize: 16,
-                      ),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ],

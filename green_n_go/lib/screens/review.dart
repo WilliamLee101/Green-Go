@@ -71,31 +71,34 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
     DateTime date = DateTime(now.year, now.month, now.day);
     _current_date = DateFormat('yyyy-MM-dd')
         .format(date); // Output format: "yyyy-mm-dd hh:mm:ss"
+
     final user = FirebaseAuth.instance.currentUser;
     String userID = user!.uid;
     print("userID: " + userID);
 
-    CollectionReference userInfoRef =
-        FirebaseFirestore.instance.collection('users');
-    DocumentReference userInfoUpdateRef = userInfoRef.doc(userID);
+    if (user != null) {
+      CollectionReference userInfoRef =
+          FirebaseFirestore.instance.collection('users');
+      DocumentReference userInfoUpdateRef = userInfoRef.doc(userID);
 
-    userInfoUpdateRef
-        .update({"num_comments_made": FieldValue.increment(1)}).then((value) {
-      print("update num_comments_made successfully!");
-    }).catchError((error) {
-      // Handle any errors that occur while updating the document
-      print("error during updating num_comments_made");
-    });
-
-    if (_amount_finished >= 80) {
-      userInfoUpdateRef.update(
-          {"num_plates_finished": FieldValue.increment(1)}).then((value) {
-        // Update successful
-        print("update num_plates_finished successfully!");
+      userInfoUpdateRef
+          .update({"num_comments_made": FieldValue.increment(1)}).then((value) {
+        print("update num_comments_made successfully!");
       }).catchError((error) {
         // Handle any errors that occur while updating the document
-        print("error during updating num_plates_finished");
+        print("error during updating num_comments_made");
       });
+
+      if (_amount_finished >= 80) {
+        userInfoUpdateRef.update(
+            {"num_plates_finished": FieldValue.increment(1)}).then((value) {
+          // Update successful
+          print("update num_plates_finished successfully!");
+        }).catchError((error) {
+          // Handle any errors that occur while updating the document
+          print("error during updating num_plates_finished");
+        });
+      }
     }
 
     // update realtime database

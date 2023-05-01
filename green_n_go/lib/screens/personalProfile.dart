@@ -238,13 +238,25 @@ class _GuestProfileState extends State<GuestProfile> {
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
       bottomNavigationBar: const NavBar(),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: const Color(0xff3B7D3C),
+        toolbarHeight: .1 * height,
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(bottom: Radius.circular(18))),
+        title: const Text(
+          'My Profile',
+          style: TextStyle(fontSize: 25, fontWeight: FontWeight.normal),
+        ),
+        centerTitle: false,
+      ),
       body: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: height * 0.5),
+              SizedBox(height: height * 0.35),
               const Text("You are not logged in"),
               TextButton(
                 onPressed: () async {
