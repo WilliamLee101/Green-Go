@@ -89,127 +89,135 @@ class _ReturnMenuState extends State<ReturnMenu> {
         Column(
           children: [
             Expanded(
-              child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 200,
-                  childAspectRatio: 1.2,
-                  crossAxisSpacing: 15,
-                  mainAxisSpacing: 5,
-                ),
-                itemCount: filteredList.length,
-                itemBuilder: (context, index) {
-                  final food = filteredList[index];
-                  food.sugars ??= 0;
-                  return GestureDetector(
-                      child: Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const SizedBox(height: 8),
-                        Flexible(
-                          flex: 1,
-                          child: ListTile(
-                            title: SizedBox(
-                              height: 40,
-                              child: Text(
-                                food.name,
-                                textAlign: TextAlign.center,
-                                style: const TextStyle(
-                                  fontSize: 15,
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.bold,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: width * 0.035),
+                child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                    maxCrossAxisExtent: 200,
+                    childAspectRatio: 1.2,
+                    crossAxisSpacing: 3,
+                    mainAxisSpacing: 5,
+                  ),
+                  itemCount: filteredList.length,
+                  itemBuilder: (context, index) {
+                    final food = filteredList[index];
+                    food.sugars ??= 0;
+                    return GestureDetector(
+                        child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const SizedBox(height: 5),
+                          Flexible(
+                            flex: 1,
+                            child: ListTile(
+                              title: SizedBox(
+                                height: 20,
+                                child: Text(
+                                  food.name,
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                    fontSize: 15,
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
-                            ),
-                            onTap: () {},
-                            subtitle: SizedBox(
-                              height: 50,
-                              child: Column(
-                                children: [
-                                  const SizedBox(height: 10),
-                                  Text(
-                                    food.description ?? '',
-                                    style: const TextStyle(
-                                        color: Color.fromARGB(255, 87, 91, 87),
-                                        fontSize: 13),
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ],
+                              onTap: () {},
+                              subtitle: SizedBox(
+                                height: 50,
+                                child: Column(
+                                  children: [
+                                    const SizedBox(height: 10),
+                                    Text(
+                                      food.description ??
+                                          'No Description Available',
+                                      style: const TextStyle(
+                                          color:
+                                              Color.fromARGB(255, 87, 91, 87),
+                                          fontSize: 13),
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        ButtonTheme(
-                          child: ElevatedButton.icon(
-                            onPressed: () {
-                              showModalBottomSheet(
-                                isDismissible: true,
-                                enableDrag: true,
-                                constraints:
-                                    BoxConstraints.expand(height: 0.6 * height),
-                                isScrollControlled: true,
-                                shape: const RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.vertical(
-                                    top: Radius.circular(20.0),
+                          ButtonTheme(
+                            child: ElevatedButton.icon(
+                              onPressed: () {
+                                showModalBottomSheet(
+                                  isDismissible: true,
+                                  enableDrag: true,
+                                  constraints: BoxConstraints.expand(
+                                      height: 0.6 * height),
+                                  isScrollControlled: true,
+                                  shape: const RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.vertical(
+                                      top: Radius.circular(20.0),
+                                    ),
                                   ),
+                                  backgroundColor: Colors.transparent,
+                                  clipBehavior: Clip.antiAlias,
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return ReviewScreens(
+                                      foodItem: food,
+                                      diningHall: widget.dhall,
+                                      mealTime: widget.mealTime,
+                                    );
+                                  },
+                                );
+                              },
+                              label: Text(
+                                food.rating.toString(),
+                                style: const TextStyle(
+                                  fontSize: 17,
+                                  color: Colors.white,
                                 ),
-                                backgroundColor: Colors.transparent,
-                                clipBehavior: Clip.antiAlias,
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return ReviewScreens(
-                                    foodItem: food,
-                                    diningHall: widget.dhall,
-                                    mealTime: widget.mealTime,
-                                  );
-                                },
-                              );
-                            },
-                            label: Text(
-                              food.rating.toString(),
-                              style: const TextStyle(
-                                fontSize: 17,
+                              ),
+                              icon: const Icon(
+                                Icons.pets,
                                 color: Colors.white,
                               ),
-                            ),
-                            icon: const Icon(
-                              Icons.pets,
-                              color: Colors.white,
-                            ),
-                            style: ButtonStyle(
-                              minimumSize:
-                                  MaterialStateProperty.all(const Size(40, 40)),
-                              backgroundColor:
-                                  MaterialStateProperty.resolveWith<Color>(
-                                (Set<MaterialState> states) {
-                                  final rating = food.rating ?? 0;
-                                  if (rating >= 4) {
-                                    return const Color.fromARGB(
-                                        255, 119, 178, 122);
-                                  } else if (rating >= 2) {
-                                    return const Color.fromARGB(
-                                        255, 255, 204, 102);
-                                  } else {
-                                    return const Color.fromARGB(
-                                        255, 255, 102, 102);
-                                  }
-                                },
-                              ),
-                              shape: MaterialStateProperty.all<StadiumBorder>(
-                                const StadiumBorder(),
+                              style: ButtonStyle(
+                                minimumSize: MaterialStateProperty.all(
+                                    const Size(40, 40)),
+                                backgroundColor:
+                                    MaterialStateProperty.resolveWith<Color>(
+                                  (Set<MaterialState> states) {
+                                    final rating = food.rating ?? 0;
+                                    if (rating >= 4) {
+                                      return const Color.fromARGB(
+                                          255, 119, 178, 122);
+                                    } else if (rating >= 2) {
+                                      return const Color.fromARGB(
+                                          255, 255, 204, 102);
+                                    } else {
+                                      return const Color.fromARGB(
+                                          255, 255, 102, 102);
+                                    }
+                                  },
+                                ),
+                                shape: MaterialStateProperty.all<StadiumBorder>(
+                                  const StadiumBorder(),
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ));
-                },
+                          SizedBox(
+                            height: height * 0.01,
+                          )
+                        ],
+                      ),
+                    ));
+                  },
+                ),
               ),
             ),
           ],
