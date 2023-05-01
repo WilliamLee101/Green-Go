@@ -58,7 +58,8 @@ class _UserProfileState extends State<UserProfile> {
             style: TextStyle(fontSize: 25, fontWeight: FontWeight.normal),
           ),
         ),
-        body: Column(
+        body: SingleChildScrollView(
+            child: Column(
           children: [
             SizedBox(height: height * 0.035),
             Row(
@@ -180,46 +181,44 @@ class _UserProfileState extends State<UserProfile> {
             Row(
               children: [
                 SizedBox(width: width * 0.03),
-                Container(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text("  My Account",
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold)),
-                      TextButton(
-                          onPressed: () {
-                            Navigator.pushAndRemoveUntil(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const UserSetup()),
-                                (_) => false);
-                          },
-                          child: const Text(
-                            "Change Preferences",
-                            style: TextStyle(fontSize: 18),
-                          )),
-                      TextButton(
-                          onPressed: () {
-                            signOut();
-                            Navigator.pushAndRemoveUntil(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => HomePage()),
-                                (_) => false);
-                          },
-                          child: const Text(
-                            "Sign Out",
-                            style: TextStyle(
-                                color: Color(0xffFF0000), fontSize: 18),
-                          )),
-                    ],
-                  ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text("  My Account",
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold)),
+                    TextButton(
+                        onPressed: () {
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const UserSetup()),
+                              (_) => false);
+                        },
+                        child: const Text(
+                          "Change Preferences",
+                          style: TextStyle(fontSize: 18),
+                        )),
+                    TextButton(
+                        onPressed: () {
+                          signOut();
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => HomePage()),
+                              (_) => false);
+                        },
+                        child: const Text(
+                          "Sign Out",
+                          style:
+                              TextStyle(color: Color(0xffFF0000), fontSize: 18),
+                        )),
+                  ],
                 ),
               ],
             ),
           ],
-        ));
+        )));
   }
 }
 

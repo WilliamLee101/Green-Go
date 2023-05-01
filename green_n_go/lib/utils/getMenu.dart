@@ -30,6 +30,10 @@ class _ReturnMenuState extends State<ReturnMenu> {
   Widget build(BuildContext context) {
     // Filter the food list based on whether it is vegan or not
 
+    // height and weight parameters
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
+
     filteredList = widget.selectedMealType.where((food) {
       if (_isVeganSelected == true) {
         return (food.is_vegan ?? false);
@@ -37,15 +41,6 @@ class _ReturnMenuState extends State<ReturnMenu> {
         return (true);
       }
     }).toList();
-
-    // print("inside widget");
-    // print(widget.mealTime);
-    // print(widget.dhall);
-    // print(widget.selectedMealType);
-
-    double screenHeight = MediaQuery.of(context).size.height;
-    double height = screenHeight;
-
     //Case where there are no food items available
     if (widget.selectedMealType.isEmpty) {
       print("emtpy array ");
@@ -220,19 +215,9 @@ class _ReturnMenuState extends State<ReturnMenu> {
           ],
         ),
         Positioned(
-          bottom: 30,
-          right: 10,
+          bottom: height * 0.01,
+          right: width * 0.01,
           child: Container(
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 0.2,
-                  blurRadius: 7,
-                  offset: const Offset(0, 3), // changes position of shadow
-                ),
-              ],
-            ),
             child: PopupMenuButton<bool>(
               icon: Image.asset('assets/images/filter.png'),
               iconSize: 60,
