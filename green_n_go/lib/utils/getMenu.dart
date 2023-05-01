@@ -70,8 +70,13 @@ class _ReturnMenuState extends State<ReturnMenu> {
                   textAlign: height > 700 ? TextAlign.center : TextAlign.left,
                 ),
                 const SizedBox(
-                  height: 20,
+                  height: 25,
                 ),
+                Center(
+                  child: Image.asset(
+                    'assets/images/not_found.png',
+                  ),
+                )
               ],
             ),
           ],
