@@ -116,7 +116,8 @@ class _WestState extends State<West> with TickerProviderStateMixin {
   final Color darkGreen = Color(0xFF3B7D3C);
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Scaffold(
         appBar: AppBar(
           title: Text('${mealTimes[mealTimeIndex]} at West',
@@ -128,7 +129,7 @@ class _WestState extends State<West> with TickerProviderStateMixin {
         ),
         body: Column(
           children: [
-            SizedBox(height: 10),
+            SizedBox(height: height * 0.01),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -138,10 +139,10 @@ class _WestState extends State<West> with TickerProviderStateMixin {
                   borderStyle: BorderStyle.none,
                   selectedColor: Color(0xff3B7D3C),
                 ),
-                const SizedBox(width: 20)
+                SizedBox(width: width * 0.1)
               ],
             ),
-            SizedBox(height: 10),
+            SizedBox(height: height * 0.01),
             Expanded(
               child: PageView(
                 controller: _pageController,

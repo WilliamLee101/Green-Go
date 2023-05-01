@@ -73,7 +73,8 @@ class _RewardsPageState extends State<RewardsPage> {
               borderRadius: BorderRadius.vertical(bottom: Radius.circular(20)),
             ),
           ),
-          body: Column(
+          body: SingleChildScrollView(
+              child: Column(
             children: [
               SizedBox(height: 15),
               Row(
@@ -412,7 +413,7 @@ class _RewardsPageState extends State<RewardsPage> {
                 ],
               ),
             ],
-          ),
+          )),
           bottomNavigationBar: const NavBar());
     } else {
       return Scaffold(

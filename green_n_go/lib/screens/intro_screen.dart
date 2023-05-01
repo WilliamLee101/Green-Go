@@ -91,8 +91,9 @@ class IntroScreen1 extends StatelessWidget {
               SizedBox(height: height * 0.1),
               Image.asset(
                 "assets/images/logo.png",
-                height: width * 0.3,
-                width: width * 0.3,
+                height: width * 0.2,
+                width: width * 0.2,
+                fit: BoxFit.cover,
               ),
               SizedBox(height: height * 0.35),
               Stack(children: [
@@ -102,6 +103,7 @@ class IntroScreen1 extends StatelessWidget {
                     'assets/images/Rhetty.png',
                     height: 65,
                     width: 187.5,
+                    fit: BoxFit.scaleDown,
                   ),
                 ),
                 Padding(
@@ -110,6 +112,7 @@ class IntroScreen1 extends StatelessWidget {
                     'assets/images/TerrierTastes.png',
                     height: 125,
                     width: 250,
+                    fit: BoxFit.scaleDown,
                   ),
                 ),
               ]),

@@ -100,8 +100,9 @@ class _SignInPageState extends State<SignInPage> {
                   ),
                   Image.asset(
                     'assets/images/logo.png',
-                    height: width * 0.3,
-                    width: width * 0.3,
+                    height: width * 0.2,
+                    width: width * 0.2,
+                    fit: BoxFit.cover,
                   ),
                   SizedBox(
                     height: height * 0.2,
