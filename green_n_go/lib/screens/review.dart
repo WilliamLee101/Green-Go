@@ -191,27 +191,30 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    const Text(
-                      "Rate your experience",
-                      style: TextStyle(color: Colors.black, fontSize: 20),
-                    ),
-                    SizedBox(height: height * 0.01),
-                    Row(children: [
-                      SizedBox(height: height * 0.05),
-                      SizedBox(width: width * 0.05),
-                      const Text("How did you like it?",
-                          style: TextStyle(
-                              fontWeight: FontWeight.normal,
-                              fontSize: 17.1429,
-                              fontFamily: 'Inter',
-                              color: Colors.black87)),
-                      SizedBox(width: width * 0.01),
-                      const Icon(Icons.pets, color: Colors.black),
-                    ]),
-                  ],
+                Container(
+                  padding: const EdgeInsets.only(top: 16),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      const Text(
+                        "Rate your experience",
+                        style: TextStyle(color: Colors.black, fontSize: 20),
+                      ),
+                      SizedBox(height: height * 0.01),
+                      Row(children: [
+                        SizedBox(height: height * 0.05),
+                        SizedBox(width: width * 0.05),
+                        const Text("How did you like it?",
+                            style: TextStyle(
+                                fontWeight: FontWeight.normal,
+                                fontSize: 17.1429,
+                                fontFamily: 'Inter',
+                                color: Colors.black87)),
+                        SizedBox(width: width * 0.01),
+                        const Icon(Icons.pets, color: Colors.black),
+                      ]),
+                    ],
+                  ),
                 ),
                 SizedBox(width: width * 0.05),
                 Padding(
@@ -258,7 +261,6 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
                       },
                     ),
                   ),
-                  
                 ),
 
                 SizedBox(height: height * 0.01),
@@ -368,27 +370,38 @@ class _ReviewSurveyScreenState extends State<ReviewSurveyScreen> {
                 SizedBox(height: height * 0.01),
                 SizedBox(
                   width: double.infinity,
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                          const Color(0xFF006400)),
-                      shape: MaterialStateProperty.all<OutlinedBorder>(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20.0),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: width * 0.35),
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(
+                          const Color(0xFF006400),
+                        ),
+                        shape: MaterialStateProperty.all<OutlinedBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                        ),
+                        minimumSize: MaterialStateProperty.all<Size>(Size.zero),
+                      ),
+                      onPressed: () {
+                        _submitReview();
+                      },
+                      child: const Padding(
+                        padding: EdgeInsets.symmetric(
+                            vertical: 8.0, horizontal: 16.0),
+                        child: Text(
+                          'submit',
+                          style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ),
-                      minimumSize: MaterialStateProperty.all<Size>(Size.zero),
-                    ),
-                    onPressed: () {
-                      _submitReview();
-                    },
-                    child: const Padding(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-                      child: Text('Get Started'),
                     ),
                   ),
                 ),
+
+                SizedBox(
+                  height: height * 0.05,
+                )
               ],
             ),
           ),
@@ -415,12 +428,14 @@ class CommentScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Comments:',
-              style: TextStyle(
-                fontSize: 18.0,
-                fontWeight: FontWeight.normal,
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  'Comments',
+                  style: TextStyle(color: Colors.black, fontSize: 20),
+                ),
+              ],
             ),
             SizedBox(height: height * 0.01),
             Expanded(
@@ -457,7 +472,7 @@ class CommentScreen extends StatelessWidget {
                           final postedDate = posted_dates[index];
                           return ListTile(
                             title: Text(
-                              'User ${index + 1}',
+                              'Terrier ${index + 1}',
                             ),
                             subtitle: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -513,14 +528,16 @@ class NutritionScreen extends StatelessWidget {
       height: height,
       padding: const EdgeInsets.all(16),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            "Nutritional Detail",
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.normal,
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                "Nutritional Detail",
+                style: TextStyle(color: Colors.black, fontSize: 20),
+              ),
+            ],
           ),
 
           // make space
@@ -530,16 +547,14 @@ class NutritionScreen extends StatelessWidget {
           const Text(
             "About",
             style: TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.normal,
-                color: Colors.green),
+                fontSize: 15, fontWeight: FontWeight.bold, color: Colors.green),
           ),
           SizedBox(
             height: height * 0.01,
           ),
 
           Text(
-            foodItem.description ?? '',
+            foodItem.description ?? 'No Description Available',
             style: const TextStyle(fontSize: 16, color: Colors.grey),
           ),
           SizedBox(height: height * 0.03),
@@ -551,72 +566,139 @@ class NutritionScreen extends StatelessWidget {
 
           SizedBox(height: height * 0.01),
 
-          Row(
+          Table(
+            columnWidths: {
+              0: FlexColumnWidth(1),
+              1: FlexColumnWidth(1),
+            },
             children: [
-              Text(
-                'Carbs',
-                style: const TextStyle(fontSize: 12),
+              TableRow(
+                children: [
+                  TableCell(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Carbs',
+                          style: const TextStyle(fontSize: 14),
+                        ),
+                        Text(
+                          '${foodItem.carbs?.toString() ?? '0'}g',
+                          style: const TextStyle(fontSize: 14),
+                        ),
+                      ],
+                    ),
+                  ),
+                  TableCell(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          ' ',
+                          style: const TextStyle(fontSize: 14),
+                        ),
+                        Text(
+                          ' ',
+                          style: const TextStyle(fontSize: 14),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
-              SizedBox(width: width * 0.50),
-              Text(
-                '${foodItem.carbs?.toString() ?? ''}g',
-                style: const TextStyle(fontSize: 12),
+              TableRow(
+                children: [
+                  TableCell(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Proteins',
+                          style: const TextStyle(fontSize: 14),
+                        ),
+                        Text(
+                          '${foodItem.protiens?.toString() ?? '0'}g',
+                          style: const TextStyle(fontSize: 14),
+                        ),
+                      ],
+                    ),
+                  ),
+                  TableCell(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          ' ',
+                          style: const TextStyle(fontSize: 14),
+                        ),
+                        Text(
+                          ' ',
+                          style: const TextStyle(fontSize: 14),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
-
-          Row(
-            children: [
-              Text(
-                'Protiens',
-                style: const TextStyle(fontSize: 12),
+              TableRow(
+                children: [
+                  TableCell(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Saturated Fats',
+                          style: const TextStyle(fontSize: 14),
+                        ),
+                        Text(
+                          '${foodItem.satFat?.toString() ?? '0'}g',
+                          style: const TextStyle(fontSize: 14),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(),
+                ],
               ),
-              SizedBox(width: width * 0.47),
-              Text(
-                '${foodItem.protiens?.toString() ?? ''}g',
-                style: const TextStyle(fontSize: 12),
+              TableRow(
+                children: [
+                  TableCell(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Sugar',
+                          style: const TextStyle(fontSize: 14),
+                        ),
+                        Text(
+                          '${foodItem.sugars?.toString() ?? '0'}g',
+                          style: const TextStyle(fontSize: 14),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(),
+                ],
               ),
-            ],
-          ),
-
-          Row(
-            children: [
-              Text(
-                'Saturated Fats',
-                style: const TextStyle(fontSize: 12),
-              ),
-              SizedBox(width: width * 0.39),
-              Text(
-                '${foodItem.satFat?.toString() ?? ''}g',
-                style: const TextStyle(fontSize: 12),
-              ),
-            ],
-          ),
-
-          Row(
-            children: [
-              Text(
-                'Sugar',
-                style: const TextStyle(fontSize: 12),
-              ),
-              SizedBox(width: width * 0.5),
-              Text(
-                '${foodItem.sugars?.toString() ?? ''}g',
-                style: const TextStyle(fontSize: 12),
-              ),
-            ],
-          ),
-
-          Row(
-            children: [
-              Text(
-                'Calories',
-                style: const TextStyle(fontSize: 12),
-              ),
-              SizedBox(width: width * 0.455),
-              Text(
-                '${foodItem.cals?.toString() ?? ''}g',
-                style: const TextStyle(fontSize: 12),
+              TableRow(
+                children: [
+                  TableCell(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Calories',
+                          style: const TextStyle(fontSize: 14),
+                        ),
+                        Text(
+                          '${foodItem.cals?.toString() ?? '0'}g',
+                          style: const TextStyle(fontSize: 14),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(),
+                ],
               ),
             ],
           ),

@@ -57,6 +57,7 @@ class _UserProfileState extends State<UserProfile> {
             'My Profile',
             style: TextStyle(fontSize: 25, fontWeight: FontWeight.normal),
           ),
+          centerTitle: false,
         ),
         body: SingleChildScrollView(
             child: Column(
