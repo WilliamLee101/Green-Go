@@ -215,7 +215,7 @@ class _RewardsPageState extends State<RewardsPage> {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Image.asset(
-                                  'assets/images/comment.png',
+                                  'assets/images/bowl.png',
                                   width: 30,
                                   height: 30,
                                 ),

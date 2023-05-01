@@ -6,7 +6,6 @@ import 'package:green_n_go/screens/review.dart';
 import 'package:green_n_go/utils/navBar.dart';
 import 'package:intl/intl.dart';
 
-
 class ReturnMenu extends StatefulWidget {
   final List<FoodItem> selectedMealType;
   final String dhall;
@@ -76,8 +75,13 @@ class _ReturnMenuState extends State<ReturnMenu> {
                   textAlign: height > 700 ? TextAlign.center : TextAlign.left,
                 ),
                 const SizedBox(
-                  height: 20,
+                  height: 25,
                 ),
+                Center(
+                  child: Image.asset(
+                    'assets/images/not_found.png',
+                  ),
+                )
               ],
             ),
           ],
@@ -163,7 +167,6 @@ class _ReturnMenuState extends State<ReturnMenu> {
                                 clipBehavior: Clip.antiAlias,
                                 context: context,
                                 builder: (BuildContext context) {
-                                
                                   return ReviewScreens(
                                     foodItem: food,
                                     diningHall: widget.dhall,

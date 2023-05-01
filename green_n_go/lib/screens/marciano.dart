@@ -8,8 +8,7 @@ import '../classes/foodItem.dart';
 import '../utils/getMenu.dart';
 
 DateTime now = DateTime.now();
-// String formattedDate = DateFormat('yyyy-MM-dd').format(now);
-String formattedDate = "2023-05-02";
+String formattedDate = DateFormat('yyyy-MM-dd').format(now);
 
 final List<FoodItem> bmenu = [];
 final List<FoodItem> lmenu = [];
