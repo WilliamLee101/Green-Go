@@ -16,6 +16,7 @@ class _IntroScreenState extends State<IntroScreen>
     IntroScreen1(),
     IntroScreen2(),
     IntroScreen3(),
+    IntroScreen4(),
     SignInPage(),
   ];
 
@@ -30,8 +31,9 @@ class _IntroScreenState extends State<IntroScreen>
   TabController? controller;
   @override
   void initState() {
+    super.initState();
     controller = TabController(
-      length: 4,
+      length: _introScreens.length,
       vsync: this,
     );
   }
@@ -197,6 +199,50 @@ class IntroScreen3 extends StatelessWidget {
               ),
               Text(
                 "Ready to make a difference?\n Feel empowered to choose wisely and\n participate in creating a sustainable future.",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: Color(0xffB3B3B3),
+                    fontSize: 17,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: "Inter"),
+              )
+            ],
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class IntroScreen4 extends StatelessWidget {
+  const IntroScreen4({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Column(
+            children: const [
+              Padding(
+                padding: EdgeInsets.only(top: 100),
+                child: Image(
+                  image: AssetImage('assets/images/rafiki2.png'),
+                  height: 276,
+                  width: 370.41,
+                ),
+              ),
+              Text(
+                "Motivation",
+                style: TextStyle(
+                    height: 3,
+                    fontSize: 30,
+                    color: Color(0xFF3A7D3C),
+                    fontWeight: FontWeight.bold),
+              ),
+              Text(
+                "Join us in reducing food waste on campus, \n one plate at a time.",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     color: Color(0xffB3B3B3),
