@@ -22,54 +22,43 @@ class HomePage extends StatelessWidget {
     globals.selectedIndex = 0;
     return Scaffold(
       bottomNavigationBar: const NavBar(),
-      body: Center(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: const Color(0xff3B7D3C),
+        toolbarHeight: .1 * height,
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(bottom: Radius.circular(18))),
+        title: Row(
+          // aligning the text on the page
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(
+              width: 0.01 * width,
+            ),
+            const Text('Welcome, ',
+                style: TextStyle(fontSize: 25, color: Colors.white),
+                textAlign: TextAlign.center),
+            Text(
+              user?.displayName == null ? 'Terrier!' : '${user?.displayName}!',
+              style: const TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
+              textAlign: TextAlign.left,
+            ),
+          ],
+        ),
+      ),
+      body: SingleChildScrollView(
         child: Stack(
           children: [
-            Container(
-              height: 0.22 * height,
-              decoration: const BoxDecoration(
-                color: Color(0xff3B7D3C),
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(30),
-                  bottomRight: Radius.circular(30),
-                ),
-              ),
-            ),
             Container(
               height: height,
               width: width,
               child: Column(
                 // centering page
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   // insert profile icon
-                  Column(children: [
-                    Row(
-                      // aligning the text on the page
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          width: 0.05 * width,
-                        ),
-                        const Text('Welcome, ',
-                            style: TextStyle(fontSize: 25, color: Colors.white),
-                            textAlign: TextAlign.center),
-                        Text(
-                          user?.displayName == null
-                              ? 'Terrier!'
-                              : '${user?.displayName}!',
-                          style: const TextStyle(
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
-                          textAlign: TextAlign.left,
-                        ),
-                      ],
-                    ),
-                  ]),
-                  SizedBox(
-                    height: 0.1 * height,
-                  ),
                   Align(
                     alignment: Alignment.center,
                     child: Row(
@@ -78,6 +67,7 @@ class HomePage extends StatelessWidget {
                         SizedBox(
                           width: 0.05 * width,
                         ),
+                        SizedBox(height: height * 0.1),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: const [
@@ -94,9 +84,7 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   // make space
-                  SizedBox(
-                    height: 0.01 * height,
-                  ),
+
                   // Warren
                   GestureDetector(
                     onTap: () {

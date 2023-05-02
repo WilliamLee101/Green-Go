@@ -16,6 +16,7 @@ class _IntroScreenState extends State<IntroScreen>
     IntroScreen1(),
     IntroScreen2(),
     IntroScreen3(),
+    IntroScreen4(),
     SignInPage(),
   ];
 
@@ -30,14 +31,17 @@ class _IntroScreenState extends State<IntroScreen>
   TabController? controller;
   @override
   void initState() {
+    super.initState();
     controller = TabController(
-      length: 4,
+      length: _introScreens.length,
       vsync: this,
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Column(
         children: [
@@ -54,6 +58,7 @@ class _IntroScreenState extends State<IntroScreen>
             borderStyle: BorderStyle.none,
             selectedColor: Color(0xff3B7D3C),
           ),
+          SizedBox(height: height * 0.015),
         ],
       ),
     );
@@ -88,11 +93,12 @@ class IntroScreen1 extends StatelessWidget {
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              SizedBox(height: height * 0.1),
+              SizedBox(height: height * 0.2),
               Image.asset(
                 "assets/images/logo.png",
                 height: width * 0.3,
                 width: width * 0.3,
+                fit: BoxFit.cover,
               ),
               SizedBox(height: height * 0.35),
               Stack(children: [
@@ -102,6 +108,7 @@ class IntroScreen1 extends StatelessWidget {
                     'assets/images/Rhetty.png',
                     height: 65,
                     width: 187.5,
+                    fit: BoxFit.scaleDown,
                   ),
                 ),
                 Padding(
@@ -110,6 +117,7 @@ class IntroScreen1 extends StatelessWidget {
                     'assets/images/TerrierTastes.png',
                     height: 125,
                     width: 250,
+                    fit: BoxFit.scaleDown,
                   ),
                 ),
               ]),
@@ -194,6 +202,50 @@ class IntroScreen3 extends StatelessWidget {
               ),
               Text(
                 "Ready to make a difference?\n Feel empowered to choose wisely and\n participate in creating a sustainable future.",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: Color(0xffB3B3B3),
+                    fontSize: 17,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: "Inter"),
+              )
+            ],
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class IntroScreen4 extends StatelessWidget {
+  const IntroScreen4({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Column(
+            children: const [
+              Padding(
+                padding: EdgeInsets.only(top: 100),
+                child: Image(
+                  image: AssetImage('assets/images/rafiki2.png'),
+                  height: 276,
+                  width: 370.41,
+                ),
+              ),
+              Text(
+                "Motivation",
+                style: TextStyle(
+                    height: 3,
+                    fontSize: 30,
+                    color: Color(0xFF3A7D3C),
+                    fontWeight: FontWeight.bold),
+              ),
+              Text(
+                "Join us in reducing food waste on campus, \n one plate at a time.",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     color: Color(0xffB3B3B3),

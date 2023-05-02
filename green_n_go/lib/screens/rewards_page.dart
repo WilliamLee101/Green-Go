@@ -54,7 +54,7 @@ class _RewardsPageState extends State<RewardsPage> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    globals.selectedIndex = 2;
+    globals.selectedIndex = 1;
 
     if (signIn == true) {
       return Scaffold(
@@ -73,7 +73,8 @@ class _RewardsPageState extends State<RewardsPage> {
               borderRadius: BorderRadius.vertical(bottom: Radius.circular(20)),
             ),
           ),
-          body: Column(
+          body: SingleChildScrollView(
+              child: Column(
             children: [
               SizedBox(height: 15),
               Row(
@@ -215,7 +216,7 @@ class _RewardsPageState extends State<RewardsPage> {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Image.asset(
-                                  'assets/images/comment.png',
+                                  'assets/images/bowl.png',
                                   width: 30,
                                   height: 30,
                                 ),
@@ -412,7 +413,7 @@ class _RewardsPageState extends State<RewardsPage> {
                 ],
               ),
             ],
-          ),
+          )),
           bottomNavigationBar: const NavBar());
     } else {
       return Scaffold(

@@ -20,7 +20,7 @@ class ProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser;
-    globals.selectedIndex = 1;
+    globals.selectedIndex = 2;
 
 // profile page styling
     if (user != null) {
@@ -57,8 +57,10 @@ class _UserProfileState extends State<UserProfile> {
             'My Profile',
             style: TextStyle(fontSize: 25, fontWeight: FontWeight.normal),
           ),
+          centerTitle: false,
         ),
-        body: Column(
+        body: SingleChildScrollView(
+            child: Column(
           children: [
             SizedBox(height: height * 0.035),
             Row(
@@ -94,12 +96,13 @@ class _UserProfileState extends State<UserProfile> {
             ]),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(width: width * 0.05),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text("No Preferences"),
                     isVegan
                         ? const Text("Vegan",
                             style: TextStyle(
@@ -180,46 +183,44 @@ class _UserProfileState extends State<UserProfile> {
             Row(
               children: [
                 SizedBox(width: width * 0.03),
-                Container(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text("  My Account",
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold)),
-                      TextButton(
-                          onPressed: () {
-                            Navigator.pushAndRemoveUntil(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const UserSetup()),
-                                (_) => false);
-                          },
-                          child: const Text(
-                            "Change Preferences",
-                            style: TextStyle(fontSize: 18),
-                          )),
-                      TextButton(
-                          onPressed: () {
-                            signOut();
-                            Navigator.pushAndRemoveUntil(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => HomePage()),
-                                (_) => false);
-                          },
-                          child: const Text(
-                            "Sign Out",
-                            style: TextStyle(
-                                color: Color(0xffFF0000), fontSize: 18),
-                          )),
-                    ],
-                  ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text("  My Account",
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold)),
+                    TextButton(
+                        onPressed: () {
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const UserSetup()),
+                              (_) => false);
+                        },
+                        child: const Text(
+                          "Change Preferences",
+                          style: TextStyle(fontSize: 18),
+                        )),
+                    TextButton(
+                        onPressed: () {
+                          signOut();
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => HomePage()),
+                              (_) => false);
+                        },
+                        child: const Text(
+                          "Sign Out",
+                          style:
+                              TextStyle(color: Color(0xffFF0000), fontSize: 18),
+                        )),
+                  ],
                 ),
               ],
             ),
           ],
-        ));
+        )));
   }
 }
 
@@ -237,13 +238,25 @@ class _GuestProfileState extends State<GuestProfile> {
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
       bottomNavigationBar: const NavBar(),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: const Color(0xff3B7D3C),
+        toolbarHeight: .1 * height,
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(bottom: Radius.circular(18))),
+        title: const Text(
+          'My Profile',
+          style: TextStyle(fontSize: 25, fontWeight: FontWeight.normal),
+        ),
+        centerTitle: false,
+      ),
       body: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: height * 0.5),
+              SizedBox(height: height * 0.35),
               const Text("You are not logged in"),
               TextButton(
                 onPressed: () async {
