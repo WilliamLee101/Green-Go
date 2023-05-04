@@ -76,7 +76,7 @@ class _RewardsPageState extends State<RewardsPage> {
           body: SingleChildScrollView(
               child: Column(
             children: [
-              SizedBox(height: 15),
+              SizedBox(height: height * 0.01),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
